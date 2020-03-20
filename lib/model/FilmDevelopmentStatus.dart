@@ -1,4 +1,5 @@
-import 'package:filmdevelopmentcompanion/FilmDevelopmentStatusSummary.dart';
+
+import 'FilmDevelopmentStatusSummary.dart';
 
 /// A FilmDevelopmentStatus represents a status update of a FilmDevelopmentOrder
 /// time
@@ -10,5 +11,7 @@ class FilmDevelopmentStatus {
 
   // TODO: More fields required?
   FilmDevelopmentStatus(
-      {this.statusDate, this.fetchTime, this.statusSummary, this.price});
+      {this.statusDate,  this.statusSummary, this.price});
+
+
 }
