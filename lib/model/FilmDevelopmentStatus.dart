@@ -1,8 +1,6 @@
-
 import 'FilmDevelopmentStatusSummary.dart';
 
 /// A FilmDevelopmentStatus represents a status update of a FilmDevelopmentOrder
-/// time
 class FilmDevelopmentStatus {
   DateTime statusDate;
   DateTime fetchTime;
@@ -10,8 +8,9 @@ class FilmDevelopmentStatus {
   double price;
 
   // TODO: More fields required?
-  FilmDevelopmentStatus(
-      {this.statusDate,  this.statusSummary, this.price});
+  FilmDevelopmentStatus({this.statusDate, this.statusSummary, this.price});
 
-
+  String toString() {
+    return "statusDate: $statusDate\nstatusSummary: $statusSummary\nprice: $price";
+  }
 }
