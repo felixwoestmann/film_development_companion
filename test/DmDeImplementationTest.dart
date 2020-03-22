@@ -5,12 +5,12 @@ import 'package:filmdevelopmentcompanion/model/StoreModel.dart';
 void main() async {
   StoreModel dmDeStoreModel = new DmDeStoreModel();
   FilmDevelopmentOrder filmOderOne =
-      FilmDevelopmentOrder(dmDeStoreModel, "854447", "538050");
+      FilmDevelopmentOrder(dmDeStoreModel, "854447", "1618");
   FilmDevelopmentOrder filmOderTwo =
-      FilmDevelopmentOrder(dmDeStoreModel, "854440", "538050");
+      FilmDevelopmentOrder(dmDeStoreModel, "854440", "1618");
   await filmOderOne.update();
   await filmOderTwo.update();
 
   print(filmOderOne.filmDevelopmentStatusUpdates.length);
-  print(filmOderTwo.filmDevelopmentStatusUpdates.length);
+  print(filmOderTwo.filmDevelopmentStatusUpdates[0].toString());
 }
