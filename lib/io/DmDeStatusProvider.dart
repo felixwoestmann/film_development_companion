@@ -40,11 +40,35 @@ class DmDeStatusProvider implements FilmDevelopmentStatusProvider {
       return FilmDevelopmentStatus(
           price: price.toDouble(),
           statusDate: DateTime.parse(jsonResponse['resultDateTime']),
-          statusSummary: statusSummary);
+          statusSummary: statusSummary,
+          statusSummaryText: jsonResponse['summaryStateText']);
     } else {
       //TODO something bad happened
       print("The request failed.");
       return null;
+    }
+  }
+
+  FilmDevelopmentStatusSummary getFilmDevelopmentStatusSummaryFromText(
+      String text) {
+    switch (text) {
+      case "PROCESSING":
+        {
+          return FilmDevelopmentStatusSummary.PROCESSING;
+        }
+        break;
+
+      case "DONE":
+        {
+          return FilmDevelopmentStatusSummary.DONE;
+        }
+        break;
+
+      default:
+        {
+          return FilmDevelopmentStatusSummary.UNKNOWN;
+        }
+        break;
     }
   }
 }
