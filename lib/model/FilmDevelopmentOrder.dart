@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentStatus.dart';
 import 'package:filmdevelopmentcompanion/io/FilmDevelopmentStatusProvider.dart';
 import 'package:filmdevelopmentcompanion/io/StatusProviderFactory.dart';
@@ -8,7 +10,7 @@ import 'package:filmdevelopmentcompanion/model/StoreModel.dart';
 /// orderNumber: the number given by the store to identify the order
 /// storeId: the identifier for a specific store location used by the film lab
 /// providerId: the type of store, for example the chain where the specific store belongs to
-/// insertionDate: the date when the order has been made
+/// insertionDate: the date when the order has been added to the app
 /// filmDevelopmentStatusUpdates: a list with all the status updates for this specific order
 class FilmDevelopmentOrder {
   int id;
@@ -24,13 +26,24 @@ class FilmDevelopmentOrder {
     this.orderNumber = orderNumber;
     this.storeModel = storeModel;
     this.storeId = storeId;
-    filmDevelopmentStatusUpdates=new List<FilmDevelopmentStatus>();
+    filmDevelopmentStatusUpdates = new List<FilmDevelopmentStatus>();
+    insertionDate = DateTime.now();
   }
 
-  Future<void> update() async{
-    FilmDevelopmentStatusProvider statusProvider=StatusProviderFactory.createStatusProviderForStoreModel(storeModel);
-    FilmDevelopmentStatus statusUpdate=await statusProvider.obtainDevelopmentStatusForFilmOrder(this);
+  Future<void> update() async {
+    FilmDevelopmentStatusProvider statusProvider =
+        StatusProviderFactory.createStatusProviderForStoreModel(storeModel);
+    FilmDevelopmentStatus statusUpdate =
+        await statusProvider.obtainDevelopmentStatusForFilmOrder(this);
     filmDevelopmentStatusUpdates.add(statusUpdate);
+  }
+
+  String get latestFilmDevelopmentStatusSummaryText{
+    if(filmDevelopmentStatusUpdates.isEmpty) {
+      return "";
+    }else {
+      return filmDevelopmentStatusUpdates.last.statusSummaryText;
+    }
   }
 
 }
