@@ -1,8 +1,8 @@
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentOrder.dart';
 import 'package:flutter/material.dart';
-
 import 'model/DmDeStoreModel.dart';
 import 'model/StoreModel.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -22,9 +22,9 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.yellow,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Film Development Companion'),
     );
   }
 }
@@ -48,8 +48,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<FilmDevelopmentOrder> filmOrders=new List();
 
+  List<FilmDevelopmentOrder> filmOrders = new List();
 
   void _addItemToList() {
     setState(() {
@@ -58,13 +58,14 @@ class _MyHomePageState extends State<MyHomePage> {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
+      filmOrders = new List();
       StoreModel dmDeStoreModel = new DmDeStoreModel();
       FilmDevelopmentOrder filmOderOne =
-      FilmDevelopmentOrder(dmDeStoreModel, "854447", "1618");
+          FilmDevelopmentOrder(dmDeStoreModel, "854447", "1618");
       FilmDevelopmentOrder filmOderTwo =
-      FilmDevelopmentOrder(dmDeStoreModel, "854440", "1618");
-     filmOrders.add(filmOderOne);
-     filmOrders.add(filmOderTwo);
+          FilmDevelopmentOrder(dmDeStoreModel, "854440", "1618");
+      filmOrders.add(filmOderOne);
+      filmOrders.add(filmOderTwo);
     });
   }
 
@@ -95,16 +96,16 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: <Widget>[
                       Padding(
                         padding:
-                        const EdgeInsets.fromLTRB(12.0, 12.0, 12.0, 6.0),
+                            const EdgeInsets.fromLTRB(12.0, 12.0, 12.0, 6.0),
                         child: Text(
-                          filmOrders[position].orderNumber,
+                          filmOrders[position].insertionDate.toIso8601String(),
                           style: TextStyle(
                               fontSize: 22.0, fontWeight: FontWeight.bold),
                         ),
                       ),
                       Padding(
                         padding:
-                        const EdgeInsets.fromLTRB(12.0, 6.0, 12.0, 12.0),
+                            const EdgeInsets.fromLTRB(12.0, 6.0, 12.0, 12.0),
                         child: Text(
                           filmOrders[position].storeId,
                           style: TextStyle(fontSize: 18.0),
@@ -143,8 +144,13 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         itemCount: filmOrders.length,
       ),
-
-
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Add your onPressed code here!
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.yellowAccent,
+      ),
     );
   }
 }
