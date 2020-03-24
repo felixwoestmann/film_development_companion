@@ -19,27 +19,40 @@ class _DmDeAddFilmOrderPageState extends State<DmDeAddFilmOrderPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.fromLTRB(12.0, 20.0, 0.0, 10.0),
-              child: TextField(
-                autocorrect: false,
-                decoration: InputDecoration(
-                  hintText: "Store ID",
-                ),
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 10.0),
+            child: TextField(
+              autocorrect: false,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                hintText: "Store ID",
+                hintStyle: TextStyle(fontSize: 18),
               ),
             ),
-            TextField(
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 10.0),
+            child: TextField(
               autocorrect: false,
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 hintText: "Order ID",
+                hintStyle: TextStyle(fontSize: 18),
               ),
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.save),
+        backgroundColor: Colors.yellowAccent,
+      ),
+    );
   }
 }
