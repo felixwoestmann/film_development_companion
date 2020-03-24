@@ -2,9 +2,10 @@ import 'package:filmdevelopmentcompanion/model/DmDeStoreModel.dart';
 import 'package:filmdevelopmentcompanion/model/StoreModel.dart';
 import 'package:flutter/material.dart';
 
-class ChooseStoreTypePage extends StatefulWidget {
+import 'DmDeAddFilmOrderPage.dart';
 
-  final String title="Add Film";
+class ChooseStoreTypePage extends StatefulWidget {
+  final String title = "Choose Store Type";
 
   @override
   _ChooseStoreTypePageState createState() => _ChooseStoreTypePageState();
@@ -27,31 +28,34 @@ class _ChooseStoreTypePageState extends State<ChooseStoreTypePage> {
       ),
       body: ListView.builder(
         itemBuilder: (context, position) {
-          return Column(
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding:
-                            const EdgeInsets.fromLTRB(12.0, 20.0, 0.0, 10.0),
-                        child: Text(
-                          storeModels[position].providerName,
-                          style: TextStyle(fontSize: 22.0),
+          return GestureDetector(
+            child: Column(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding:
+                              const EdgeInsets.fromLTRB(12.0, 20.0, 0.0, 10.0),
+                          child: Text(
+                            storeModels[position].providerName,
+                            style: TextStyle(fontSize: 22.0),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              Divider(
-                height: 2.0,
-                color: Colors.grey,
-              )
-            ],
+                      ],
+                    ),
+                  ],
+                ),
+                Divider(
+                  height: 2.0,
+                  color: Colors.grey,
+                )
+              ],
+            ),
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => DmDeAddFilmOrderPage())),
           );
         },
         itemCount: storeModels.length,
