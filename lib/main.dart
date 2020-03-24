@@ -44,9 +44,6 @@ class MyHomePage extends StatefulWidget {
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
-
-
-
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -56,9 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     loadFilmOrders();
-    updateAllOrders().then((_) => setState(() {}));
+    updateAllOrders();
   }
-
 
   void _addItemToList(FilmDevelopmentOrder filmOrder) {
     setState(() {
@@ -74,9 +70,9 @@ class _MyHomePageState extends State<MyHomePage> {
   void loadFilmOrders() {
     StoreModel dmDeStoreModel = new DmDeStoreModel();
     FilmDevelopmentOrder filmOrderOne =
-        FilmDevelopmentOrder(dmDeStoreModel, "854447", "1618");
+    FilmDevelopmentOrder(dmDeStoreModel, "854447", "1618");
     FilmDevelopmentOrder filmOrderTwo =
-        FilmDevelopmentOrder(dmDeStoreModel, "854440", "1618");
+    FilmDevelopmentOrder(dmDeStoreModel, "854440", "1618");
     _addItemToList(filmOrderOne);
     _addItemToList(filmOrderTwo);
   }
@@ -85,6 +81,9 @@ class _MyHomePageState extends State<MyHomePage> {
     for (var value in filmOrders) {
       await value.update();
     }
+    setState(() {
+
+    });
   }
 
   @override
@@ -96,76 +95,72 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: ListView.builder(
-        itemBuilder: (context, position) {
-          return Column(
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding:
-                            const EdgeInsets.fromLTRB(12.0, 12.0, 12.0, 6.0),
-                        child: Text(
-                          filmOrders[position].insertionDate.toIso8601String(),
-                          style: TextStyle(fontSize: 15.0),
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.fromLTRB(12.0, 12.0, 12.0, 6.0),
-                        child: Text(
-                          filmOrders[position]
-                              .latestFilmDevelopmentStatusSummaryText,
-                          style: TextStyle(fontSize: 22.0),
-                        ),
-                      ),
-                      Padding(
-                          padding:
-                              const EdgeInsets.fromLTRB(12.0, 6.0, 12.0, 12.0),
-                          child: Row(
-                            children: <Widget>[
-                              Text(
-                                filmOrders[position].orderNumber,
-                                style: TextStyle(
-                                    fontSize: 22.0,
-                                    fontWeight: FontWeight.bold),
+        appBar: AppBar(
+          // Here we take the value from the MyHomePage object that was created by
+          // the App.build method, and use it to set our appbar title.
+          title: Text(widget.title),
+        ),
+        body: RefreshIndicator(
+            child: ListView.builder(
+              itemBuilder: (context, position) {
+                return Column(
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                  12.0, 12.0, 12.0, 6.0),
+                              child: Text(
+                                filmOrders[position]
+                                    .insertionDate
+                                    .toIso8601String(),
+                                style: TextStyle(fontSize: 15.0),
                               ),
-                              Padding(
-                                  padding: const EdgeInsets.fromLTRB(
-                                      8.0, 0.0, 0.0, 0.0)),
-                              Text(filmOrders[position].storeId,
-                                  style: TextStyle(fontSize: 18.0))
-                            ],
-                          )),
-                    ],
-                  ),
-                ],
-              ),
-              Divider(
-                height: 2.0,
-                color: Colors.grey,
-              )
-            ],
-          );
-        },
-        itemCount: filmOrders.length,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Add your onPressed code here!
-        },
-        child: Icon(Icons.add),
-        backgroundColor: Colors.yellowAccent,
-      ),
-    );
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                  12.0, 12.0, 12.0, 6.0),
+                              child: Text(
+                                filmOrders[position]
+                                    .latestFilmDevelopmentStatusSummaryText,
+                                style: TextStyle(fontSize: 22.0),
+                              ),
+                            ),
+                            Padding(
+                                padding: const EdgeInsets.fromLTRB(
+                                    12.0, 6.0, 12.0, 12.0),
+                                child: Row(
+                                  children: <Widget>[
+                                    Text(
+                                      filmOrders[position].orderNumber,
+                                      style: TextStyle(
+                                          fontSize: 22.0,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            8.0, 0.0, 0.0, 0.0)),
+                                    Text(filmOrders[position].storeId,
+                                        style: TextStyle(fontSize: 18.0))
+                                  ],
+                                )),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Divider(
+                      height: 2.0,
+                      color: Colors.grey,
+                    )
+                  ],
+                );
+              },
+              itemCount: filmOrders.length,
+            ),
+            onRefresh:updateAllOrders));
   }
 }
