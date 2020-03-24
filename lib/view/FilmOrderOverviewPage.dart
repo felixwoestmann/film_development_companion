@@ -1,5 +1,5 @@
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentOrder.dart';
-import 'package:filmdevelopmentcompanion/view/AddFilmOrderPage.dart';
+import 'package:filmdevelopmentcompanion/view/ChooseStoreTypePage.dart';
 import 'package:flutter/material.dart';
 import '../model/DmDeStoreModel.dart';
 import '../model/StoreModel.dart';
@@ -119,7 +119,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => AddFilmOrderPage()));
+              MaterialPageRoute(builder: (context) => ChooseStoreTypePage()));
         },
         child: Icon(Icons.add),
         backgroundColor: Colors.yellowAccent,

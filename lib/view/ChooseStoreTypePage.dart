@@ -2,15 +2,15 @@ import 'package:filmdevelopmentcompanion/model/DmDeStoreModel.dart';
 import 'package:filmdevelopmentcompanion/model/StoreModel.dart';
 import 'package:flutter/material.dart';
 
-class AddFilmOrderPage extends StatefulWidget {
+class ChooseStoreTypePage extends StatefulWidget {
 
   final String title="Add Film";
 
   @override
-  _AddFilmOrderPageState createState() => _AddFilmOrderPageState();
+  _ChooseStoreTypePageState createState() => _ChooseStoreTypePageState();
 }
 
-class _AddFilmOrderPageState extends State<AddFilmOrderPage> {
+class _ChooseStoreTypePageState extends State<ChooseStoreTypePage> {
   List<StoreModel> storeModels = new List();
 
   @override
