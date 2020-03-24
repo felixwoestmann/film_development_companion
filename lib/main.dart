@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'model/DmDeStoreModel.dart';
 import 'model/StoreModel.dart';
 
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -45,28 +44,47 @@ class MyHomePage extends StatefulWidget {
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
+
+
+
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   List<FilmDevelopmentOrder> filmOrders = new List();
 
-  void _addItemToList() {
+  @override
+  void initState() {
+    super.initState();
+    loadFilmOrders();
+    updateAllOrders().then((_) => setState(() {}));
+  }
+
+
+  void _addItemToList(FilmDevelopmentOrder filmOrder) {
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      filmOrders = new List();
-      StoreModel dmDeStoreModel = new DmDeStoreModel();
-      FilmDevelopmentOrder filmOderOne =
-          FilmDevelopmentOrder(dmDeStoreModel, "854447", "1618");
-      FilmDevelopmentOrder filmOderTwo =
-          FilmDevelopmentOrder(dmDeStoreModel, "854440", "1618");
-      filmOrders.add(filmOderOne);
-      filmOrders.add(filmOderTwo);
+      filmOrders.add(filmOrder);
     });
+  }
+
+  void loadFilmOrders() {
+    StoreModel dmDeStoreModel = new DmDeStoreModel();
+    FilmDevelopmentOrder filmOrderOne =
+        FilmDevelopmentOrder(dmDeStoreModel, "854447", "1618");
+    FilmDevelopmentOrder filmOrderTwo =
+        FilmDevelopmentOrder(dmDeStoreModel, "854440", "1618");
+    _addItemToList(filmOrderOne);
+    _addItemToList(filmOrderTwo);
+  }
+
+  Future<void> updateAllOrders() async {
+    for (var value in filmOrders) {
+      await value.update();
+    }
   }
 
   @override
@@ -77,7 +95,6 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    _addItemToList();
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
@@ -99,39 +116,37 @@ class _MyHomePageState extends State<MyHomePage> {
                             const EdgeInsets.fromLTRB(12.0, 12.0, 12.0, 6.0),
                         child: Text(
                           filmOrders[position].insertionDate.toIso8601String(),
-                          style: TextStyle(
-                              fontSize: 22.0, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: 15.0),
                         ),
                       ),
                       Padding(
                         padding:
-                            const EdgeInsets.fromLTRB(12.0, 6.0, 12.0, 12.0),
+                            const EdgeInsets.fromLTRB(12.0, 12.0, 12.0, 6.0),
                         child: Text(
-                          filmOrders[position].storeId,
-                          style: TextStyle(fontSize: 18.0),
+                          filmOrders[position]
+                              .latestFilmDevelopmentStatusSummaryText,
+                          style: TextStyle(fontSize: 22.0),
                         ),
                       ),
+                      Padding(
+                          padding:
+                              const EdgeInsets.fromLTRB(12.0, 6.0, 12.0, 12.0),
+                          child: Row(
+                            children: <Widget>[
+                              Text(
+                                filmOrders[position].orderNumber,
+                                style: TextStyle(
+                                    fontSize: 22.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Padding(
+                                  padding: const EdgeInsets.fromLTRB(
+                                      8.0, 0.0, 0.0, 0.0)),
+                              Text(filmOrders[position].storeId,
+                                  style: TextStyle(fontSize: 18.0))
+                            ],
+                          )),
                     ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        Text(
-                          "5m",
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Icon(
-                            Icons.star_border,
-                            size: 35.0,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
-                    ),
                   ),
                 ],
               ),

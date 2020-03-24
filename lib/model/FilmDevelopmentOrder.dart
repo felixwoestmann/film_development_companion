@@ -42,7 +42,7 @@ class FilmDevelopmentOrder {
     if(filmDevelopmentStatusUpdates.isEmpty) {
       return "";
     }else {
-      return filmDevelopmentStatusUpdates.last.statusSummaryText;
+      return filmDevelopmentStatusUpdates.last.statusSummaryText.split(".")[0];
     }
   }
 
