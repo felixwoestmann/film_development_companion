@@ -14,7 +14,9 @@ class FilmDevCompanionApp extends StatelessWidget {
         brightness: Brightness.dark,
         accentColor: Color.fromARGB(255, 255, 235, 59),
         primaryColor: Color.fromARGB(255, 0, 0, 1),
-//fontFamily: 'Roboto',
+        textTheme: GoogleFonts.robotoTextTheme(
+          Theme.of(context).textTheme,
+        ).apply(bodyColor: Color.fromARGB(255, 255, 255, 255)),
       ),
       home: FilmOrderOverviewPage(title: 'Film Development Companion'),
     );
