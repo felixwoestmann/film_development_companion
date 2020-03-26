@@ -4,6 +4,7 @@ import 'package:filmdevelopmentcompanion/model/FilmDevelopmentStatus.dart';
 import 'package:filmdevelopmentcompanion/io/FilmDevelopmentStatusProvider.dart';
 import 'package:filmdevelopmentcompanion/io/StatusProviderFactory.dart';
 import 'package:filmdevelopmentcompanion/model/StoreModel.dart';
+import 'package:intl/intl.dart';
 
 /// A FilmDevelopmentOrder represents an order to develop a film at a lab.
 /// id: the unique id of this film order
@@ -38,12 +39,15 @@ class FilmDevelopmentOrder {
     filmDevelopmentStatusUpdates.add(statusUpdate);
   }
 
-  String get latestFilmDevelopmentStatusSummaryText{
-    if(filmDevelopmentStatusUpdates.isEmpty) {
+  String get insertionDateGui {
+    return new DateFormat.MMMd("de_DE").format(insertionDate);
+  }
+
+  String get latestFilmDevelopmentStatusSummaryText {
+    if (filmDevelopmentStatusUpdates.isEmpty) {
       return "";
-    }else {
+    } else {
       return filmDevelopmentStatusUpdates.last.statusSummaryText.split(".")[0];
     }
   }
-
 }
