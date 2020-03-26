@@ -38,10 +38,10 @@ class DmDeStatusProvider implements FilmDevelopmentStatusProvider {
       int price = jsonResponse['summaryPrice'];
       print(jsonResponse);
       return FilmDevelopmentStatus(
-          price: price.toDouble(),
-          statusDate: DateTime.parse(jsonResponse['resultDateTime']),
-          statusSummary: statusSummary,
-          statusSummaryText: jsonResponse['summaryStateText']);
+          DateTime.parse(jsonResponse['resultDateTime']),
+          statusSummary,
+          price.toDouble(),
+          jsonResponse['summaryStateText']);
     } else {
       //TODO something bad happened
       print("The request failed.");

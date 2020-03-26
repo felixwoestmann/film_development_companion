@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:filmdevelopmentcompanion/io/DatabaseHelpers.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentStatus.dart';
 import 'package:filmdevelopmentcompanion/io/FilmDevelopmentStatusProvider.dart';
 import 'package:filmdevelopmentcompanion/io/StatusProviderFactory.dart';
@@ -17,7 +18,6 @@ class FilmDevelopmentOrder {
   int id;
   String orderNumber;
   String storeId;
-  String providerId;
   DateTime insertionDate;
   List<FilmDevelopmentStatus> filmDevelopmentStatusUpdates;
   StoreModel storeModel;
@@ -49,5 +49,28 @@ class FilmDevelopmentOrder {
     } else {
       return filmDevelopmentStatusUpdates.last.statusSummaryText.split(".")[0];
     }
+  }
+
+  FilmDevelopmentOrder.fromMap(Map<String, dynamic> map) {
+    id = map[DatabaseHelper.columnId];
+    orderNumber = map[DatabaseHelper.columnOrderNumber];
+    storeId = map[DatabaseHelper.columnStoreId];
+    insertionDate = DateTime.parse(map[DatabaseHelper.columnInsertionDate]);
+    filmDevelopmentStatusUpdates = new List();
+    storeModel =
+        StoreModel.storeModelFromId(map[DatabaseHelper.columnStoreModel]);
+  }
+
+  Map<String, dynamic> toMap() {
+    var map = <String, dynamic>{
+      DatabaseHelper.columnOrderNumber: orderNumber,
+      DatabaseHelper.columnStoreId: storeId,
+      DatabaseHelper.columnInsertionDate: insertionDate.toIso8601String(),
+      DatabaseHelper.columnStoreModel: storeModel.providerId,
+    };
+    if (id != null) {
+      map[DatabaseHelper.columnId] = id;
+    }
+    return map;
   }
 }

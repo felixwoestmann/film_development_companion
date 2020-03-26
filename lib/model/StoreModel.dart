@@ -1,3 +1,5 @@
+import 'package:filmdevelopmentcompanion/model/DmDeStoreModel.dart';
+
 class StoreModel {
   String get providerId {
     print("Not implemented should be used as an interface");
@@ -9,5 +11,13 @@ class StoreModel {
     return "";
   }
 
-
+  static StoreModel storeModelFromId(String id) {
+    switch (id) {
+      case DmDeStoreModel.PROVIDER_ID:
+        {
+          return new DmDeStoreModel();
+        }
+        break;
+    }
+  }
 }

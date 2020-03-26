@@ -19,7 +19,7 @@ class FilmDevelopmentStatus {
     fetchTime = DateTime.now();
   }
 
-  ;
+
 
   String toString() {
     return "statusDate: $statusDate\nstatusSummary: $statusSummary\nprice: $price\nstatusSummaryText: $statusSummaryText";

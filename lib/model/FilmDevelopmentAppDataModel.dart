@@ -1,22 +1,28 @@
 import 'dart:async';
 import 'dart:collection';
+import 'package:filmdevelopmentcompanion/io/DatabaseHelpers.dart';
 import 'package:flutter/foundation.dart';
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'DmDeStoreModel.dart';
 import 'FilmDevelopmentOrder.dart';
-import 'StoreModel.dart';
 
 class FilmDevelopmentAppDataModel extends ChangeNotifier {
-  List<FilmDevelopmentOrder> filmOrders = new List();
+  List<FilmDevelopmentOrder> filmOrders=new List();
+  DatabaseHelper dbHelper;
 
   FilmDevelopmentAppDataModel() {
     initializeDateFormatting("de_DE", null);
-    StoreModel dmDeStoreModel = new DmDeStoreModel();
-    addFilmOrder(FilmDevelopmentOrder(dmDeStoreModel, "854440", "1618"));
+    dbHelper = DatabaseHelper.instance;
+    //StoreModel dmDeStoreModel = new DmDeStoreModel();
+    // addFilmOrder(FilmDevelopmentOrder(dmDeStoreModel, "854440", "1618"));
     // addFilmOrder(FilmDevelopmentOrder(dmDeStoreModel, "854447", "1618"));
-    addFilmOrder(FilmDevelopmentOrder(dmDeStoreModel, "567539", "1618"));
+    //addFilmOrder(FilmDevelopmentOrder(dmDeStoreModel, "567539", "1618"));
+
+    initFilmDevelopmentAppDataModel();
+  }
+
+  void initFilmDevelopmentAppDataModel() async {
+    filmOrders = await dbHelper.loadAllFilmDevelopmentOrders();
+    notifyListeners();
     updateAllOrders();
   }
 
@@ -24,6 +30,7 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
     filmOrders.add(order);
     await order.update();
     notifyListeners();
+    dbHelper.insert(order);
   }
 
   UnmodifiableListView<FilmDevelopmentOrder> get filmDevelopmentOrders =>
