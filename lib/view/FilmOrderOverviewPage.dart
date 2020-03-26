@@ -1,4 +1,5 @@
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentOrder.dart';
+import 'package:filmdevelopmentcompanion/model/FilmDevelopmentOrderDataHolder.dart';
 import 'package:filmdevelopmentcompanion/view/ChooseStoreTypePage.dart';
 import 'package:flutter/material.dart';
 import '../model/DmDeStoreModel.dart';
@@ -14,38 +15,20 @@ class FilmOrderOverviewPage extends StatefulWidget {
 }
 
 class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
-  List<FilmDevelopmentOrder> filmOrders = new List();
-
   @override
   void initState() {
     super.initState();
-    loadFilmOrders();
-    updateAllOrders();
+    updateOrdersAndDisplay();
   }
 
-  void _addItemToList(FilmDevelopmentOrder filmOrder) {
-    setState(() {
-      filmOrders.add(filmOrder);
-    });
+  Future<void> doStuff() {
+    print("invoked");
   }
 
-  void loadFilmOrders() {
-    StoreModel dmDeStoreModel = new DmDeStoreModel();
-    FilmDevelopmentOrder filmOrderOne =
-        FilmDevelopmentOrder(dmDeStoreModel, "854447", "1618");
-    FilmDevelopmentOrder filmOrderTwo =
-        FilmDevelopmentOrder(dmDeStoreModel, "854440", "1618");
-    _addItemToList(filmOrderOne);
-    _addItemToList(filmOrderTwo);
-  }
-
-  Future<void> updateAllOrders() async {
-    List<Future> futures = <Future>[];
-    for (var order in filmOrders) {
-      futures.add(order.update());
-    }
-    await Future.wait(futures);
-    setState(() {});
+  void updateOrdersAndDisplay() {
+    FilmDevelopmentDataHolder.instance
+        .updateAllOrders()
+        .then((_) => setState(() {}));
   }
 
   @override
@@ -69,8 +52,8 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                             padding: const EdgeInsets.fromLTRB(
                                 12.0, 12.0, 12.0, 6.0),
                             child: Text(
-                              filmOrders[position]
-                                  .insertionDate
+                              FilmDevelopmentDataHolder
+                                  .instance.filmOrders[position].insertionDate
                                   .toIso8601String(),
                               style: TextStyle(fontSize: 15.0),
                             ),
@@ -79,7 +62,9 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                             padding: const EdgeInsets.fromLTRB(
                                 12.0, 12.0, 12.0, 6.0),
                             child: Text(
-                              filmOrders[position]
+                              FilmDevelopmentDataHolder
+                                  .instance
+                                  .filmOrders[position]
                                   .latestFilmDevelopmentStatusSummaryText,
                               style: TextStyle(fontSize: 22.0),
                             ),
@@ -90,7 +75,8 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                               child: Row(
                                 children: <Widget>[
                                   Text(
-                                    filmOrders[position].orderNumber,
+                                    FilmDevelopmentDataHolder.instance
+                                        .filmOrders[position].orderNumber,
                                     style: TextStyle(
                                         fontSize: 22.0,
                                         fontWeight: FontWeight.bold),
@@ -98,7 +84,9 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                                   Padding(
                                       padding: const EdgeInsets.fromLTRB(
                                           8.0, 0.0, 0.0, 0.0)),
-                                  Text(filmOrders[position].storeId,
+                                  Text(
+                                      FilmDevelopmentDataHolder.instance
+                                          .filmOrders[position].storeId,
                                       style: TextStyle(fontSize: 18.0))
                                 ],
                               )),
@@ -108,21 +96,20 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                   ),
                   Divider(
                     height: 2.0,
-                    color: Colors.grey,
+                    color: Colors.grey[200],
                   )
                 ],
               );
             },
-            itemCount: filmOrders.length,
+            itemCount: FilmDevelopmentDataHolder.instance.filmOrders.length,
           ),
-          onRefresh: updateAllOrders),
+          onRefresh: doStuff),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => ChooseStoreTypePage()));
         },
         child: Icon(Icons.add),
-        backgroundColor: Colors.yellowAccent,
       ),
     );
   }
