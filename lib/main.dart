@@ -1,8 +1,15 @@
+import 'package:filmdevelopmentcompanion/model/FilmDevelopmentAppDataModel.dart';
 import 'package:filmdevelopmentcompanion/view/FilmOrderOverviewPage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(FilmDevCompanionApp());
+void main() {
+  runApp(ChangeNotifierProvider(
+    create: (context) => FilmDevelopmentAppDataModel(),
+    child: FilmDevCompanionApp(),
+  ));
+}
 
 class FilmDevCompanionApp extends StatelessWidget {
   // This widget is the root of your application.

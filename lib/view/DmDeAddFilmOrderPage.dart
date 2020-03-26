@@ -1,8 +1,9 @@
 import 'package:filmdevelopmentcompanion/model/DmDeStoreModel.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentOrder.dart';
-import 'package:filmdevelopmentcompanion/model/FilmDevelopmentOrderDataHolder.dart';
+import 'package:filmdevelopmentcompanion/model/FilmDevelopmentAppDataModel.dart';
 import 'package:filmdevelopmentcompanion/model/StoreModel.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DmDeAddFilmOrderPage extends StatefulWidget {
   final String title = "Add Film Order";
@@ -31,50 +32,56 @@ class _DmDeAddFilmOrderPageState extends State<DmDeAddFilmOrderPage> {
   }
 
   void addFilmOrder() {
-    FilmDevelopmentDataHolder.instance.addFilmOrder(new FilmDevelopmentOrder(
-        new DmDeStoreModel(),
-        orderIdTextController.text,
-        storeIdTextController.text));
+    var order = new FilmDevelopmentOrder(new DmDeStoreModel(),
+        orderIdTextController.text, storeIdTextController.text);
+    Provider.of<FilmDevelopmentAppDataModel>(context, listen: false)
+        .addFilmOrder(order);
+    Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 10.0),
-            child: TextField(
-              autocorrect: false,
-              controller: storeIdTextController,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                hintText: "Store ID",
-                hintStyle: TextStyle(fontSize: 18),
-              ),
-            ),
+    return Consumer<FilmDevelopmentAppDataModel>(
+      builder: (context, cart, child) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(widget.title),
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 10.0),
-            child: TextField(
-              autocorrect: false,
-              controller: orderIdTextController,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                hintText: "Order ID",
-                hintStyle: TextStyle(fontSize: 18),
+          body: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 10.0),
+                child: TextField(
+                  autocorrect: false,
+                  controller: storeIdTextController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    hintText: "Store ID",
+                    hintStyle: TextStyle(fontSize: 18),
+                  ),
+                ),
               ),
-            ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 10.0),
+                child: TextField(
+                  autocorrect: false,
+                  controller: orderIdTextController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    hintText: "Order ID",
+                    hintStyle: TextStyle(fontSize: 18),
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: addFilmOrder,
-        child: Icon(Icons.check),
-      ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: addFilmOrder,
+            child: Icon(Icons.check),
+          ),
+        );
+      },
     );
   }
+
 }
