@@ -7,9 +7,7 @@ import '../model/DmDeStoreModel.dart';
 import '../model/StoreModel.dart';
 
 class FilmOrderOverviewPage extends StatefulWidget {
-  FilmOrderOverviewPage({Key key, this.title}) : super(key: key);
-
-  final String title;
+  final String title = "Film Development Companion";
 
   @override
   _FilmOrderOverviewPageState createState() => _FilmOrderOverviewPageState();
@@ -20,15 +18,6 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
   void initState() {
     super.initState();
   }
-
-  Future<void> doStuff() {
-    print("invoked");
-  }
-
-  //void updateOrdersAndDisplay() {
-  // FilmDevelopmentAppDataModel.instance
-  //   .updateAllOrders()
-  // .then((_) => setState(() {}));}
 
   @override
   Widget build(BuildContext context) {

@@ -36,7 +36,7 @@ class _DmDeAddFilmOrderPageState extends State<DmDeAddFilmOrderPage> {
         orderIdTextController.text, storeIdTextController.text);
     Provider.of<FilmDevelopmentAppDataModel>(context, listen: false)
         .addFilmOrder(order);
-    Navigator.pop(context);
+    Navigator.popUntil(context, ModalRoute.withName('/'));
   }
 
   @override
@@ -83,5 +83,4 @@ class _DmDeAddFilmOrderPageState extends State<DmDeAddFilmOrderPage> {
       },
     );
   }
-
 }

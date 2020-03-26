@@ -1,4 +1,6 @@
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentAppDataModel.dart';
+import 'package:filmdevelopmentcompanion/view/ChooseStoreTypePage.dart';
+import 'package:filmdevelopmentcompanion/view/DmDeAddFilmOrderPage.dart';
 import 'package:filmdevelopmentcompanion/view/FilmOrderOverviewPage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,16 +18,20 @@ class FilmDevCompanionApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        accentColor: Color.fromARGB(255, 255, 235, 59),
-        primaryColor: Color.fromARGB(255, 0, 0, 1),
-        textTheme: GoogleFonts.robotoTextTheme(
-          Theme.of(context).textTheme,
-        ).apply(bodyColor: Color.fromARGB(255, 255, 255, 255)),
-      ),
-      home: FilmOrderOverviewPage(title: 'Film Development Companion'),
-    );
+        title: 'Film Development Companion App',
+        theme: ThemeData(
+          brightness: Brightness.dark,
+          accentColor: Color.fromARGB(255, 255, 235, 59),
+          primaryColor: Color.fromARGB(255, 0, 0, 1),
+          textTheme: GoogleFonts.robotoTextTheme(
+            Theme.of(context).textTheme,
+          ).apply(bodyColor: Color.fromARGB(255, 255, 255, 255)),
+        ),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => FilmOrderOverviewPage(),
+          'chooseStore': (context) => ChooseStoreTypePage(),
+          '/dmDeAddFilm': (context) => DmDeAddFilmOrderPage(),
+        });
   }
 }
