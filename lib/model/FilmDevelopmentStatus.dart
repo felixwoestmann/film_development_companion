@@ -9,12 +9,21 @@ class FilmDevelopmentStatus {
   String statusSummaryText;
 
   // TODO: More fields required?
-  FilmDevelopmentStatus({this.statusDate, this.statusSummary, this.price,this.statusSummaryText});
+  FilmDevelopmentStatus(DateTime statusDate,
+      FilmDevelopmentStatusSummary statusSummary, double price,
+      String statusSummaryText) {
+    this.statusDate = statusDate;
+    this.statusSummary = statusSummary;
+    this.price = price;
+    this.statusSummaryText = statusSummaryText;
+    fetchTime = DateTime.now();
+  }
+
+  ;
 
   String toString() {
     return "statusDate: $statusDate\nstatusSummary: $statusSummary\nprice: $price\nstatusSummaryText: $statusSummaryText";
   }
-
 
 
 }
