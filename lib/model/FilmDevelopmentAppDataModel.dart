@@ -19,9 +19,11 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
     updateAllOrders();
   }
 
-  void addFilmOrder(FilmDevelopmentOrder order) {
+  void addFilmOrder(FilmDevelopmentOrder order) async{
     filmOrders.add(order);
+    await order.update();
     notifyListeners();
+
   }
 
   UnmodifiableListView<FilmDevelopmentOrder> get filmDevelopmentOrders =>
