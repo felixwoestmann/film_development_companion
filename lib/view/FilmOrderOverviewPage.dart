@@ -46,51 +46,53 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(
-                                    12.0, 12.0, 12.0, 6.0),
-                                child: Text(
-                                  filmordermodel
-                                      .filmOrders[position].insertionDate
-                                      .toIso8601String(),
-                                  style: TextStyle(fontSize: 15.0),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(
-                                    12.0, 12.0, 12.0, 6.0),
-                                child: Text(
-                                  filmordermodel.filmOrders[position]
-                                      .latestFilmDevelopmentStatusSummaryText,
-                                  style: TextStyle(fontSize: 22.0),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                              Padding(
+                          Flexible(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Padding(
                                   padding: const EdgeInsets.fromLTRB(
-                                      12.0, 6.0, 12.0, 12.0),
-                                  child: Row(
-                                    children: <Widget>[
-                                      Text(
-                                        filmordermodel
-                                            .filmOrders[position].orderNumber,
-                                        style: TextStyle(
-                                            fontSize: 22.0,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Padding(
-                                          padding: const EdgeInsets.fromLTRB(
-                                              8.0, 0.0, 0.0, 0.0)),
-                                      Text(
+                                      12.0, 12.0, 12.0, 6.0),
+                                  child: Text(
+                                    filmordermodel
+                                        .filmOrders[position].insertionDate
+                                        .toIso8601String(),
+                                    style: TextStyle(fontSize: 15.0),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(
+                                      12.0, 12.0, 12.0, 6.0),
+                                  child: Text(
+                                    filmordermodel.filmOrders[position]
+                                        .latestFilmDevelopmentStatusSummaryText,
+                                    style: TextStyle(fontSize: 22.0),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                        12.0, 6.0, 12.0, 12.0),
+                                    child: Row(
+                                      children: <Widget>[
+                                        Text(
                                           filmordermodel
-                                              .filmOrders[position].storeId,
-                                          style: TextStyle(fontSize: 18.0))
-                                    ],
-                                  )),
-                            ],
+                                              .filmOrders[position].orderNumber,
+                                          style: TextStyle(
+                                              fontSize: 22.0,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                8.0, 0.0, 0.0, 0.0)),
+                                        Text(
+                                            filmordermodel
+                                                .filmOrders[position].storeId,
+                                            style: TextStyle(fontSize: 18.0))
+                                      ],
+                                    )),
+                              ],
+                            ),
                           ),
                         ],
                       ),
