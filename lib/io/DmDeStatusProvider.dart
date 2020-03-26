@@ -40,7 +40,7 @@ class DmDeStatusProvider implements FilmDevelopmentStatusProvider {
       return FilmDevelopmentStatus(
           DateTime.parse(jsonResponse['resultDateTime']),
           statusSummary,
-          price.toDouble(),
+          price.toDouble() / 100,
           jsonResponse['summaryStateText']);
     } else {
       //TODO something bad happened

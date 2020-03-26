@@ -43,6 +43,15 @@ class FilmDevelopmentOrder {
     return new DateFormat.MMMd("de_DE").format(insertionDate);
   }
 
+  String get price {
+    if (filmDevelopmentStatusUpdates.isNotEmpty) {
+      if (filmDevelopmentStatusUpdates.last.price != 0.0) {
+        return "${filmDevelopmentStatusUpdates.last.price} €";
+      }
+    }
+    return "";
+  }
+
   String get latestFilmDevelopmentStatusSummaryText {
     if (filmDevelopmentStatusUpdates.isEmpty) {
       return "";

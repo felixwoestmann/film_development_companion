@@ -42,10 +42,24 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                                 Padding(
                                   padding: const EdgeInsets.fromLTRB(
                                       12.0, 12.0, 12.0, 0.0),
-                                  child: Text(
-                                    "[ "+filmordermodel
-                                        .filmOrders[position].insertionDateGui+" ]",
-                                    style: TextStyle(fontSize: 15.0),
+                                  child: Row(
+                                    children: <Widget>[
+                                      Text(
+                                        "[ " +
+                                            filmordermodel.filmOrders[position]
+                                                .insertionDateGui +
+                                            " ]",
+                                        style: TextStyle(
+                                            fontSize: 15.0,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            10.0, 0.0, 0.0, 0.0),
+                                        child: Text(filmordermodel
+                                            .filmOrders[position].price),
+                                      ),
+                                    ],
                                   ),
                                 ),
                                 Padding(
