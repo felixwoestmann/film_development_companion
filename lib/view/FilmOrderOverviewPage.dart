@@ -94,14 +94,15 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                 itemCount: filmordermodel.filmOrders.length,
               ),
               onRefresh: filmordermodel.updateAllOrders),
-          floatingActionButton: FloatingActionButton(
+          floatingActionButton: FloatingActionButton.extended(
             onPressed: () {
               Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => ChooseStoreTypePage()));
             },
-            child: Icon(Icons.add),
+            icon: Icon(Icons.add),
+            label: Text('Add Order'),
           ),
         );
       },

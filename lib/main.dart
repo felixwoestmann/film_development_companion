@@ -21,8 +21,8 @@ class FilmDevCompanionApp extends StatelessWidget {
         title: 'Film Development Companion App',
         theme: ThemeData(
           brightness: Brightness.dark,
-          accentColor: Color.fromARGB(255, 255, 235, 59),
-          primaryColor: Color.fromARGB(255, 0, 0, 1),
+          primaryColor: Color.fromARGB(255, 18, 18, 18),
+          accentColor: Colors.deepOrangeAccent,
           textTheme: GoogleFonts.robotoTextTheme(
             Theme.of(context).textTheme,
           ).apply(bodyColor: Color.fromARGB(255, 255, 255, 255)),
