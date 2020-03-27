@@ -49,7 +49,7 @@ class DatabaseHelper {
                 $columnId INTEGER PRIMARY KEY,
                 $columnOrderNumber TEXT NOT NULL,
                 $columnStoreId TEXT NOT NULL,
-                $columnInsertionDate TEXT NOT NULL,
+                $columnInsertionDate INTEGER NOT NULL,
                 $columnStoreModel TEXT NOT NULL
               )
               ''');
@@ -87,7 +87,7 @@ class DatabaseHelper {
       columnStoreId,
       columnInsertionDate,
       columnStoreModel
-    ]);
+    ],orderBy: "$columnInsertionDate DESC");
 
     List<FilmDevelopmentOrder> loadedOrders = new List();
     maps.forEach(

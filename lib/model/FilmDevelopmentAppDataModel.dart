@@ -16,7 +16,6 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
     // addFilmOrder(FilmDevelopmentOrder(dmDeStoreModel, "854440", "1618"));
     // addFilmOrder(FilmDevelopmentOrder(dmDeStoreModel, "854447", "1618"));
     //addFilmOrder(FilmDevelopmentOrder(dmDeStoreModel, "567539", "1618"));
-
     initFilmDevelopmentAppDataModel();
   }
 
@@ -27,7 +26,7 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
   }
 
   void addFilmOrder(FilmDevelopmentOrder order) async {
-    filmOrders.add(order);
+    filmOrders.insert(0, order);
     await order.update();
     notifyListeners();
     dbHelper.insert(order);

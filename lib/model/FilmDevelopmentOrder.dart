@@ -64,7 +64,8 @@ class FilmDevelopmentOrder {
     id = map[DatabaseHelper.columnId];
     orderNumber = map[DatabaseHelper.columnOrderNumber];
     storeId = map[DatabaseHelper.columnStoreId];
-    insertionDate = DateTime.parse(map[DatabaseHelper.columnInsertionDate]);
+    insertionDate = DateTime.fromMillisecondsSinceEpoch(
+        map[DatabaseHelper.columnInsertionDate]);
     filmDevelopmentStatusUpdates = new List();
     storeModel =
         StoreModel.storeModelFromId(map[DatabaseHelper.columnStoreModel]);
@@ -74,7 +75,7 @@ class FilmDevelopmentOrder {
     var map = <String, dynamic>{
       DatabaseHelper.columnOrderNumber: orderNumber,
       DatabaseHelper.columnStoreId: storeId,
-      DatabaseHelper.columnInsertionDate: insertionDate.toIso8601String(),
+      DatabaseHelper.columnInsertionDate: insertionDate.millisecondsSinceEpoch,
       DatabaseHelper.columnStoreModel: storeModel.providerId,
     };
     if (id != null) {
