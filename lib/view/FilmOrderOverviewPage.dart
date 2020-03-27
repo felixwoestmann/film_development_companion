@@ -30,74 +30,92 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
           body: RefreshIndicator(
               child: ListView.builder(
                 itemBuilder: (context, position) {
-                  return Column(
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  return Dismissible(
+                    key: Key(filmordermodel
+                        .filmOrders[position].id.toString()),
+                    background: Container(
+                      alignment: AlignmentDirectional.centerEnd,
+                      color: Colors.red,
+                      child: Icon(
+                        Icons.delete,
+                        color: Colors.white,
+                      ),
+                    ),
+                    onDismissed: (direction) {
+                     print("dimissed!");
+                    },
+                    direction: DismissDirection.startToEnd,
+                    child: Card(
+                      child: Column(
                         children: <Widget>[
-                          Flexible(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(
-                                      12.0, 12.0, 12.0, 0.0),
-                                  child: Text(
-                                    filmordermodel
-                                        .filmOrders[position].insertionDateGui,
-                                    style: TextStyle(
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(
-                                      12.0, 6.0, 12.0, 0.0),
-                                  child: Text(
-                                    filmordermodel.filmOrders[position]
-                                        .latestFilmDevelopmentStatusSummaryText,
-                                    style: TextStyle(fontSize: 20.0),
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                                Padding(
-                                    padding: const EdgeInsets.fromLTRB(
-                                        12.0, 6.0, 12.0, 12.0),
-                                    child: Row(
-                                      children: <Widget>[
-                                        Text(
-                                          filmordermodel.filmOrders[position]
-                                                  .orderNumber +
-                                              " - " +
-                                              filmordermodel
-                                                  .filmOrders[position].storeId,
-                                          style: TextStyle(
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Flexible(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          12.0, 12.0, 12.0, 0.0),
+                                      child: Text(
+                                        filmordermodel
+                                            .filmOrders[position].insertionDateGui,
+                                        style: TextStyle(
                                             fontSize: 20.0,
-                                            color: Colors.grey[600],
-                                          ),
-                                        ),
-                                        Padding(
-                                            padding: const EdgeInsets.fromLTRB(
-                                                20.0, 0.0, 0.0, 0.0)),
-                                        Text(
-                                            filmordermodel
-                                                .filmOrders[position].price,
-                                            style: TextStyle(
-                                              fontSize: 20.0,
-                                              color: Colors.grey[600],
-                                            ))
-                                      ],
-                                    )),
-                              ],
-                            ),
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          12.0, 6.0, 12.0, 0.0),
+                                      child: Text(
+                                        filmordermodel.filmOrders[position]
+                                            .latestFilmDevelopmentStatusSummaryText,
+                                        style: TextStyle(fontSize: 20.0),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                    Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            12.0, 6.0, 12.0, 12.0),
+                                        child: Row(
+                                          children: <Widget>[
+                                            Text(
+                                              filmordermodel.filmOrders[position]
+                                                      .orderNumber +
+                                                  " - " +
+                                                  filmordermodel
+                                                      .filmOrders[position].storeId,
+                                              style: TextStyle(
+                                                fontSize: 20.0,
+                                                color: Colors.grey[600],
+                                              ),
+                                            ),
+                                            Padding(
+                                                padding: const EdgeInsets.fromLTRB(
+                                                    20.0, 0.0, 0.0, 0.0)),
+                                            Text(
+                                                filmordermodel
+                                                    .filmOrders[position].price,
+                                                style: TextStyle(
+                                                  fontSize: 20.0,
+                                                  color: Colors.grey[600],
+                                                ))
+                                          ],
+                                        )),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
+                          Divider(
+                            height: 2.0,
+                            color: Colors.black,
+                          )
                         ],
                       ),
-                      Divider(
-                        height: 2.0,
-                        color: Colors.black,
-                      )
-                    ],
+                    ),
                   );
                 },
                 itemCount: filmordermodel.filmOrders.length,
