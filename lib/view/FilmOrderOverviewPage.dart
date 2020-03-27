@@ -42,24 +42,12 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                                 Padding(
                                   padding: const EdgeInsets.fromLTRB(
                                       12.0, 12.0, 12.0, 0.0),
-                                  child: Row(
-                                    children: <Widget>[
-                                      Text(
-                                        "[ " +
-                                            filmordermodel.filmOrders[position]
-                                                .insertionDateGui +
-                                            " ]",
-                                        style: TextStyle(
-                                            fontSize: 15.0,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            10.0, 0.0, 0.0, 0.0),
-                                        child: Text(filmordermodel
-                                            .filmOrders[position].price),
-                                      ),
-                                    ],
+                                  child: Text(
+                                    filmordermodel
+                                        .filmOrders[position].insertionDateGui,
+                                    style: TextStyle(
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
                                 Padding(
@@ -68,7 +56,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                                   child: Text(
                                     filmordermodel.filmOrders[position]
                                         .latestFilmDevelopmentStatusSummaryText,
-                                    style: TextStyle(fontSize: 22.0),
+                                    style: TextStyle(fontSize: 20.0),
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
@@ -78,19 +66,26 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                                     child: Row(
                                       children: <Widget>[
                                         Text(
-                                          filmordermodel
-                                              .filmOrders[position].orderNumber,
+                                          filmordermodel.filmOrders[position]
+                                                  .orderNumber +
+                                              " - " +
+                                              filmordermodel
+                                                  .filmOrders[position].storeId,
                                           style: TextStyle(
-                                              fontSize: 22.0,
-                                              fontWeight: FontWeight.bold),
+                                            fontSize: 20.0,
+                                            color: Colors.grey[600],
+                                          ),
                                         ),
                                         Padding(
                                             padding: const EdgeInsets.fromLTRB(
-                                                8.0, 0.0, 0.0, 0.0)),
+                                                20.0, 0.0, 0.0, 0.0)),
                                         Text(
                                             filmordermodel
-                                                .filmOrders[position].storeId,
-                                            style: TextStyle(fontSize: 18.0))
+                                                .filmOrders[position].price,
+                                            style: TextStyle(
+                                              fontSize: 20.0,
+                                              color: Colors.grey[600],
+                                            ))
                                       ],
                                     )),
                               ],
@@ -100,7 +95,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                       ),
                       Divider(
                         height: 2.0,
-                        color: Colors.grey[200],
+                        color: Colors.black,
                       )
                     ],
                   );

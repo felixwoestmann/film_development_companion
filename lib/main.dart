@@ -20,12 +20,12 @@ class FilmDevCompanionApp extends StatelessWidget {
     return MaterialApp(
         title: 'Film Development Companion App',
         theme: ThemeData(
-          brightness: Brightness.dark,
+          brightness: Brightness.light,
           primaryColor: Color.fromARGB(255, 18, 18, 18),
           accentColor: Colors.deepOrangeAccent,
-          textTheme: GoogleFonts.robotoTextTheme(
+          textTheme: GoogleFonts.nunitoTextTheme(
             Theme.of(context).textTheme,
-          ).apply(bodyColor: Color.fromARGB(255, 255, 255, 255)),
+          ),
         ),
         initialRoute: '/',
         routes: {
