@@ -6,7 +6,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'FilmDevelopmentOrder.dart';
 
 class FilmDevelopmentAppDataModel extends ChangeNotifier {
-  List<FilmDevelopmentOrder> filmOrders=new List();
+  List<FilmDevelopmentOrder> filmOrders = new List();
   DatabaseHelper dbHelper;
 
   FilmDevelopmentAppDataModel() {
@@ -30,6 +30,12 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
     await order.update();
     notifyListeners();
     dbHelper.insert(order);
+  }
+
+  void deleteFilmOrder(int index) {
+    FilmDevelopmentOrder removedOrder = filmOrders.removeAt(index);
+    notifyListeners();
+    dbHelper.delete(removedOrder);
   }
 
   UnmodifiableListView<FilmDevelopmentOrder> get filmDevelopmentOrders =>

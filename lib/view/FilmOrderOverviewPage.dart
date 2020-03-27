@@ -41,15 +41,15 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                       ),
                     ),
                     onDismissed: (direction) {
-                      print("dimissed!");
+                      filmordermodel.deleteFilmOrder(position);
                     },
                     direction: DismissDirection.startToEnd,
                     child: Card(
                       elevation: 10,
                       margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(18.0),
-                        ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
+                      ),
                       child: Column(
                         children: <Widget>[
                           Row(
@@ -116,7 +116,6 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                               ),
                             ],
                           ),
-
                         ],
                       ),
                     ),

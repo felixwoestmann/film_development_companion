@@ -87,13 +87,19 @@ class DatabaseHelper {
       columnStoreId,
       columnInsertionDate,
       columnStoreModel
-    ],orderBy: "$columnInsertionDate DESC");
+    ], orderBy: "$columnInsertionDate DESC");
 
     List<FilmDevelopmentOrder> loadedOrders = new List();
     maps.forEach(
-        (order) => loadedOrders.add(FilmDevelopmentOrder.fromMap(order)));
+            (order) => loadedOrders.add(FilmDevelopmentOrder.fromMap(order)));
     return loadedOrders;
   }
-// TODO: delete(int id)
+
+  void delete(FilmDevelopmentOrder orderToBeDeleted) async {
+    Database db = await database;
+    int val = await db.delete(tableOrders, where: '$columnId = ?',
+        whereArgs: [orderToBeDeleted.id]);
+    print("$val rows deleted");
+  }
 
 }
