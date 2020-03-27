@@ -31,10 +31,9 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
               child: ListView.builder(
                 itemBuilder: (context, position) {
                   return Dismissible(
-                    key: Key(filmordermodel
-                        .filmOrders[position].id.toString()),
+                    key: Key(filmordermodel.filmOrders[position].id.toString()),
                     background: Container(
-                      alignment: AlignmentDirectional.centerEnd,
+                      alignment: AlignmentDirectional.centerStart,
                       color: Colors.red,
                       child: Icon(
                         Icons.delete,
@@ -42,10 +41,15 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                       ),
                     ),
                     onDismissed: (direction) {
-                     print("dimissed!");
+                      print("dimissed!");
                     },
                     direction: DismissDirection.startToEnd,
                     child: Card(
+                      elevation: 10,
+                      margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                        ),
                       child: Column(
                         children: <Widget>[
                           Row(
@@ -59,8 +63,8 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                                       padding: const EdgeInsets.fromLTRB(
                                           12.0, 12.0, 12.0, 0.0),
                                       child: Text(
-                                        filmordermodel
-                                            .filmOrders[position].insertionDateGui,
+                                        filmordermodel.filmOrders[position]
+                                            .insertionDateGui,
                                         style: TextStyle(
                                             fontSize: 20.0,
                                             fontWeight: FontWeight.bold),
@@ -82,19 +86,22 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                                         child: Row(
                                           children: <Widget>[
                                             Text(
-                                              filmordermodel.filmOrders[position]
+                                              filmordermodel
+                                                      .filmOrders[position]
                                                       .orderNumber +
                                                   " - " +
                                                   filmordermodel
-                                                      .filmOrders[position].storeId,
+                                                      .filmOrders[position]
+                                                      .storeId,
                                               style: TextStyle(
                                                 fontSize: 20.0,
                                                 color: Colors.grey[600],
                                               ),
                                             ),
                                             Padding(
-                                                padding: const EdgeInsets.fromLTRB(
-                                                    20.0, 0.0, 0.0, 0.0)),
+                                                padding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        20.0, 0.0, 0.0, 0.0)),
                                             Text(
                                                 filmordermodel
                                                     .filmOrders[position].price,
@@ -109,10 +116,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                               ),
                             ],
                           ),
-                          Divider(
-                            height: 2.0,
-                            color: Colors.black,
-                          )
+
                         ],
                       ),
                     ),
