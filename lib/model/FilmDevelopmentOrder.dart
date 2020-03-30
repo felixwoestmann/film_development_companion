@@ -5,6 +5,7 @@ import 'package:filmdevelopmentcompanion/model/FilmDevelopmentStatus.dart';
 import 'package:filmdevelopmentcompanion/io/FilmDevelopmentStatusProvider.dart';
 import 'package:filmdevelopmentcompanion/io/StatusProviderFactory.dart';
 import 'package:filmdevelopmentcompanion/model/StoreModel.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 /// A FilmDevelopmentOrder represents an order to develop a film at a lab.
@@ -19,7 +20,7 @@ class FilmDevelopmentOrder {
   String orderNumber;
   String storeId;
   DateTime insertionDate;
-  List<FilmDevelopmentStatus> filmDevelopmentStatusUpdates;
+  FilmDevelopmentStatus latestFilmDevelopmentStatusUpdate;
   StoreModel storeModel;
 
   FilmDevelopmentOrder(
@@ -27,7 +28,6 @@ class FilmDevelopmentOrder {
     this.orderNumber = orderNumber;
     this.storeModel = storeModel;
     this.storeId = storeId;
-    filmDevelopmentStatusUpdates = new List<FilmDevelopmentStatus>();
     insertionDate = DateTime.now();
   }
 
@@ -36,7 +36,7 @@ class FilmDevelopmentOrder {
         StatusProviderFactory.createStatusProviderForStoreModel(storeModel);
     FilmDevelopmentStatus statusUpdate =
         await statusProvider.obtainDevelopmentStatusForFilmOrder(this);
-    filmDevelopmentStatusUpdates.add(statusUpdate);
+    latestFilmDevelopmentStatusUpdate = statusUpdate;
   }
 
   String get insertionDateGui {
@@ -44,19 +44,19 @@ class FilmDevelopmentOrder {
   }
 
   String get price {
-    if (filmDevelopmentStatusUpdates.isNotEmpty) {
-      if (filmDevelopmentStatusUpdates.last.price != 0.0) {
-        return "${filmDevelopmentStatusUpdates.last.price} €";
+    if (latestFilmDevelopmentStatusUpdate != null) {
+      if (latestFilmDevelopmentStatusUpdate.price != 0.0) {
+        return "${latestFilmDevelopmentStatusUpdate.price} €";
       }
     }
     return "";
   }
 
   String get latestFilmDevelopmentStatusSummaryText {
-    if (filmDevelopmentStatusUpdates.isEmpty) {
-      return "";
+    if (latestFilmDevelopmentStatusUpdate != null) {
+      return latestFilmDevelopmentStatusUpdate.statusSummaryText.split(".")[0];
     } else {
-      return filmDevelopmentStatusUpdates.last.statusSummaryText.split(".")[0];
+      return "";
     }
   }
 
@@ -66,9 +66,12 @@ class FilmDevelopmentOrder {
     storeId = map[DatabaseHelper.columnStoreId];
     insertionDate = DateTime.fromMillisecondsSinceEpoch(
         map[DatabaseHelper.columnInsertionDate]);
-    filmDevelopmentStatusUpdates = new List();
     storeModel =
         StoreModel.storeModelFromId(map[DatabaseHelper.columnStoreModel]);
+    //Check if there was a persistet FilmDev Order
+    if(map[DatabaseHelper.columnStatusFetchTime]!=null) {
+      latestFilmDevelopmentStatusUpdate=FilmDevelopmentStatus.fromMap(map);
+    }
   }
 
   Map<String, dynamic> toMap() {
@@ -77,7 +80,13 @@ class FilmDevelopmentOrder {
       DatabaseHelper.columnStoreId: storeId,
       DatabaseHelper.columnInsertionDate: insertionDate.millisecondsSinceEpoch,
       DatabaseHelper.columnStoreModel: storeModel.providerId,
+      //FilmDevStatus
     };
+
+    if (latestFilmDevelopmentStatusUpdate != null) {
+     map.addAll(latestFilmDevelopmentStatusUpdate.toMap());
+    }
+
     if (id != null) {
       map[DatabaseHelper.columnId] = id;
     }

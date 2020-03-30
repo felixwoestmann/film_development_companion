@@ -1,3 +1,5 @@
+import 'package:filmdevelopmentcompanion/io/DatabaseHelpers.dart';
+
 import 'FilmDevelopmentStatusSummary.dart';
 
 /// A FilmDevelopmentStatus represents a status update of a FilmDevelopmentOrder
@@ -9,8 +11,10 @@ class FilmDevelopmentStatus {
   String statusSummaryText;
 
   // TODO: More fields required?
-  FilmDevelopmentStatus(DateTime statusDate,
-      FilmDevelopmentStatusSummary statusSummary, double price,
+  FilmDevelopmentStatus(
+      DateTime statusDate,
+      FilmDevelopmentStatusSummary statusSummary,
+      double price,
       String statusSummaryText) {
     this.statusDate = statusDate;
     this.statusSummary = statusSummary;
@@ -19,11 +23,30 @@ class FilmDevelopmentStatus {
     fetchTime = DateTime.now();
   }
 
+  FilmDevelopmentStatus.fromMap(Map<String, dynamic> map) {
+    statusDate = DateTime.fromMillisecondsSinceEpoch(
+        map[DatabaseHelper.columnStatusStatusDate]);
+    price = map[DatabaseHelper.columnStatusPrice];
+    statusSummaryText = map[DatabaseHelper.columnStatusStatusSummaryText];
+    fetchTime = DateTime.fromMillisecondsSinceEpoch(
+        map[DatabaseHelper.columnStatusFetchTime]);
+    statusSummary = FilmDevelopmentStatusSummary
+        .values[map[DatabaseHelper.columnStatusStatusSummary]];
+  }
 
+  Map<String, dynamic> toMap() {
+    var map = <String, dynamic>{
+      DatabaseHelper.columnStatusStatusSummary: statusSummary.index,
+      DatabaseHelper.columnStatusStatusSummaryText: statusSummaryText,
+      DatabaseHelper.columnStatusPrice: price,
+      DatabaseHelper.columnStatusFetchTime: fetchTime.millisecondsSinceEpoch,
+      DatabaseHelper.columnStatusStatusDate: statusDate.millisecondsSinceEpoch,
+    };
+
+    return map;
+  }
 
   String toString() {
     return "statusDate: $statusDate\nstatusSummary: $statusSummary\nprice: $price\nstatusSummaryText: $statusSummaryText";
   }
-
-
 }

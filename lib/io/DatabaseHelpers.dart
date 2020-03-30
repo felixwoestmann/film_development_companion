@@ -5,16 +5,21 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 
 class DatabaseHelper {
-  // database table and column names
+  // Database table and column names for the Film Development Order
   static final String tableOrders = 'filmorders';
   static final String columnId = '_id';
   static final String columnOrderNumber = 'orderNumber';
   static final String columnStoreId = 'storeId';
   static final String columnInsertionDate = 'insertionDate';
   static final String columnStoreModel = 'storeModelID';
+  static final String columnStatusStatusDate = 'statusDate';
+  static final String columnStatusFetchTime = 'statusFetchTime';
+  static final String columnStatusStatusSummary = 'statusSummary';
+  static final String columnStatusPrice = 'statusPrice';
+  static final String columnStatusStatusSummaryText = 'statusSummaryText';
 
   // This is the actual database filename that is saved in the docs directory.
-  static final _databaseName = "MyDatabase.db";
+  static final _databaseName = "FilmOrderDatabase.db";
 
   // Increment this version when you need to change the schema.
   static final _databaseVersion = 1;
@@ -50,7 +55,12 @@ class DatabaseHelper {
                 $columnOrderNumber TEXT NOT NULL,
                 $columnStoreId TEXT NOT NULL,
                 $columnInsertionDate INTEGER NOT NULL,
-                $columnStoreModel TEXT NOT NULL
+                $columnStoreModel TEXT NOT NULL,
+                $columnStatusStatusDate INTEGER,
+                $columnStatusFetchTime INTEGER,
+                $columnStatusPrice REAL,
+                $columnStatusStatusSummaryText TEXT,
+                $columnStatusStatusSummary INTEGER
               )
               ''');
   }
@@ -63,16 +73,8 @@ class DatabaseHelper {
 
   Future<FilmDevelopmentOrder> queryFilmDevelopmentOrder(int id) async {
     Database db = await database;
-    List<Map> maps = await db.query(tableOrders,
-        columns: [
-          columnId,
-          columnOrderNumber,
-          columnStoreId,
-          columnInsertionDate,
-          columnStoreModel
-        ],
-        where: '$columnId = ?',
-        whereArgs: [id]);
+    List<Map> maps =
+        await db.query(tableOrders, where: '$columnId = ?', whereArgs: [id]);
     if (maps.length > 0) {
       return FilmDevelopmentOrder.fromMap(maps.first);
     }
@@ -81,25 +83,19 @@ class DatabaseHelper {
 
   Future<List<FilmDevelopmentOrder>> loadAllFilmDevelopmentOrders() async {
     Database db = await database;
-    List<Map> maps = await db.query(tableOrders, columns: [
-      columnId,
-      columnOrderNumber,
-      columnStoreId,
-      columnInsertionDate,
-      columnStoreModel
-    ], orderBy: "$columnInsertionDate DESC");
+    List<Map> maps =
+        await db.query(tableOrders, orderBy: "$columnInsertionDate DESC");
 
     List<FilmDevelopmentOrder> loadedOrders = new List();
     maps.forEach(
-            (order) => loadedOrders.add(FilmDevelopmentOrder.fromMap(order)));
+        (order) => loadedOrders.add(FilmDevelopmentOrder.fromMap(order)));
     return loadedOrders;
   }
 
   void delete(FilmDevelopmentOrder orderToBeDeleted) async {
     Database db = await database;
-    int val = await db.delete(tableOrders, where: '$columnId = ?',
-        whereArgs: [orderToBeDeleted.id]);
+    int val = await db.delete(tableOrders,
+        where: '$columnId = ?', whereArgs: [orderToBeDeleted.id]);
     print("$val rows deleted");
   }
-
 }
