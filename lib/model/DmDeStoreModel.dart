@@ -2,7 +2,7 @@ import 'package:filmdevelopmentcompanion/model/StoreModel.dart';
 
 class DmDeStoreModel implements StoreModel{
   static const PROVIDER_ID="DM_DE_PROVIDER";
-  static const PROVIDER_NAME="DM Deutschland";
+  static const PROVIDER_NAME="dm Deutschland";
 
   @override
   String get providerId => PROVIDER_ID;
