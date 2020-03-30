@@ -68,6 +68,7 @@ class DatabaseHelper {
   Future<int> insert(FilmDevelopmentOrder order) async {
     Database db = await database;
     int id = await db.insert(tableOrders, order.toMap());
+    print("Order has been inserted to Databse");
     return id;
   }
 
@@ -92,10 +93,19 @@ class DatabaseHelper {
     return loadedOrders;
   }
 
-  void delete(FilmDevelopmentOrder orderToBeDeleted) async {
+  Future<int> delete(FilmDevelopmentOrder orderToBeDeleted) async {
     Database db = await database;
     int val = await db.delete(tableOrders,
         where: '$columnId = ?', whereArgs: [orderToBeDeleted.id]);
     print("$val rows deleted");
+    return val;
+  }
+
+  Future<int> update(FilmDevelopmentOrder orderToBeUpdated) async {
+    Database db = await database;
+    int val = await db.update(tableOrders, orderToBeUpdated.toMap(),
+        where: '$columnId = ?', whereArgs: [orderToBeUpdated.id]);
+    print("$val rows updated");
+    return val;
   }
 }

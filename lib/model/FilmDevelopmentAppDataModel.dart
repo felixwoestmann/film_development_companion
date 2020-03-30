@@ -26,16 +26,16 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
   }
 
   void addFilmOrder(FilmDevelopmentOrder order) async {
-    filmOrders.insert(0, order);
     await order.update();
+    order.id = await dbHelper.insert(order);
+    filmOrders.insert(0, order);
     notifyListeners();
-    dbHelper.insert(order);
   }
 
-  void deleteFilmOrder(int index) {
+  void deleteFilmOrder(int index) async {
+    await dbHelper.delete(filmOrders[index]);
     FilmDevelopmentOrder removedOrder = filmOrders.removeAt(index);
     notifyListeners();
-    dbHelper.delete(removedOrder);
   }
 
   UnmodifiableListView<FilmDevelopmentOrder> get filmDevelopmentOrders =>
@@ -45,6 +45,7 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
     List<Future> futures = <Future>[];
     for (var order in filmOrders) {
       futures.add(order.update());
+      order.update().then((_) => dbHelper.update(order));
     }
     await Future.wait(futures);
     notifyListeners();
