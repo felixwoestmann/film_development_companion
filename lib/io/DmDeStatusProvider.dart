@@ -34,7 +34,7 @@ class DmDeStatusProvider implements FilmDevelopmentStatusProvider {
     if (httResponse.statusCode == 200) {
       var jsonResponse = json.decode(httResponse.body);
       FilmDevelopmentStatusSummary statusSummary =
-          FilmDevelopmentStatusSummary.UNKNOWN;
+          FilmDevelopmentStatusSummary.UNKNOWN_ERROR;
       int price = jsonResponse['summaryPrice'];
       print(jsonResponse);
       return FilmDevelopmentStatus(
@@ -66,7 +66,7 @@ class DmDeStatusProvider implements FilmDevelopmentStatusProvider {
 
       default:
         {
-          return FilmDevelopmentStatusSummary.UNKNOWN;
+          return FilmDevelopmentStatusSummary.UNKNOWN_ERROR;
         }
         break;
     }
