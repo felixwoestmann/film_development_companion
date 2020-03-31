@@ -33,10 +33,9 @@ class DmDeStatusProvider implements FilmDevelopmentStatusProvider {
     http.Response httResponse = await http.get(queryURL);
     if (httResponse.statusCode == 200) {
       var jsonResponse = json.decode(httResponse.body);
-      FilmDevelopmentStatusSummary statusSummary =
-          FilmDevelopmentStatusSummary.UNKNOWN_ERROR;
+      FilmDevelopmentStatusSummary statusSummary =getFilmDevelopmentStatusSummaryFromText(jsonResponse['summaryStateCode']);
       int price = jsonResponse['summaryPrice'];
-      print(jsonResponse);
+      //print(jsonResponse);
       return FilmDevelopmentStatus(
           DateTime.parse(jsonResponse['resultDateTime']),
           statusSummary,
@@ -52,23 +51,18 @@ class DmDeStatusProvider implements FilmDevelopmentStatusProvider {
   FilmDevelopmentStatusSummary getFilmDevelopmentStatusSummaryFromText(
       String text) {
     switch (text) {
+      case "ERROR":
+        return FilmDevelopmentStatusSummary.UNKNOWN_ERROR;
       case "PROCESSING":
-        {
-          return FilmDevelopmentStatusSummary.PROCESSING;
-        }
-        break;
-
+        return FilmDevelopmentStatusSummary.PROCESSING;
+      case "SHIPPED":
+        return FilmDevelopmentStatusSummary.SHIPPING;
+      case "DELIVERED":
+        return FilmDevelopmentStatusSummary.DELIVERED;
       case "DONE":
-        {
-          return FilmDevelopmentStatusSummary.DONE;
-        }
-        break;
-
+        return FilmDevelopmentStatusSummary.DONE;
       default:
-        {
-          return FilmDevelopmentStatusSummary.UNKNOWN_ERROR;
-        }
-        break;
+        return FilmDevelopmentStatusSummary.UNKNOWN_ERROR;
     }
   }
 }

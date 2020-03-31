@@ -46,7 +46,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                     direction: DismissDirection.startToEnd,
                     child: Card(
                       elevation: 10,
-                      margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                      margin: EdgeInsets.fromLTRB(8, 10, 8, 10),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18.0),
                       ),
@@ -55,13 +55,25 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(8, 10, 0, 10),
+                                child: Icon(
+                                    filmordermodel
+                                        .filmOrders[position].iconforstatus,
+                                    color: Colors.grey[900],
+                                    size: 60.0),
+                              ),
+                              Container(
+                                  height: 80,
+                                  child:
+                                      VerticalDivider(color: Colors.grey[600])),
                               Flexible(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Padding(
                                       padding: const EdgeInsets.fromLTRB(
-                                          12.0, 12.0, 12.0, 0.0),
+                                          5.0, 12.0, 12.0, 0.0),
                                       child: Text(
                                         filmordermodel.filmOrders[position]
                                             .insertionDateGui,
@@ -72,7 +84,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.fromLTRB(
-                                          12.0, 6.0, 12.0, 0.0),
+                                          5.0, 3.0, 8.0, 0.0),
                                       child: Text(
                                         filmordermodel.filmOrders[position]
                                             .latestFilmDevelopmentStatusSummaryText,
@@ -82,7 +94,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                                     ),
                                     Padding(
                                         padding: const EdgeInsets.fromLTRB(
-                                            12.0, 6.0, 12.0, 12.0),
+                                            5.0, 3.0, 12.0, 12.0),
                                         child: Row(
                                           children: <Widget>[
                                             Text(

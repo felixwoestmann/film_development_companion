@@ -8,6 +8,8 @@ import 'package:filmdevelopmentcompanion/model/StoreModel.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'FilmDevelopmentStatusSummary.dart';
+
 /// A FilmDevelopmentOrder represents an order to develop a film at a lab.
 /// id: the unique id of this film order
 /// orderNumber: the number given by the store to identify the order
@@ -60,6 +62,28 @@ class FilmDevelopmentOrder {
     }
   }
 
+  IconData get iconforstatus {
+    if (latestFilmDevelopmentStatusUpdate == null) {
+      return Icons.not_listed_location;
+    } else {
+      switch (latestFilmDevelopmentStatusUpdate.statusSummary) {
+        case FilmDevelopmentStatusSummary.UNKNOWN_ERROR:
+          return Icons.not_listed_location;
+        case FilmDevelopmentStatusSummary.PROCESSING:
+          return Icons.loop;
+          break;
+        case FilmDevelopmentStatusSummary.SHIPPING:
+          return Icons.local_shipping;
+        case FilmDevelopmentStatusSummary.DELIVERED:
+          return Icons.store_mall_directory;
+        case FilmDevelopmentStatusSummary.DONE:
+          return Icons.store_mall_directory;
+        default:
+          return Icons.not_listed_location;
+      }
+    }
+  }
+
   FilmDevelopmentOrder.fromMap(Map<String, dynamic> map) {
     id = map[DatabaseHelper.columnId];
     orderNumber = map[DatabaseHelper.columnOrderNumber];
@@ -69,8 +93,8 @@ class FilmDevelopmentOrder {
     storeModel =
         StoreModel.storeModelFromId(map[DatabaseHelper.columnStoreModel]);
     //Check if there was a persistet FilmDev Order
-    if(map[DatabaseHelper.columnStatusFetchTime]!=null) {
-      latestFilmDevelopmentStatusUpdate=FilmDevelopmentStatus.fromMap(map);
+    if (map[DatabaseHelper.columnStatusFetchTime] != null) {
+      latestFilmDevelopmentStatusUpdate = FilmDevelopmentStatus.fromMap(map);
     }
   }
 
@@ -84,7 +108,7 @@ class FilmDevelopmentOrder {
     };
 
     if (latestFilmDevelopmentStatusUpdate != null) {
-     map.addAll(latestFilmDevelopmentStatusUpdate.toMap());
+      map.addAll(latestFilmDevelopmentStatusUpdate.toMap());
     }
 
     if (id != null) {
