@@ -60,7 +60,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                                 child: Icon(
                                     filmordermodel
                                         .filmOrders[position].iconforstatus,
-                                    color: Colors.grey[900],
+                                    color: Colors.deepOrangeAccent,
                                     size: 60.0),
                               ),
                               Container(
