@@ -6,6 +6,5 @@ enum FilmDevelopmentStatusSummary {
   UNKNOWN_ERROR,
   PROCESSING,
   SHIPPING,
-  DELIVERED,
-  DONE
+  DELIVERED
 }

@@ -33,7 +33,9 @@ class DmDeStatusProvider implements FilmDevelopmentStatusProvider {
     http.Response httResponse = await http.get(queryURL);
     if (httResponse.statusCode == 200) {
       var jsonResponse = json.decode(httResponse.body);
-      FilmDevelopmentStatusSummary statusSummary =getFilmDevelopmentStatusSummaryFromText(jsonResponse['summaryStateCode']);
+      FilmDevelopmentStatusSummary statusSummary =
+          getFilmDevelopmentStatusSummaryFromText(
+              jsonResponse['summaryStateCode']);
       int price = jsonResponse['summaryPrice'];
       //print(jsonResponse);
       return FilmDevelopmentStatus(
@@ -59,8 +61,6 @@ class DmDeStatusProvider implements FilmDevelopmentStatusProvider {
         return FilmDevelopmentStatusSummary.SHIPPING;
       case "DELIVERED":
         return FilmDevelopmentStatusSummary.DELIVERED;
-      case "DONE":
-        return FilmDevelopmentStatusSummary.DONE;
       default:
         return FilmDevelopmentStatusSummary.UNKNOWN_ERROR;
     }

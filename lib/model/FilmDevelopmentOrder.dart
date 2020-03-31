@@ -76,8 +76,6 @@ class FilmDevelopmentOrder {
           return Icons.local_shipping;
         case FilmDevelopmentStatusSummary.DELIVERED:
           return Icons.store_mall_directory;
-        case FilmDevelopmentStatusSummary.DONE:
-          return Icons.store_mall_directory;
         default:
           return Icons.not_listed_location;
       }
