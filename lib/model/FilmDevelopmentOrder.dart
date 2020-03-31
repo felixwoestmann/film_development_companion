@@ -4,7 +4,7 @@ import 'package:filmdevelopmentcompanion/io/DatabaseHelpers.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentStatus.dart';
 import 'package:filmdevelopmentcompanion/io/FilmDevelopmentStatusProvider.dart';
 import 'package:filmdevelopmentcompanion/io/StatusProviderFactory.dart';
-import 'package:filmdevelopmentcompanion/model/StoreModel.dart';
+import 'package:filmdevelopmentcompanion/model/StoreModels.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

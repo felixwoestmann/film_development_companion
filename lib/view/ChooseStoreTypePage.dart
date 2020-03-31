@@ -1,5 +1,4 @@
-import 'package:filmdevelopmentcompanion/model/DmDeStoreModel.dart';
-import 'package:filmdevelopmentcompanion/model/StoreModel.dart';
+import 'package:filmdevelopmentcompanion/model/StoreModels.dart';
 import 'package:flutter/material.dart';
 
 import 'DmDeAddFilmOrderPage.dart';

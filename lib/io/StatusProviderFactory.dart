@@ -1,7 +1,6 @@
 import 'package:filmdevelopmentcompanion/io/DmDeStatusProvider.dart';
-import 'package:filmdevelopmentcompanion/model/DmDeStoreModel.dart';
 
-import '../model/StoreModel.dart';
+import '../model/StoreModels.dart';
 
 class StatusProviderFactory {
   static DmDeStatusProvider createStatusProviderForStoreModel(

@@ -3,8 +3,7 @@ import 'package:filmdevelopmentcompanion/model/FilmDevelopmentAppDataModel.dart'
 import 'package:filmdevelopmentcompanion/view/ChooseStoreTypePage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../model/DmDeStoreModel.dart';
-import '../model/StoreModel.dart';
+import '../model/StoreModels.dart';
 
 class FilmOrderOverviewPage extends StatefulWidget {
   final String title = "Film Development Companion";
