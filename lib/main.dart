@@ -23,9 +23,7 @@ class FilmDevCompanionApp extends StatelessWidget {
           brightness: Brightness.light,
           primaryColor: Color.fromARGB(255, 40, 40, 40),
           accentColor: Colors.deepOrangeAccent,
-          textTheme: GoogleFonts.nunitoSansTextTheme(
-            Theme.of(context).textTheme,
-          ),
+          fontFamily: 'Futura',
         ),
         initialRoute: '/',
         routes: {
