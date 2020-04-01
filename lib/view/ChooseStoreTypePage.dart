@@ -1,22 +1,25 @@
+import 'dart:collection';
 import 'package:filmdevelopmentcompanion/model/StoreModels.dart';
+import 'package:filmdevelopmentcompanion/view/RossmannAddFilmOrderPage.dart';
 import 'package:flutter/material.dart';
-
 import 'DmDeAddFilmOrderPage.dart';
 
 class ChooseStoreTypePage extends StatefulWidget {
-  final String title = "Choose Store Type";
+  final String title = "Choose store type";
 
   @override
   _ChooseStoreTypePageState createState() => _ChooseStoreTypePageState();
 }
 
 class _ChooseStoreTypePageState extends State<ChooseStoreTypePage> {
-  List<StoreModel> storeModels = new List();
+  Map<StoreModel, Widget> storeModelstorePageMap = {
+    new DmDeStoreModel(): new DmDeAddFilmOrderPage(),
+    new RossmannStoreModel(): new RossmannAddFilmOrderPage()
+  };
 
   @override
   void initState() {
     super.initState();
-    storeModels.add(new DmDeStoreModel());
   }
 
   @override
@@ -40,7 +43,9 @@ class _ChooseStoreTypePageState extends State<ChooseStoreTypePage> {
                           padding:
                               const EdgeInsets.fromLTRB(12.0, 20.0, 0.0, 10.0),
                           child: Text(
-                            storeModels[position].providerName,
+                            storeModelstorePageMap.keys
+                                .toList()[position]
+                                .providerName,
                             style: TextStyle(fontSize: 22.0),
                           ),
                         ),
@@ -54,10 +59,14 @@ class _ChooseStoreTypePageState extends State<ChooseStoreTypePage> {
                 )
               ],
             ),
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => DmDeAddFilmOrderPage())),
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        storeModelstorePageMap.values.toList()[position])),
           );
         },
-        itemCount: storeModels.length,
+        itemCount: storeModelstorePageMap.length,
       ),
     );
   }
