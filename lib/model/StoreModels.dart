@@ -9,6 +9,14 @@ class StoreModel {
     return "";
   }
 
+  String formatSummaryStateTextForUI(String summaryStateText) {
+    return "Has to be implemented in implementing types";
+  }
+
+  String formatStoreOrderIdForUI(String orderId, String storeId) {
+    return "Has to be implemented in implementing types";
+  }
+
   static StoreModel storeModelFromId(String id) {
     switch (id) {
       case DmDeStoreModel.PROVIDER_ID:
@@ -29,9 +37,19 @@ class DmDeStoreModel implements StoreModel {
 
   @override
   String get providerName => PROVIDER_NAME;
+
+  @override
+  String formatSummaryStateTextForUI(String summaryStateText) {
+    return summaryStateText.split(".")[0];
+  }
+
+  @override
+  String formatStoreOrderIdForUI(String orderId, String storeId) {
+    return "$orderId - $storeId";
+  }
 }
 
-class RossmannStoreModel extends StoreModel {
+class RossmannStoreModel implements StoreModel {
   static const PROVIDER_ID = "ROSSMANN_PROVIDER";
   static const PROVIDER_NAME = "Rossmann";
 
@@ -40,4 +58,14 @@ class RossmannStoreModel extends StoreModel {
 
   @override
   String get providerName => PROVIDER_NAME;
+
+  @override
+  String formatSummaryStateTextForUI(String summaryStateText) {
+    return summaryStateText;
+  }
+
+  @override
+  String formatStoreOrderIdForUI(String orderId, String storeId) {
+    return "$orderId - $storeId";
+  }
 }

@@ -74,6 +74,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                                       child: Text(
                                         filmordermodel.filmOrders[position]
                                             .insertionDateGui,
+                                        //TODO: display name of store
                                         style: TextStyle(
                                             fontSize: 20.0,
                                             fontWeight: FontWeight.bold),
@@ -96,12 +97,8 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                                           children: <Widget>[
                                             Text(
                                               filmordermodel
-                                                      .filmOrders[position]
-                                                      .orderNumber +
-                                                  " - " +
-                                                  filmordermodel
-                                                      .filmOrders[position]
-                                                      .storeId,
+                                                  .filmOrders[position]
+                                                  .storeOrderId,
                                               style: TextStyle(
                                                 fontSize: 20.0,
                                                 color: Colors.grey[600],
@@ -143,7 +140,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
             icon: Icon(Icons.add),
             label: Text(
               'Add Order',
-              style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
             ),
           ),
         );

@@ -25,7 +25,7 @@ class DmDeStatusProvider implements FilmDevelopmentStatusProvider {
   @override
   Future<FilmDevelopmentStatus> obtainDevelopmentStatusForFilmOrder(
       FilmDevelopmentOrder film) async {
-    var orderNumber = film.orderNumber;
+    var orderNumber = film.orderId;
     var storeId = film.storeId;
     String queryURL =
         '$API_ENDPOINT?config=$CONFIG&shop=$storeId&order=$orderNumber';

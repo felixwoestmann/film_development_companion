@@ -19,7 +19,7 @@ import 'FilmDevelopmentStatusSummary.dart';
 /// filmDevelopmentStatusUpdates: a list with all the status updates for this specific order
 class FilmDevelopmentOrder {
   int id;
-  String orderNumber;
+  String orderId;
   String storeId;
   DateTime insertionDate;
   FilmDevelopmentStatus latestFilmDevelopmentStatusUpdate;
@@ -27,7 +27,7 @@ class FilmDevelopmentOrder {
 
   FilmDevelopmentOrder(
       StoreModel storeModel, String orderNumber, String storeId) {
-    this.orderNumber = orderNumber;
+    this.orderId = orderNumber;
     this.storeModel = storeModel;
     this.storeId = storeId;
     insertionDate = DateTime.now();
@@ -41,9 +41,8 @@ class FilmDevelopmentOrder {
     latestFilmDevelopmentStatusUpdate = statusUpdate;
   }
 
-  String get insertionDateGui {
-    return new DateFormat.MMMd("de_DE").format(insertionDate);
-  }
+  String get insertionDateGui =>
+      new DateFormat.MMMd("de_DE").format(insertionDate);
 
   String get price {
     if (latestFilmDevelopmentStatusUpdate != null) {
@@ -54,9 +53,13 @@ class FilmDevelopmentOrder {
     return "";
   }
 
+  String get storeOrderId =>
+      storeModel.formatStoreOrderIdForUI(orderId, storeId);
+
   String get latestFilmDevelopmentStatusSummaryText {
     if (latestFilmDevelopmentStatusUpdate != null) {
-      return latestFilmDevelopmentStatusUpdate.statusSummaryText.split(".")[0];
+      return storeModel.formatSummaryStateTextForUI(
+          latestFilmDevelopmentStatusUpdate.statusSummaryText);
     } else {
       return "";
     }
@@ -84,7 +87,7 @@ class FilmDevelopmentOrder {
 
   FilmDevelopmentOrder.fromMap(Map<String, dynamic> map) {
     id = map[DatabaseHelper.columnId];
-    orderNumber = map[DatabaseHelper.columnOrderNumber];
+    orderId = map[DatabaseHelper.columnOrderNumber];
     storeId = map[DatabaseHelper.columnStoreId];
     insertionDate = DateTime.fromMillisecondsSinceEpoch(
         map[DatabaseHelper.columnInsertionDate]);
@@ -98,7 +101,7 @@ class FilmDevelopmentOrder {
 
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{
-      DatabaseHelper.columnOrderNumber: orderNumber,
+      DatabaseHelper.columnOrderNumber: orderId,
       DatabaseHelper.columnStoreId: storeId,
       DatabaseHelper.columnInsertionDate: insertionDate.millisecondsSinceEpoch,
       DatabaseHelper.columnStoreModel: storeModel.providerId,

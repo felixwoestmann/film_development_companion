@@ -23,7 +23,7 @@ class RossmannStatusProvider extends FilmDevelopmentStatusProvider {
   @override
   Future<FilmDevelopmentStatus> obtainDevelopmentStatusForFilmOrder(
       FilmDevelopmentOrder film) async {
-    String orderNumber = film.orderNumber;
+    String orderNumber = film.orderId;
     List<String> splittedStoreId = film.storeId.split("-");
     String firma = splittedStoreId[0];
     String htNumber = splittedStoreId[1];
