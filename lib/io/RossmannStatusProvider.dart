@@ -24,12 +24,14 @@ class RossmannStatusProvider extends FilmDevelopmentStatusProvider {
   @override
   Future<FilmDevelopmentStatus> obtainDevelopmentStatusForFilmOrder(
       FilmDevelopmentOrder film) async {
-    //  var orderNumber = film.orderNumber;
-    // var htNumber = film.storeId;
+    String orderNumber = film.orderNumber;
+    List<String> splittedStoreId = film.storeId.split("-");
+    String firma = splittedStoreId[0];
+    String htNumber = splittedStoreId[1];
     http.Response httResponse = await http.post(API_ENDPOINT, body: {
-      "AUFNR_A": "306926",
-      "FIRMA": "3",
-      "HDNR": "3284",
+      "AUFNR_A": orderNumber,
+      "FIRMA": firma,
+      "HDNR": htNumber,
       "x": "0",
       "y": "0"
     });

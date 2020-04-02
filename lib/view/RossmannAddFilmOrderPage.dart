@@ -16,14 +16,14 @@ class _RossmannAddFilmOrderPage extends State<RossmannAddFilmOrderPage> {
   //TODO use Form https://api.flutter.dev/flutter/widgets/Form-class.html
 
   final orderIdTextController = TextEditingController();
-  final storeIdTextController = TextEditingController();
-  List<Map<String, String>> listOfRossmannStores = new List();
+  final htNumberTextController = TextEditingController();
+  String newTextInhtNumber = '';
 
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
     orderIdTextController.dispose();
-    storeIdTextController.dispose();
+    htNumberTextController.dispose();
 
     super.dispose();
   }
@@ -35,10 +35,31 @@ class _RossmannAddFilmOrderPage extends State<RossmannAddFilmOrderPage> {
 
   void addFilmOrder() {
     var order = new FilmDevelopmentOrder(new RossmannStoreModel(),
-        orderIdTextController.text, storeIdTextController.text);
+        orderIdTextController.text, htNumberTextController.text);
     Provider.of<FilmDevelopmentAppDataModel>(context, listen: false)
         .addFilmOrder(order);
     Navigator.popUntil(context, ModalRoute.withName('/'));
+  }
+
+  //Method is called when HTNUMBER field has changed.
+  //Inserts dash ('-') after the first two characters
+  void htNumberOnChange(String param) {
+    String text = htNumberTextController.text;
+    if (text.length < newTextInhtNumber.length) {
+      // handling backspace in keyboard
+      newTextInhtNumber = text;
+    } else if (text.isNotEmpty && text != newTextInhtNumber) {
+      // handling typing new characters.
+      String tempText = text.replaceAll("-", "");
+      if (tempText.length == 2) {
+        //do your text transforming
+        newTextInhtNumber = '$text-';
+        htNumberTextController.text = newTextInhtNumber;
+        htNumberTextController.selection = new TextSelection(
+            baseOffset: newTextInhtNumber.length,
+            extentOffset: newTextInhtNumber.length);
+      }
+    }
   }
 
   @override
@@ -63,50 +84,26 @@ class _RossmannAddFilmOrderPage extends State<RossmannAddFilmOrderPage> {
                   ),
                 ),
               ),
-              Row(
-                children: <Widget>[
-                  Flexible(
-                    child: Padding(
-                      padding:
-                          const EdgeInsets.fromLTRB(15.0, 30.0, 20.0, 10.0),
-                      child: TextField(
-                        autocorrect: false,
-                        keyboardType: TextInputType.number,
-                        maxLength: 2,
-                        decoration: InputDecoration(
-                          hintText: "FIRMA",
-                          hintStyle: TextStyle(fontSize: 18),
-                        ),
-                      ),
-                    ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 10.0),
+                child: TextField(
+                  autocorrect: false,
+                  keyboardType: TextInputType.number,
+                  controller: htNumberTextController,
+                  onChanged: htNumberOnChange,
+                  decoration: InputDecoration(
+                    hintText: "HT NUMBER",
+                    hintStyle: TextStyle(fontSize: 18),
                   ),
-                  Text("-",
-                      style: TextStyle(
-                        fontSize: 50.0,
-                      )),
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(20.0, 30.0, 15.0, 10.0),
-                      child: TextField(
-                        autocorrect: false,
-                        controller: storeIdTextController,
-                        keyboardType: TextInputType.number,
-                        maxLength: 6,
-                        decoration: InputDecoration(
-                          hintText: "HTNUMBER",
-                          hintStyle: TextStyle(fontSize: 18),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ],
           ),
           floatingActionButton: FloatingActionButton.extended(
             onPressed: addFilmOrder,
             icon: Icon(Icons.check),
-            label: Text('Save Order'),
+            label: Text('Save Order',
+                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
           ),
         );
       },
