@@ -17,7 +17,6 @@ class _RossmannAddFilmOrderPage extends State<RossmannAddFilmOrderPage> {
 
   final orderIdTextController = TextEditingController();
   final storeIdTextController = TextEditingController();
-  final storePLZTextController = TextEditingController();
   List<Map<String, String>> listOfRossmannStores = new List();
 
   @override
@@ -25,25 +24,17 @@ class _RossmannAddFilmOrderPage extends State<RossmannAddFilmOrderPage> {
     // Clean up the controller when the widget is disposed.
     orderIdTextController.dispose();
     storeIdTextController.dispose();
-    storePLZTextController.dispose();
+
     super.dispose();
   }
 
   @override
   void initState() {
     super.initState();
-    storePLZTextController.addListener(_storePlzTextControllerHasChanged);
-  }
-
-  _storePlzTextControllerHasChanged() async {
-    String plz = storePLZTextController.text;
-    listOfRossmannStores =
-        await RossmannStatusProvider.instance.loadStoresForPLZ(plz);
-    setState(() {});
   }
 
   void addFilmOrder() {
-    var order = new FilmDevelopmentOrder(new DmDeStoreModel(),
+    var order = new FilmDevelopmentOrder(new RossmannStoreModel(),
         orderIdTextController.text, storeIdTextController.text);
     Provider.of<FilmDevelopmentAppDataModel>(context, listen: false)
         .addFilmOrder(order);
@@ -64,18 +55,6 @@ class _RossmannAddFilmOrderPage extends State<RossmannAddFilmOrderPage> {
                 padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 10.0),
                 child: TextField(
                   autocorrect: false,
-                  controller: storeIdTextController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    hintText: "Store ID",
-                    hintStyle: TextStyle(fontSize: 18),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 10.0),
-                child: TextField(
-                  autocorrect: false,
                   controller: orderIdTextController,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
@@ -84,30 +63,44 @@ class _RossmannAddFilmOrderPage extends State<RossmannAddFilmOrderPage> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 10.0),
-                child: TextField(
-                  autocorrect: false,
-                  controller: storePLZTextController,
-                  keyboardType: TextInputType.number,
-                  maxLength: 5,
-                  decoration: InputDecoration(
-                    hintText: "PLZ des Stores",
-                    hintStyle: TextStyle(fontSize: 18),
+              Row(
+                children: <Widget>[
+                  Flexible(
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.fromLTRB(15.0, 30.0, 20.0, 10.0),
+                      child: TextField(
+                        autocorrect: false,
+                        keyboardType: TextInputType.number,
+                        maxLength: 2,
+                        decoration: InputDecoration(
+                          hintText: "FIRMA",
+                          hintStyle: TextStyle(fontSize: 18),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                  Text("-",
+                      style: TextStyle(
+                        fontSize: 50.0,
+                      )),
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(20.0, 30.0, 15.0, 10.0),
+                      child: TextField(
+                        autocorrect: false,
+                        controller: storeIdTextController,
+                        keyboardType: TextInputType.number,
+                        maxLength: 6,
+                        decoration: InputDecoration(
+                          hintText: "HTNUMBER",
+                          hintStyle: TextStyle(fontSize: 18),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              Container(
-                height: 300,
-                child: ListView.builder(
-                    itemBuilder: (context, position) {
-                      return ListTile(
-                          title: Text(listOfRossmannStores[position]['street']),
-                          subtitle: Text(
-                              "${listOfRossmannStores[position]['zip']} ${listOfRossmannStores[position]['city']}"));
-                    },
-                    itemCount: listOfRossmannStores.length),
-              )
             ],
           ),
           floatingActionButton: FloatingActionButton.extended(
