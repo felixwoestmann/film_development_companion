@@ -1,5 +1,6 @@
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentAppDataModel.dart';
 import 'package:filmdevelopmentcompanion/view/ChooseStoreTypePage.dart';
+import 'package:filmdevelopmentcompanion/view/FilmOrderDetailPage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -41,104 +42,115 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                       filmordermodel.deleteFilmOrder(position);
                     },
                     direction: DismissDirection.startToEnd,
-                    child: Card(
-                      elevation: 10,
-                      margin: EdgeInsets.fromLTRB(8, 10, 8, 10),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                      ),
-                      child: Column(
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(8, 10, 0, 10),
-                                child: Icon(
-                                    filmordermodel
-                                        .filmOrders[position].iconForStatus,
-                                    color: Colors.deepOrangeAccent,
-                                    size: 60.0),
-                              ),
-                              Container(
-                                  height: 80,
-                                  child:
-                                      VerticalDivider(color: Colors.grey[600])),
-                              Flexible(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Row(
-                                      children: <Widget>[
-                                        Padding(
-                                          padding: const EdgeInsets.fromLTRB(
-                                              5.0, 12.0, 5.0, 0.0),
-                                          child: Text(
-                                            filmordermodel.filmOrders[position]
-                                                .insertionDateGui,
-                                            style: TextStyle(
-                                                fontSize: 20.0,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.fromLTRB(
-                                              0.0, 12.0, 12.0, 0.0),
-                                          child: Text(
-                                              "@ " +
-                                                  filmordermodel
-                                                      .filmOrders[position]
-                                                      .storeModel
-                                                      .providerNameUi,
-                                              style: TextStyle(
-                                                  fontSize: 20.0,
-                                                  fontWeight: FontWeight.bold)),
-                                        )
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          5.0, 3.0, 8.0, 0.0),
-                                      child: Text(
-                                        filmordermodel.filmOrders[position]
-                                            .latestFilmDevelopmentStatusSummaryText,
-                                        style: TextStyle(fontSize: 20.0),
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                    Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            5.0, 3.0, 12.0, 12.0),
-                                        child: Row(
-                                          children: <Widget>[
-                                            Text(
+                    child: GestureDetector(
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => new FilmOrderDetailPage(
+                                  filmordermodel.filmOrders[position]))),
+                      child: Card(
+                        elevation: 10,
+                        margin: EdgeInsets.fromLTRB(8, 10, 8, 10),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                        ),
+                        child: Column(
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(8, 10, 0, 10),
+                                  child: Icon(
+                                      filmordermodel
+                                          .filmOrders[position].iconForStatus,
+                                      color: Colors.deepOrangeAccent,
+                                      size: 60.0),
+                                ),
+                                Container(
+                                    height: 80,
+                                    child: VerticalDivider(
+                                        color: Colors.grey[600])),
+                                Flexible(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Row(
+                                        children: <Widget>[
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                5.0, 12.0, 5.0, 0.0),
+                                            child: Text(
                                               filmordermodel
                                                   .filmOrders[position]
-                                                  .storeOrderId,
+                                                  .insertionDateGui,
                                               style: TextStyle(
-                                                fontSize: 20.0,
-                                                color: Colors.grey[600],
-                                              ),
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.bold),
                                             ),
-                                            Padding(
-                                                padding:
-                                                    const EdgeInsets.fromLTRB(
-                                                        20.0, 0.0, 0.0, 0.0)),
-                                            Text(
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                0.0, 12.0, 12.0, 0.0),
+                                            child: Text(
+                                                "@ " +
+                                                    filmordermodel
+                                                        .filmOrders[position]
+                                                        .storeModel
+                                                        .providerNameUi,
+                                                style: TextStyle(
+                                                    fontSize: 20.0,
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                          )
+                                        ],
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            5.0, 3.0, 8.0, 0.0),
+                                        child: Text(
+                                          filmordermodel.filmOrders[position]
+                                              .latestFilmDevelopmentStatusSummaryText,
+                                          style: TextStyle(fontSize: 20.0),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                      Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              5.0, 3.0, 12.0, 12.0),
+                                          child: Row(
+                                            children: <Widget>[
+                                              Text(
                                                 filmordermodel
-                                                    .filmOrders[position].price,
+                                                    .filmOrders[position]
+                                                    .storeOrderId,
                                                 style: TextStyle(
                                                   fontSize: 20.0,
                                                   color: Colors.grey[600],
-                                                ))
-                                          ],
-                                        )),
-                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                  padding:
+                                                      const EdgeInsets.fromLTRB(
+                                                          20.0, 0.0, 0.0, 0.0)),
+                                              Text(
+                                                  filmordermodel
+                                                      .filmOrders[position]
+                                                      .price,
+                                                  style: TextStyle(
+                                                    fontSize: 20.0,
+                                                    color: Colors.grey[600],
+                                                  ))
+                                            ],
+                                          )),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );
