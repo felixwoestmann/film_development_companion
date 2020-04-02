@@ -68,17 +68,33 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          5.0, 12.0, 12.0, 0.0),
-                                      child: Text(
-                                        filmordermodel.filmOrders[position]
-                                            .insertionDateGui,
-                                        //TODO: display name of store
-                                        style: TextStyle(
-                                            fontSize: 20.0,
-                                            fontWeight: FontWeight.bold),
-                                      ),
+                                    Row(
+                                      children: <Widget>[
+                                        Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              5.0, 12.0, 5.0, 0.0),
+                                          child: Text(
+                                            filmordermodel.filmOrders[position]
+                                                .insertionDateGui,
+                                            style: TextStyle(
+                                                fontSize: 20.0,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              0.0, 12.0, 12.0, 0.0),
+                                          child: Text(
+                                              "@ " +
+                                                  filmordermodel
+                                                      .filmOrders[position]
+                                                      .storeModel
+                                                      .providerNameUi,
+                                              style: TextStyle(
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.bold)),
+                                        )
+                                      ],
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.fromLTRB(
