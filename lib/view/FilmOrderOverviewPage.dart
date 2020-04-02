@@ -56,7 +56,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                                 padding: EdgeInsets.fromLTRB(8, 10, 0, 10),
                                 child: Icon(
                                     filmordermodel
-                                        .filmOrders[position].iconforstatus,
+                                        .filmOrders[position].iconForStatus,
                                     color: Colors.deepOrangeAccent,
                                     size: 60.0),
                               ),

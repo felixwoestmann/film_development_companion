@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:filmdevelopmentcompanion/io/DatabaseHelpers.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentStatus.dart';
 import 'package:filmdevelopmentcompanion/io/FilmDevelopmentStatusProvider.dart';
@@ -7,7 +6,6 @@ import 'package:filmdevelopmentcompanion/io/StatusProviderFactory.dart';
 import 'package:filmdevelopmentcompanion/model/StoreModels.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'FilmDevelopmentStatusSummary.dart';
 
 /// A FilmDevelopmentOrder represents an order to develop a film at a lab.
@@ -25,9 +23,8 @@ class FilmDevelopmentOrder {
   FilmDevelopmentStatus latestFilmDevelopmentStatusUpdate;
   StoreModel storeModel;
 
-  FilmDevelopmentOrder(
-      StoreModel storeModel, String orderNumber, String storeId) {
-    this.orderId = orderNumber;
+  FilmDevelopmentOrder(StoreModel storeModel, String orderId, String storeId) {
+    this.orderId = orderId;
     this.storeModel = storeModel;
     this.storeId = storeId;
     insertionDate = DateTime.now();
@@ -65,7 +62,7 @@ class FilmDevelopmentOrder {
     }
   }
 
-  IconData get iconforstatus {
+  IconData get iconForStatus {
     if (latestFilmDevelopmentStatusUpdate == null) {
       return Icons.not_listed_location;
     } else {

@@ -1,8 +1,5 @@
-import 'package:filmdevelopmentcompanion/io/DmDeStatusProvider.dart';
 import 'package:filmdevelopmentcompanion/io/FilmDevelopmentStatusProvider.dart';
-import 'package:filmdevelopmentcompanion/io/RossmannStatusProvider.dart';
-
-import '../model/StoreModels.dart';
+import 'package:filmdevelopmentcompanion/model/StoreModels.dart';
 
 class StatusProviderFactory {
   static FilmDevelopmentStatusProvider createStatusProviderForStoreModel(
