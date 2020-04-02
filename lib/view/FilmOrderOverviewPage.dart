@@ -143,7 +143,10 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                       builder: (context) => ChooseStoreTypePage()));
             },
             icon: Icon(Icons.add),
-            label: Text('Add Order'),
+            label: Text(
+              'Add Order',
+              style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.bold),
+            ),
           ),
         );
       },

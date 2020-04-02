@@ -77,7 +77,7 @@ class _DmDeAddFilmOrderPageState extends State<DmDeAddFilmOrderPage> {
           floatingActionButton: FloatingActionButton.extended(
             onPressed: addFilmOrder,
             icon: Icon(Icons.check),
-            label: Text('Save Order'),
+            label: Text('Save Order', style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.bold)),
           ),
         );
       },
