@@ -4,6 +4,6 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   test("Test the queriying of the Rossmann Stores for PLZ", () async {
     RossmannStatusProvider statusProvider = RossmannStatusProvider.instance;
-    await statusProvider.loadStoresForPLZ("48143");
+    await statusProvider.obtainDevelopmentStatusForFilmOrder(null);
   });
 }
