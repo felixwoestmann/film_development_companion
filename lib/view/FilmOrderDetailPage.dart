@@ -10,7 +10,7 @@ class FilmOrderDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Order detail"),
+        title: Text("Order detail",style: TextStyle(fontWeight: FontWeight.bold)),
       ),
       body: Column(
         children: <Widget>[Text(order.storeOrderId)],

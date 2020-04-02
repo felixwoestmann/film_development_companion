@@ -44,7 +44,7 @@ class _DmDeAddFilmOrderPageState extends State<DmDeAddFilmOrderPage> {
       builder: (context, cart, child) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(widget.title),
+            title: Text(widget.title,style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           body: Column(
             children: <Widget>[

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class FilmOrderOverviewPage extends StatefulWidget {
-  final String title = "Film Development Companion";
+  final String title = "Overview";
 
   @override
   _FilmOrderOverviewPageState createState() => _FilmOrderOverviewPageState();
@@ -23,7 +23,10 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
       builder: (context, filmordermodel, child) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(widget.title),
+            title: Text(
+              widget.title,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
           ),
           body: RefreshIndicator(
               child: ListView.builder(
