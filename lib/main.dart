@@ -3,7 +3,6 @@ import 'package:filmdevelopmentcompanion/view/ChooseStoreTypePage.dart';
 import 'package:filmdevelopmentcompanion/view/DmDeAddFilmOrderPage.dart';
 import 'package:filmdevelopmentcompanion/view/FilmOrderOverviewPage.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 void main() {

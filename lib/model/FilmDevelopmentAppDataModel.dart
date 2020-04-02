@@ -34,7 +34,7 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
 
   void deleteFilmOrder(int index) async {
     await dbHelper.delete(filmOrders[index]);
-    FilmDevelopmentOrder removedOrder = filmOrders.removeAt(index);
+    filmOrders.removeAt(index);
     notifyListeners();
   }
 

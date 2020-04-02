@@ -12,11 +12,11 @@ class StoreModel {
   static StoreModel storeModelFromId(String id) {
     switch (id) {
       case DmDeStoreModel.PROVIDER_ID:
-        {
-          return new DmDeStoreModel();
-        }
-        break;
+        return new DmDeStoreModel();
+      case RossmannStoreModel.PROVIDER_ID:
+        return new RossmannStoreModel();
     }
+    return null;
   }
 }
 

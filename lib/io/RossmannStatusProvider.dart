@@ -3,12 +3,11 @@ import 'package:filmdevelopmentcompanion/model/FilmDevelopmentOrder.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentStatus.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentStatusSummary.dart';
 import 'package:html/parser.dart' show parse;
-import 'package:html/dom.dart';
 import 'package:http/http.dart' as http;
 import 'package:jiffy/jiffy.dart';
 
 class RossmannStatusProvider extends FilmDevelopmentStatusProvider {
-  final String API_ENDPOINT =
+  static const  String API_ENDPOINT =
       "https://service.fujifilm-imaging.eu/a/rossmannb2";
 
   //RegEx for Dates in format 01.04.2020 bzw. dd.MM.yyyy
