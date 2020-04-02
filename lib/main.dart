@@ -1,7 +1,9 @@
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentAppDataModel.dart';
 import 'package:filmdevelopmentcompanion/view/ChooseStoreTypePage.dart';
 import 'package:filmdevelopmentcompanion/view/DmDeAddFilmOrderPage.dart';
+import 'package:filmdevelopmentcompanion/view/FilmOrderDetailPage.dart';
 import 'package:filmdevelopmentcompanion/view/FilmOrderOverviewPage.dart';
+import 'package:filmdevelopmentcompanion/view/RossmannAddFilmOrderPage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -27,8 +29,10 @@ class FilmDevCompanionApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => FilmOrderOverviewPage(),
-          'chooseStore': (context) => ChooseStoreTypePage(),
-          '/dmDeAddFilm': (context) => DmDeAddFilmOrderPage(),
+          '/chooseStore': (context) => ChooseStoreTypePage(),
+          //'/dmDeAddFilm': (context) => DmDeAddFilmOrderPage(),
+          //'/rossmannAddFilm': (context) => RossmannAddFilmOrderPage(),
+
         });
   }
 }
