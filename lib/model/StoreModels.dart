@@ -47,19 +47,23 @@ class DmDeStoreModel extends StoreModel {
   static const String PROVIDER_ID = "DM_DE_PROVIDER";
   static const String PROVIDER_NAME = "dm Deutschland";
   static const String PROVIDER_NAME_UI = "dm";
+
+  //
   static final DmDeStoreModel _instance = DmDeStoreModel._internal();
+
+  static DmDeStoreModel get instance => _instance;
 
   DmDeStoreModel._internal() {
     statusProvider = new DmDeStatusProvider();
   }
 
-  static DmDeStoreModel get instance => _instance;
-
+  //
   @override
   String formatSummaryStateTextForUI(String summaryStateText) {
     return summaryStateText.split(".")[0];
   }
 
+//
   @override
   String get providerId => PROVIDER_ID;
 
@@ -74,6 +78,8 @@ class RossmannStoreModel extends StoreModel {
   static const String PROVIDER_ID = "ROSSMANN_PROVIDER";
   static const String PROVIDER_NAME = "Rossmann";
   static const String PROVIDER_NAME_UI = "Rossmann";
+
+  //
   static final RossmannStoreModel _instance = RossmannStoreModel._internal();
 
   RossmannStoreModel._internal() {
@@ -82,6 +88,7 @@ class RossmannStoreModel extends StoreModel {
 
   static RossmannStoreModel get instance => _instance;
 
+//
   @override
   String get providerId => PROVIDER_ID;
 
