@@ -1,4 +1,10 @@
+import 'package:filmdevelopmentcompanion/io/FilmOrderStatusProviders.dart';
+import 'package:filmdevelopmentcompanion/model/FilmDevelopmentOrder.dart';
+import 'package:filmdevelopmentcompanion/model/FilmDevelopmentStatus.dart';
+
 class StoreModel {
+  FilmDevelopmentStatusProvider statusProvider;
+
   String get providerId {
     print("Not implemented should be used as an interface");
     return "";
@@ -15,28 +21,39 @@ class StoreModel {
   }
 
   String formatSummaryStateTextForUI(String summaryStateText) {
-    return "Has to be implemented in implementing types";
+    return summaryStateText;
   }
 
   String formatStoreOrderIdForUI(String orderId, String storeId) {
-    return "Has to be implemented in implementing types";
+    return "$orderId // $storeId";
+  }
+
+  Future<FilmDevelopmentStatus> update(FilmDevelopmentOrder order) async {
+    return await statusProvider.obtainDevelopmentStatusForFilmOrder(order);
   }
 
   static StoreModel storeModelFromId(String id) {
     switch (id) {
       case DmDeStoreModel.PROVIDER_ID:
-        return new DmDeStoreModel();
+        return DmDeStoreModel.instance;
       case RossmannStoreModel.PROVIDER_ID:
-        return new RossmannStoreModel();
+        return RossmannStoreModel.instance;
     }
     return null;
   }
 }
 
-class DmDeStoreModel implements StoreModel {
+class DmDeStoreModel extends StoreModel {
   static const PROVIDER_ID = "DM_DE_PROVIDER";
   static const PROVIDER_NAME = "dm Deutschland";
   static const PROVIDER_NAME_UI = "dm";
+  static final DmDeStoreModel _instance = DmDeStoreModel._internal();
+
+  DmDeStoreModel._internal() {
+    statusProvider = new DmDeStatusProvider();
+  }
+
+  static DmDeStoreModel get instance => _instance;
 
   @override
   String get providerId => PROVIDER_ID;
@@ -51,17 +68,19 @@ class DmDeStoreModel implements StoreModel {
   String formatSummaryStateTextForUI(String summaryStateText) {
     return summaryStateText.split(".")[0];
   }
-
-  @override
-  String formatStoreOrderIdForUI(String orderId, String storeId) {
-    return "$orderId // $storeId";
-  }
 }
 
-class RossmannStoreModel implements StoreModel {
+class RossmannStoreModel extends StoreModel {
   static const PROVIDER_ID = "ROSSMANN_PROVIDER";
   static const PROVIDER_NAME = "Rossmann";
   static const PROVIDER_NAME_UI = "Rossmann";
+  static final RossmannStoreModel _instance = RossmannStoreModel._internal();
+
+  RossmannStoreModel._internal() {
+    statusProvider = new RossmannStatusProvider();
+  }
+
+  static RossmannStoreModel get instance => _instance;
 
   @override
   String get providerId => PROVIDER_ID;
@@ -71,14 +90,4 @@ class RossmannStoreModel implements StoreModel {
 
   @override
   String get providerNameUi => PROVIDER_NAME_UI;
-
-  @override
-  String formatSummaryStateTextForUI(String summaryStateText) {
-    return summaryStateText;
-  }
-
-  @override
-  String formatStoreOrderIdForUI(String orderId, String storeId) {
-    return "$orderId // $storeId";
-  }
 }

@@ -12,8 +12,8 @@ class ChooseStoreTypePage extends StatefulWidget {
 
 class _ChooseStoreTypePageState extends State<ChooseStoreTypePage> {
   Map<StoreModel, Widget> storeModelstorePageMap = {
-    new DmDeStoreModel(): new DmDeAddFilmOrderPage(),
-    new RossmannStoreModel(): new RossmannAddFilmOrderPage()
+    DmDeStoreModel.instance: new DmDeAddFilmOrderPage(),
+    RossmannStoreModel.instance: new RossmannAddFilmOrderPage()
   };
 
   @override

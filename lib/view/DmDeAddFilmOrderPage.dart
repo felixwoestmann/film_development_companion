@@ -31,7 +31,7 @@ class _DmDeAddFilmOrderPageState extends State<DmDeAddFilmOrderPage> {
   }
 
   void addFilmOrder() {
-    var order = new FilmDevelopmentOrder(new DmDeStoreModel(),
+    var order = new FilmDevelopmentOrder(DmDeStoreModel.instance,
         orderIdTextController.text, storeIdTextController.text);
     Provider.of<FilmDevelopmentAppDataModel>(context, listen: false)
         .addFilmOrder(order);
@@ -44,7 +44,8 @@ class _DmDeAddFilmOrderPageState extends State<DmDeAddFilmOrderPage> {
       builder: (context, cart, child) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(widget.title,style: TextStyle(fontWeight: FontWeight.bold)),
+            title: Text(widget.title,
+                style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           body: Column(
             children: <Widget>[
@@ -77,7 +78,8 @@ class _DmDeAddFilmOrderPageState extends State<DmDeAddFilmOrderPage> {
           floatingActionButton: FloatingActionButton.extended(
             onPressed: addFilmOrder,
             icon: Icon(Icons.check),
-            label: Text('Save Order', style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.bold)),
+            label: Text('Save Order',
+                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
           ),
         );
       },

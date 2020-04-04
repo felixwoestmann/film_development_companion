@@ -33,7 +33,7 @@ class _RossmannAddFilmOrderPage extends State<RossmannAddFilmOrderPage> {
   }
 
   void addFilmOrder() {
-    var order = new FilmDevelopmentOrder(new RossmannStoreModel(),
+    var order = new FilmDevelopmentOrder(RossmannStoreModel.instance,
         orderIdTextController.text, htNumberTextController.text);
     Provider.of<FilmDevelopmentAppDataModel>(context, listen: false)
         .addFilmOrder(order);

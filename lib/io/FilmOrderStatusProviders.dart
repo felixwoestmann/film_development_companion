@@ -30,12 +30,6 @@ class RossmannStatusProvider implements FilmDevelopmentStatusProvider {
   //RegEx for Dates in format 01.04.2020 bzw. dd.MM.yyyy
   final RegExp dateRegExp =
       new RegExp(r"\d{2}\.\d{2}\.\d{4}", caseSensitive: false);
-  static final RossmannStatusProvider _instance =
-      RossmannStatusProvider._internal();
-
-  RossmannStatusProvider._internal();
-
-  static RossmannStatusProvider get instance => _instance;
 
   @override
   Future<FilmDevelopmentStatus> obtainDevelopmentStatusForFilmOrder(
@@ -77,11 +71,6 @@ class DmDeStatusProvider implements FilmDevelopmentStatusProvider {
   static const String SUMMARY_KEY = "summaryStateText";
   static const String SUMMARY_DATE_KEY = "summaryDate";
   static const String CONFIG = "1320";
-  static final DmDeStatusProvider _instance = DmDeStatusProvider._internal();
-
-  DmDeStatusProvider._internal();
-
-  static DmDeStatusProvider get instance => _instance;
 
   @override
   Future<FilmDevelopmentStatus> obtainDevelopmentStatusForFilmOrder(

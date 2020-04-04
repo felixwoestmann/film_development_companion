@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'package:filmdevelopmentcompanion/io/DatabaseHelpers.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentStatus.dart';
-import 'package:filmdevelopmentcompanion/io/FilmOrderStatusProviders.dart';
-import 'package:filmdevelopmentcompanion/io/StatusProviderFactory.dart';
 import 'package:filmdevelopmentcompanion/model/StoreModels.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -31,10 +29,7 @@ class FilmDevelopmentOrder {
   }
 
   Future<void> update() async {
-    FilmDevelopmentStatusProvider statusProvider =
-        StatusProviderFactory.createStatusProviderForStoreModel(storeModel);
-    FilmDevelopmentStatus statusUpdate =
-        await statusProvider.obtainDevelopmentStatusForFilmOrder(this);
+    FilmDevelopmentStatus statusUpdate = await storeModel.update(this);
     latestFilmDevelopmentStatusUpdate = statusUpdate;
   }
 
