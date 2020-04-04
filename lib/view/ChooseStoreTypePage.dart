@@ -1,7 +1,6 @@
 import 'package:filmdevelopmentcompanion/model/StoreModels.dart';
-import 'package:filmdevelopmentcompanion/view/RossmannAddFilmOrderPage.dart';
+import 'package:filmdevelopmentcompanion/view/AddFilmOrderPage.dart';
 import 'package:flutter/material.dart';
-import 'DmDeAddFilmOrderPage.dart';
 
 class ChooseStoreTypePage extends StatefulWidget {
   final String title = "Choose store type";
@@ -11,10 +10,10 @@ class ChooseStoreTypePage extends StatefulWidget {
 }
 
 class _ChooseStoreTypePageState extends State<ChooseStoreTypePage> {
-  Map<StoreModel, Widget> storeModelstorePageMap = {
-    DmDeStoreModel.instance: new DmDeAddFilmOrderPage(),
-    RossmannStoreModel.instance: new RossmannAddFilmOrderPage()
-  };
+  List<StoreModel> storeModelstorePageMap = [
+    DmDeStoreModel.instance,
+    RossmannStoreModel.instance
+  ];
 
   @override
   void initState() {
@@ -31,14 +30,13 @@ class _ChooseStoreTypePageState extends State<ChooseStoreTypePage> {
       body: ListView.separated(
         itemBuilder: (context, position) {
           return ListTile(
-            title: Text(
-                storeModelstorePageMap.keys.toList()[position].providerName,
+            title: Text(storeModelstorePageMap[position].providerName,
                 style: TextStyle(fontSize: 22.0)),
             onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) =>
-                        storeModelstorePageMap.values.toList()[position])),
+                    builder: (context) => new AddFilmOrderPage(
+                        storeModelstorePageMap[position]))),
           );
         },
         separatorBuilder: (context, index) => Divider(

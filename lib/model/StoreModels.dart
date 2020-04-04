@@ -88,7 +88,7 @@ class RossmannStoreModel extends StoreModel {
 
   static RossmannStoreModel get instance => _instance;
 
-//
+  //
   @override
   String get providerId => PROVIDER_ID;
 
