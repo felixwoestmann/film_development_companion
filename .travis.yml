@@ -68,10 +68,10 @@ before_script:
   # but we started the project before stable existed and whilst beta has always
   # worked reasonably well for us and we find stable is usually too outdated
   # and has too many missing framework features.
-  - git clone https://github.com/flutter/flutter.git -b stable --depth 1
+  - git clone https://github.com/flutter/flutter.git -b beta --depth 1
 
-    # Add Flutter to the PATH environment variable.
-    - export PATH=`pwd`/flutter/bin:`pwd`/flutter/bin/cache/dart-sdk/bin:$PATH
+  # Add Flutter to the PATH environment variable.
+  - export PATH=`pwd`/flutter/bin:`pwd`/flutter/bin/cache/dart-sdk/bin:$PATH
 
 script:
   # Prints the flutter version
@@ -80,3 +80,4 @@ script:
 
   # Run Flutter build
   - ./flutter/bin/flutter build apk
+
