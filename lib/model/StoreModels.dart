@@ -5,21 +5,6 @@ import 'package:filmdevelopmentcompanion/model/FilmDevelopmentStatus.dart';
 class StoreModel {
   FilmDevelopmentStatusProvider statusProvider;
 
-  String get providerId {
-    print("Not implemented should be used as an interface");
-    return "";
-  }
-
-  String get providerName {
-    print("Not implemented should be used as an interface");
-    return "";
-  }
-
-  String get providerNameUi {
-    print("Not implemented should be used as an interface");
-    return "";
-  }
-
   String formatSummaryStateTextForUI(String summaryStateText) {
     return summaryStateText;
   }
@@ -30,6 +15,21 @@ class StoreModel {
 
   Future<FilmDevelopmentStatus> update(FilmDevelopmentOrder order) async {
     return await statusProvider.obtainDevelopmentStatusForFilmOrder(order);
+  }
+
+  String get providerId {
+    print("Not implemented should be used as an interface");
+    return null;
+  }
+
+  String get providerName {
+    print("Not implemented should be used as an interface");
+    return null;
+  }
+
+  String get providerNameUi {
+    print("Not implemented should be used as an interface");
+    return null;
   }
 
   static StoreModel storeModelFromId(String id) {
@@ -44,9 +44,9 @@ class StoreModel {
 }
 
 class DmDeStoreModel extends StoreModel {
-  static const PROVIDER_ID = "DM_DE_PROVIDER";
-  static const PROVIDER_NAME = "dm Deutschland";
-  static const PROVIDER_NAME_UI = "dm";
+  static const String PROVIDER_ID = "DM_DE_PROVIDER";
+  static const String PROVIDER_NAME = "dm Deutschland";
+  static const String PROVIDER_NAME_UI = "dm";
   static final DmDeStoreModel _instance = DmDeStoreModel._internal();
 
   DmDeStoreModel._internal() {
@@ -56,6 +56,11 @@ class DmDeStoreModel extends StoreModel {
   static DmDeStoreModel get instance => _instance;
 
   @override
+  String formatSummaryStateTextForUI(String summaryStateText) {
+    return summaryStateText.split(".")[0];
+  }
+
+  @override
   String get providerId => PROVIDER_ID;
 
   @override
@@ -63,17 +68,12 @@ class DmDeStoreModel extends StoreModel {
 
   @override
   String get providerNameUi => PROVIDER_NAME_UI;
-
-  @override
-  String formatSummaryStateTextForUI(String summaryStateText) {
-    return summaryStateText.split(".")[0];
-  }
 }
 
 class RossmannStoreModel extends StoreModel {
-  static const PROVIDER_ID = "ROSSMANN_PROVIDER";
-  static const PROVIDER_NAME = "Rossmann";
-  static const PROVIDER_NAME_UI = "Rossmann";
+  static const String PROVIDER_ID = "ROSSMANN_PROVIDER";
+  static const String PROVIDER_NAME = "Rossmann";
+  static const String PROVIDER_NAME_UI = "Rossmann";
   static final RossmannStoreModel _instance = RossmannStoreModel._internal();
 
   RossmannStoreModel._internal() {
