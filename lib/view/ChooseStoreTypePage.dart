@@ -28,37 +28,12 @@ class _ChooseStoreTypePageState extends State<ChooseStoreTypePage> {
         title:
             Text(widget.title, style: TextStyle(fontWeight: FontWeight.bold)),
       ),
-      body: ListView.builder(
+      body: ListView.separated(
         itemBuilder: (context, position) {
-          return GestureDetector(
-            child: Column(
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Padding(
-                          padding:
-                              const EdgeInsets.fromLTRB(12.0, 20.0, 0.0, 10.0),
-                          child: Text(
-                            storeModelstorePageMap.keys
-                                .toList()[position]
-                                .providerName,
-                            style: TextStyle(fontSize: 22.0),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                Divider(
-                  height: 2.0,
-                  color: Colors.grey,
-                )
-              ],
-            ),
+          return ListTile(
+            title: Text(
+                storeModelstorePageMap.keys.toList()[position].providerName,
+                style: TextStyle(fontSize: 22.0)),
             onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -66,6 +41,10 @@ class _ChooseStoreTypePageState extends State<ChooseStoreTypePage> {
                         storeModelstorePageMap.values.toList()[position])),
           );
         },
+        separatorBuilder: (context, index) => Divider(
+          color: Colors.grey[700],
+          height: 2.5,
+        ),
         itemCount: storeModelstorePageMap.length,
       ),
     );
