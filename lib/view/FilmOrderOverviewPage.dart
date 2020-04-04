@@ -1,6 +1,5 @@
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentAppDataModel.dart';
 import 'package:filmdevelopmentcompanion/view/ChooseStoreTypePage.dart';
-import 'package:filmdevelopmentcompanion/view/FilmOrderDetailPage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -46,11 +45,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                     },
                     direction: DismissDirection.startToEnd,
                     child: GestureDetector(
-                      onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => new FilmOrderDetailPage(
-                                  filmordermodel.filmOrders[position]))),
+                      onTap: () => print("tap **"),
                       child: Card(
                         elevation: 10,
                         margin: EdgeInsets.fromLTRB(8, 10, 8, 10),
