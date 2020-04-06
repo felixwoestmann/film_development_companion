@@ -1,6 +1,7 @@
 import 'package:expandable/expandable.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentAppDataModel.dart';
 import 'package:filmdevelopmentcompanion/view/ChooseStoreTypePage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -51,7 +52,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                     },
                     direction: DismissDirection.startToEnd,
                     child: Card(
-                      elevation: 10,
+                      elevation: 8,
                       margin: EdgeInsets.fromLTRB(8, 10, 8, 10),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18.0),
@@ -127,27 +128,15 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                                   ),
                                 ],
                               ),
-                              Row(
-                                children: <Widget>[
-                                  Text(
-                                    filmordermodel
-                                        .filmOrders[position].storeOrderId,
-                                    style: TextStyle(
-                                      fontSize: 20.0,
-                                      color: widget.secondary,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                                    child: Text(
-                                        filmordermodel
-                                            .filmOrders[position].price,
-                                        style: TextStyle(
-                                          fontSize: 20.0,
-                                          color: widget.secondary,
-                                        )),
-                                  ),
-                                ],
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(0, 15, 20, 0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: <Widget>[
+                                   
+                                  ],
+                                ),
                               ),
                             ],
                           ),
