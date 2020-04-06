@@ -39,10 +39,10 @@ class FilmDevelopmentOrder {
   String get price {
     if (latestFilmDevelopmentStatusUpdate != null) {
       if (latestFilmDevelopmentStatusUpdate.price != 0.0) {
-        return "${latestFilmDevelopmentStatusUpdate.price} €";
+        return "${latestFilmDevelopmentStatusUpdate.price} ".replaceAll(".", ",");
       }
     }
-    return "";
+    return "-";
   }
 
   String get storeOrderId =>
