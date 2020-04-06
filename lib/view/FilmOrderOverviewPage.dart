@@ -131,10 +131,22 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                               Padding(
                                 padding: EdgeInsets.fromLTRB(0, 15, 20, 0),
                                 child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: <Widget>[
-                                   
+                                    Text(
+                                        filmordermodel
+                                            .filmOrders[position].price,
+                                        style: TextStyle(
+                                          fontSize: 20.0,
+                                          color: widget.secondary,
+                                        )),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 3),
+                                      child: Icon(
+                                        Icons.euro_symbol,
+                                        color: widget.secondary,
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
