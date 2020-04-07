@@ -1,5 +1,4 @@
 import 'package:filmdevelopmentcompanion/util/license.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ThirdPartyLicensesPage extends StatelessWidget {
@@ -12,16 +11,28 @@ class ThirdPartyLicensesPage extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
-        body: ListView.builder(
-          itemBuilder: (context, position) {
-            return ListTile(
-                title: Text(
-                    "Package: " + LicenseUtil.getLicenses()[position].name),
-                subtitle: Text(
-                    "Version: " + LicenseUtil.getLicenses()[position].version),
-                trailing: Text(LicenseUtil.getLicenses()[position].license));
-          },
-          itemCount: LicenseUtil.getLicenses().length,
+        body: Center(
+          child: ListView.builder(
+            itemCount: LicenseUtil.getLicenses().length,
+            itemBuilder: (BuildContext context, int index) {
+              final item = LicenseUtil.getLicenses()[index];
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  color: Colors.grey.withOpacity(0.5),
+                  child: Column(
+                    children: [
+                      Text(item.name),
+                      Text(item.version),
+                      Text(item.url),
+                      Container(height: 8),
+                      Text(item.license),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
         ));
   }
 }
