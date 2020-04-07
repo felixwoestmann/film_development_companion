@@ -131,7 +131,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                               Padding(
                                 padding: EdgeInsets.fromLTRB(0, 15, 20, 0),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.end,
                                   children: <Widget>[
                                     Text(
                                         filmordermodel
