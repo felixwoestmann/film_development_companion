@@ -8,5 +8,3 @@ The project is very heavily inspired by [Zouroboros FilmChecker App](https://git
 Film refers to analog films for photography. The project is targeted for German and Austrian Drugstores / Film Labs.
 
 The project isn't finished yet.
-
-https://travis-ci.org/felixwoestmann/film_development_companion.svg?branch=master
