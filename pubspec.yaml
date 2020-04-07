@@ -32,6 +32,7 @@ flutter_icons:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  icapps_license: ^0.0.6
 
 flutter:
   fonts:
