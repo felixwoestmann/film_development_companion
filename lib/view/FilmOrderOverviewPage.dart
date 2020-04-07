@@ -1,6 +1,7 @@
 import 'package:expandable/expandable.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentAppDataModel.dart';
 import 'package:filmdevelopmentcompanion/view/ChooseStoreTypePage.dart';
+import 'package:filmdevelopmentcompanion/view/ThirdPartyLicensePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,6 +30,21 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
               widget.title,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
+            actions: <Widget>[
+              PopupMenuButton<Widget>(
+                onSelected: (value) => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => value)),
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    value: LicensePage(),
+                    child: Text("Flutter Licenses"),
+                  ),PopupMenuItem(
+                    value: ThirdPartyLicensesPage(),
+                    child: Text("Third Party Licenses"),
+                  ),
+                ],
+              )
+            ],
           ),
           body: RefreshIndicator(
               child: ListView.builder(
