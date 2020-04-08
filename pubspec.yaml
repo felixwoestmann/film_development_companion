@@ -39,5 +39,7 @@ flutter:
     - family: Futura
       fonts:
         - asset: fonts/Futura-Book.ttf
+  assets:
+    - "assets/RossmannExample.png"
 
   uses-material-design: true

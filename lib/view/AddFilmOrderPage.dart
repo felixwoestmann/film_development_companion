@@ -82,6 +82,7 @@ class _RossmannAddFilmOrderPageState extends _AddFilmOrderPageState {
           ),
           body: Column(
             children: <Widget>[
+              Image(image: AssetImage('assets/RossmannExample.png')),
               Padding(
                 padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 10.0),
                 child: TextField(
