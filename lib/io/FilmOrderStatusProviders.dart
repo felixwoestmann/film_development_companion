@@ -117,7 +117,7 @@ class RossmannStatusProvider implements FilmDevelopmentStatusProvider {
         "in unserem Labor eingegangen und wird derzeit bearbeitet.")) {
       return FilmDevelopmentStatusSummary.PROCESSING;
     }
-    if (text.contains("Ihr Auftrag ist fertiggestellt(noch nicht geliefert)")) {
+    if (text.contains("Ihr Auftrag ist fertiggestellt(noch nicht geliefert)") || text.contains("Ihr Auftrag ist fertiggestellt und hat unser Labor am")) {
       return FilmDevelopmentStatusSummary.SHIPPING;
     }
     return FilmDevelopmentStatusSummary.UNKNOWN_ERROR;
