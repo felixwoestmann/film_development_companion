@@ -33,6 +33,16 @@ class RossmannStatusProvider implements FilmDevelopmentStatusProvider {
       new RegExp(r"\d{2}\.\d{2}\.\d{4}", caseSensitive: false);
   final RegExp priceRegExp = new RegExp(r"\d+\,\d{1,2}", caseSensitive: false);
 
+  //Defines mapping of contained Text to DevelopmentStatusSummary
+  final Map<String, FilmDevelopmentStatusSummary> markerTextToStatusSummary = {
+    "Ihr Auftrag ist fertiggestellt(noch nicht geliefert)":
+        FilmDevelopmentStatusSummary.SHIPPING,
+    "Ihr Auftrag ist fertiggestellt und hat unser Labor am":
+        FilmDevelopmentStatusSummary.SHIPPING,
+    "in unserem Labor eingegangen und wird derzeit bearbeitet.":
+        FilmDevelopmentStatusSummary.PROCESSING
+  };
+
   @override
   Future<FilmDevelopmentStatus> obtainDevelopmentStatusForFilmOrder(
       FilmDevelopmentOrder film) async {
@@ -113,14 +123,11 @@ class RossmannStatusProvider implements FilmDevelopmentStatusProvider {
 
   FilmDevelopmentStatusSummary getFilmDevelopmentStatusSummaryFromText(
       String text) {
-    if (text.contains(
-        "in unserem Labor eingegangen und wird derzeit bearbeitet.")) {
-      return FilmDevelopmentStatusSummary.PROCESSING;
+    for (String markerText in markerTextToStatusSummary.keys) {
+      if (text.contains(markerText)) {
+        return markerTextToStatusSummary[markerText];
+      }
     }
-    if (text.contains("Ihr Auftrag ist fertiggestellt(noch nicht geliefert)") || text.contains("Ihr Auftrag ist fertiggestellt und hat unser Labor am")) {
-      return FilmDevelopmentStatusSummary.SHIPPING;
-    }
-    return FilmDevelopmentStatusSummary.UNKNOWN_ERROR;
   }
 }
 
