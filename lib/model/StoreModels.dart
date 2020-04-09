@@ -1,9 +1,12 @@
 import 'package:filmdevelopmentcompanion/io/FilmOrderStatusProviders.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentOrder.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentStatus.dart';
+import 'package:flutter/material.dart';
 
 class StoreModel {
   FilmDevelopmentStatusProvider statusProvider;
+  final String notImplementedWarning =
+      "Not implemented should be used as an interface";
 
   String formatSummaryStateTextForUI(String summaryStateText) {
     return summaryStateText;
@@ -18,17 +21,22 @@ class StoreModel {
   }
 
   String get providerId {
-    print("Not implemented should be used as an interface");
+    print(notImplementedWarning);
     return null;
   }
 
   String get providerName {
-    print("Not implemented should be used as an interface");
+    print(notImplementedWarning);
     return null;
   }
 
   String get providerNameUi {
-    print("Not implemented should be used as an interface");
+    print(notImplementedWarning);
+    return null;
+  }
+
+  AssetImage get exampleImage {
+    print(notImplementedWarning);
     return null;
   }
 
@@ -47,6 +55,7 @@ class DmDeStoreModel extends StoreModel {
   static const String PROVIDER_ID = "DM_DE_PROVIDER";
   static const String PROVIDER_NAME = "dm Deutschland";
   static const String PROVIDER_NAME_UI = "dm";
+  static const AssetImage EXAMPLE_IMAGE = AssetImage('assets/dmExample.png');
 
   //
   static final DmDeStoreModel _instance = DmDeStoreModel._internal();
@@ -68,6 +77,9 @@ class DmDeStoreModel extends StoreModel {
   String get providerId => PROVIDER_ID;
 
   @override
+  AssetImage get exampleImage => EXAMPLE_IMAGE;
+
+  @override
   String get providerName => PROVIDER_NAME;
 
   @override
@@ -78,6 +90,8 @@ class RossmannStoreModel extends StoreModel {
   static const String PROVIDER_ID = "ROSSMANN_PROVIDER";
   static const String PROVIDER_NAME = "Rossmann";
   static const String PROVIDER_NAME_UI = "Rossmann";
+  static const AssetImage EXAMPLE_IMAGE =
+      AssetImage('assets/RossmannExample.png');
 
   //
   static final RossmannStoreModel _instance = RossmannStoreModel._internal();
@@ -97,4 +111,7 @@ class RossmannStoreModel extends StoreModel {
 
   @override
   String get providerNameUi => PROVIDER_NAME_UI;
+
+  @override
+  AssetImage get exampleImage => EXAMPLE_IMAGE;
 }
