@@ -67,15 +67,17 @@ android {
     def isRunningOnTravis = System.getenv("CI") == "true"
 
     if (isRunningOnTravis) {
-        buildTypes {
-            release {
-                signingConfig signingConfigs.release
-            }
-        }
-    } else {
+        print "Running on Travis. Build Debug."
         buildTypes {
             release {
                 signingConfig signingConfigs.debug
+            }
+        }
+    } else {
+        print "Build Release."
+        buildTypes {
+            release {
+                signingConfig signingConfigs.release
             }
         }
     }
