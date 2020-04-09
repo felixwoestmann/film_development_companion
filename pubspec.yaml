@@ -41,5 +41,6 @@ flutter:
         - asset: fonts/Futura-Book.ttf
   assets:
     - "assets/RossmannExample.png"
+    - "assets/dmExample.png"
 
   uses-material-design: true

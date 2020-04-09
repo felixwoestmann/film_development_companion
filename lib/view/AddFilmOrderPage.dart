@@ -82,7 +82,7 @@ class _RossmannAddFilmOrderPageState extends _AddFilmOrderPageState {
           ),
           body: Column(
             children: <Widget>[
-              Image(image: AssetImage('assets/RossmannExample.png')),
+              Image(image: RossmannStoreModel.instance.exampleImage),
               Padding(
                 padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 10.0),
                 child: TextField(
@@ -152,6 +152,7 @@ class _DmDeAddFilmOrderPageState extends _AddFilmOrderPageState {
           ),
           body: Column(
             children: <Widget>[
+              Image(image: DmDeStoreModel.instance.exampleImage ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 10.0),
                 child: TextField(
