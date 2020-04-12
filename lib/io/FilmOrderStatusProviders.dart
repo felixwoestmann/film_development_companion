@@ -128,6 +128,7 @@ class RossmannStatusProvider implements FilmDevelopmentStatusProvider {
         return markerTextToStatusSummary[markerText];
       }
     }
+    return null;
   }
 }
 
@@ -182,7 +183,6 @@ class DmDeStatusProvider implements FilmDevelopmentStatusProvider {
   }
 }
 
-
 class CeweStatusProvider implements FilmDevelopmentStatusProvider {
   static const String API_ENDPOINT =
       "https://spot.photoprintit.com/spotapi/orderInfo/forShop";
@@ -201,8 +201,8 @@ class CeweStatusProvider implements FilmDevelopmentStatusProvider {
     if (httResponse.statusCode == 200) {
       var jsonResponse = json.decode(httResponse.body);
       FilmDevelopmentStatusSummary statusSummary =
-      getFilmDevelopmentStatusSummaryFromText(
-          jsonResponse['summaryStateCode']);
+          getFilmDevelopmentStatusSummaryFromText(
+              jsonResponse['summaryStateCode']);
       int price = jsonResponse['summaryPrice'];
       //print(jsonResponse);
       return FilmDevelopmentStatus(

@@ -24,6 +24,8 @@ class AddFilmOrderPage extends StatefulWidget {
 }
 
 abstract class _AddFilmOrderPageState extends State<AddFilmOrderPage> {
+  final EdgeInsets fieldInsets = EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 10.0);
+
   void addFilmOrder(String orderId, String storeId) {
     var order = new FilmDevelopmentOrder(widget.storeModel, orderId, storeId);
     Provider.of<FilmDevelopmentAppDataModel>(context, listen: false)
@@ -82,35 +84,37 @@ class _RossmannAddFilmOrderPageState extends _AddFilmOrderPageState {
           appBar: AppBar(
             title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
           ),
-          body: Column(
-            children: <Widget>[
-              Image(image: RossmannStoreModel.instance.exampleImage),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 10.0),
-                child: TextField(
-                  autocorrect: false,
-                  controller: orderIdTextController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    hintText: "Order ID",
-                    hintStyle: TextStyle(fontSize: 18),
+          body: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Image(image: RossmannStoreModel.instance.exampleImage),
+                Padding(
+                  padding: fieldInsets,
+                  child: TextField(
+                    autocorrect: false,
+                    controller: orderIdTextController,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      hintText: "Order ID",
+                      hintStyle: TextStyle(fontSize: 18),
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 10.0),
-                child: TextField(
-                  autocorrect: false,
-                  keyboardType: TextInputType.number,
-                  controller: htNumberTextController,
-                  onChanged: htNumberOnChange,
-                  decoration: InputDecoration(
-                    hintText: "HT NUMBER",
-                    hintStyle: TextStyle(fontSize: 18),
+                Padding(
+                  padding: fieldInsets,
+                  child: TextField(
+                    autocorrect: false,
+                    keyboardType: TextInputType.number,
+                    controller: htNumberTextController,
+                    onChanged: htNumberOnChange,
+                    decoration: InputDecoration(
+                      hintText: "HT NUMBER",
+                      hintStyle: TextStyle(fontSize: 18),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           floatingActionButton: FloatingActionButton.extended(
             onPressed: () => addFilmOrder(
@@ -152,34 +156,44 @@ class _DmDeAddFilmOrderPageState extends _AddFilmOrderPageState {
           appBar: AppBar(
             title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
           ),
-          body: Column(
-            children: <Widget>[
-              Image(image: DmDeStoreModel.instance.exampleImage),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 10.0),
-                child: TextField(
-                  autocorrect: false,
-                  controller: storeIdTextController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    hintText: "Store ID",
-                    hintStyle: TextStyle(fontSize: 18),
+          body: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Image(image: DmDeStoreModel.instance.exampleImage),
+                Padding(
+                  padding: fieldInsets,
+                  child: TextField(
+                    autocorrect: false,
+                    controller: storeIdTextController,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      hintText: "Store ID",
+                      hintStyle: TextStyle(fontSize: 18),
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 10.0),
-                child: TextField(
-                  autocorrect: false,
-                  controller: orderIdTextController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    hintText: "Order ID",
-                    hintStyle: TextStyle(fontSize: 18),
+                Padding(
+                  padding: fieldInsets,
+                  child: TextField(
+                    autocorrect: false,
+                    controller: orderIdTextController,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      hintText: "Order ID",
+                      hintStyle: TextStyle(fontSize: 18),
+                    ),
                   ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: fieldInsets,
+                  child: TextField(
+                      maxLines: 5,
+                      decoration: InputDecoration(
+                          hintText: "Notizen",
+                          hintStyle: TextStyle(fontSize: 18))),
+                ),
+              ],
+            ),
           ),
           floatingActionButton: FloatingActionButton.extended(
             onPressed: () => addFilmOrder(
@@ -221,34 +235,36 @@ class _CeweAddFilmOrderPageState extends _AddFilmOrderPageState {
           appBar: AppBar(
             title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
           ),
-          body: Column(
-            children: <Widget>[
-              Image(image: DmDeStoreModel.instance.exampleImage),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 10.0),
-                child: TextField(
-                  autocorrect: false,
-                  controller: storeIdTextController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    hintText: "Store ID",
-                    hintStyle: TextStyle(fontSize: 18),
+          body: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Image(image: DmDeStoreModel.instance.exampleImage),
+                Padding(
+                  padding: fieldInsets,
+                  child: TextField(
+                    autocorrect: false,
+                    controller: storeIdTextController,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      hintText: "Store ID",
+                      hintStyle: TextStyle(fontSize: 18),
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 10.0),
-                child: TextField(
-                  autocorrect: false,
-                  controller: orderIdTextController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    hintText: "Order ID",
-                    hintStyle: TextStyle(fontSize: 18),
+                Padding(
+                  padding: fieldInsets,
+                  child: TextField(
+                    autocorrect: false,
+                    controller: orderIdTextController,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      hintText: "Order ID",
+                      hintStyle: TextStyle(fontSize: 18),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           floatingActionButton: FloatingActionButton.extended(
             onPressed: () => addFilmOrder(
