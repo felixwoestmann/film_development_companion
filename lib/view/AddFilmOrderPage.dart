@@ -26,8 +26,9 @@ class AddFilmOrderPage extends StatefulWidget {
 abstract class _AddFilmOrderPageState extends State<AddFilmOrderPage> {
   final EdgeInsets fieldInsets = EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 10.0);
 
-  void addFilmOrder(String orderId, String storeId) {
-    var order = new FilmDevelopmentOrder(widget.storeModel, orderId, storeId);
+  void addFilmOrder(String orderId, String storeId, String note) {
+    var order =
+        new FilmDevelopmentOrder(widget.storeModel, orderId, storeId, note);
     Provider.of<FilmDevelopmentAppDataModel>(context, listen: false)
         .addFilmOrder(order);
     Navigator.popUntil(context, ModalRoute.withName('/'));
@@ -39,6 +40,7 @@ class _RossmannAddFilmOrderPageState extends _AddFilmOrderPageState {
   String title = "Add Rossmann film order";
   final orderIdTextController = TextEditingController();
   final htNumberTextController = TextEditingController();
+  final noteTextController = TextEditingController();
   String newTextInhtNumber = '';
 
   @override
@@ -46,7 +48,7 @@ class _RossmannAddFilmOrderPageState extends _AddFilmOrderPageState {
     // Clean up the controller when the widget is disposed.
     orderIdTextController.dispose();
     htNumberTextController.dispose();
-
+    noteTextController.dispose();
     super.dispose();
   }
 
@@ -113,12 +115,21 @@ class _RossmannAddFilmOrderPageState extends _AddFilmOrderPageState {
                     ),
                   ),
                 ),
+                Padding(
+                  padding: fieldInsets,
+                  child: TextField(
+                      maxLines: 5,
+                      controller: noteTextController,
+                      decoration: InputDecoration(
+                          hintText: "Notizen",
+                          hintStyle: TextStyle(fontSize: 18))),
+                ),
               ],
             ),
           ),
           floatingActionButton: FloatingActionButton.extended(
-            onPressed: () => addFilmOrder(
-                orderIdTextController.text, htNumberTextController.text),
+            onPressed: () => addFilmOrder(orderIdTextController.text,
+                htNumberTextController.text, noteTextController.text),
             icon: Icon(Icons.check),
             label: Text('Save Order',
                 style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
@@ -134,12 +145,14 @@ class _DmDeAddFilmOrderPageState extends _AddFilmOrderPageState {
   final String title = "Add dm film order";
   final orderIdTextController = TextEditingController();
   final storeIdTextController = TextEditingController();
+  final noteTextController = TextEditingController();
 
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
     orderIdTextController.dispose();
     storeIdTextController.dispose();
+    noteTextController.dispose();
     super.dispose();
   }
 
@@ -188,6 +201,7 @@ class _DmDeAddFilmOrderPageState extends _AddFilmOrderPageState {
                   padding: fieldInsets,
                   child: TextField(
                       maxLines: 5,
+                      controller: noteTextController,
                       decoration: InputDecoration(
                           hintText: "Notizen",
                           hintStyle: TextStyle(fontSize: 18))),
@@ -196,8 +210,8 @@ class _DmDeAddFilmOrderPageState extends _AddFilmOrderPageState {
             ),
           ),
           floatingActionButton: FloatingActionButton.extended(
-            onPressed: () => addFilmOrder(
-                orderIdTextController.text, storeIdTextController.text),
+            onPressed: () => addFilmOrder(orderIdTextController.text,
+                storeIdTextController.text, noteTextController.text),
             icon: Icon(Icons.check),
             label: Text('Save Order',
                 style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
@@ -213,12 +227,14 @@ class _CeweAddFilmOrderPageState extends _AddFilmOrderPageState {
   final String title = "Add Cewe film order";
   final orderIdTextController = TextEditingController();
   final storeIdTextController = TextEditingController();
+  final noteTextController = TextEditingController();
 
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
     orderIdTextController.dispose();
     storeIdTextController.dispose();
+    noteTextController.dispose();
     super.dispose();
   }
 
@@ -263,12 +279,21 @@ class _CeweAddFilmOrderPageState extends _AddFilmOrderPageState {
                     ),
                   ),
                 ),
+                Padding(
+                  padding: fieldInsets,
+                  child: TextField(
+                      maxLines: 5,
+                      controller: noteTextController,
+                      decoration: InputDecoration(
+                          hintText: "Notizen",
+                          hintStyle: TextStyle(fontSize: 18))),
+                ),
               ],
             ),
           ),
           floatingActionButton: FloatingActionButton.extended(
-            onPressed: () => addFilmOrder(
-                orderIdTextController.text, storeIdTextController.text),
+            onPressed: () => addFilmOrder(orderIdTextController.text,
+                storeIdTextController.text, noteTextController.text),
             icon: Icon(Icons.check),
             label: Text('Save Order',
                 style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),

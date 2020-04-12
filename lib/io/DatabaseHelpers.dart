@@ -11,6 +11,7 @@ class DatabaseHelper {
   static final String columnOrderNumber = 'orderNumber';
   static final String columnStoreId = 'storeId';
   static final String columnInsertionDate = 'insertionDate';
+  static final String columnNote = 'note';
   static final String columnStoreModel = 'storeModelID';
   static final String columnStatusStatusDate = 'statusDate';
   static final String columnStatusFetchTime = 'statusFetchTime';
@@ -22,7 +23,7 @@ class DatabaseHelper {
   static final _databaseName = "FilmOrderDatabase.db";
 
   // Increment this version when you need to change the schema.
-  static final _databaseVersion = 1;
+  static final _databaseVersion = 2;
 
   // Make this a singleton class.
   DatabaseHelper._privateConstructor();
@@ -55,6 +56,7 @@ class DatabaseHelper {
                 $columnOrderNumber TEXT NOT NULL,
                 $columnStoreId TEXT NOT NULL,
                 $columnInsertionDate INTEGER NOT NULL,
+                $columnNote Text,
                 $columnStoreModel TEXT NOT NULL,
                 $columnStatusStatusDate INTEGER,
                 $columnStatusFetchTime INTEGER,

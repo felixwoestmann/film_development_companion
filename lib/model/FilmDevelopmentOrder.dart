@@ -17,15 +17,18 @@ class FilmDevelopmentOrder {
   int id;
   String orderId;
   String storeId;
+  String note;
   DateTime insertionDate;
   FilmDevelopmentStatus latestFilmDevelopmentStatusUpdate;
   StoreModel storeModel;
 
-  FilmDevelopmentOrder(StoreModel storeModel, String orderId, String storeId) {
+  FilmDevelopmentOrder(
+      StoreModel storeModel, String orderId, String storeId, String note) {
     this.orderId = orderId;
     this.storeModel = storeModel;
     this.storeId = storeId;
-    insertionDate = DateTime.now();
+    this.note = note;
+    this.insertionDate = DateTime.now();
   }
 
   Future<void> update() async {
@@ -39,7 +42,8 @@ class FilmDevelopmentOrder {
   String get price {
     if (latestFilmDevelopmentStatusUpdate != null) {
       if (latestFilmDevelopmentStatusUpdate.price != 0.0) {
-        return "${latestFilmDevelopmentStatusUpdate.price}".replaceAll(".", ",");
+        return "${latestFilmDevelopmentStatusUpdate.price}"
+            .replaceAll(".", ",");
       }
     }
     return "-";
@@ -85,6 +89,7 @@ class FilmDevelopmentOrder {
         map[DatabaseHelper.columnInsertionDate]);
     storeModel =
         StoreModel.storeModelFromId(map[DatabaseHelper.columnStoreModel]);
+    note = map[DatabaseHelper.columnNote];
     //Check if there was a persistet FilmDev Order
     if (map[DatabaseHelper.columnStatusFetchTime] != null) {
       latestFilmDevelopmentStatusUpdate = FilmDevelopmentStatus.fromMap(map);
@@ -97,6 +102,7 @@ class FilmDevelopmentOrder {
       DatabaseHelper.columnStoreId: storeId,
       DatabaseHelper.columnInsertionDate: insertionDate.millisecondsSinceEpoch,
       DatabaseHelper.columnStoreModel: storeModel.providerId,
+      DatabaseHelper.columnNote: note,
       //FilmDevStatus
     };
 
