@@ -12,7 +12,8 @@ class ChooseStoreTypePage extends StatefulWidget {
 class _ChooseStoreTypePageState extends State<ChooseStoreTypePage> {
   List<StoreModel> storeModelstorePageMap = [
     DmDeStoreModel.instance,
-    RossmannStoreModel.instance
+    RossmannStoreModel.instance,
+    CeweStoreModel.instance
   ];
 
   @override

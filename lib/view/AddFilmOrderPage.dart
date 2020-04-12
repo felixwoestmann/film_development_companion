@@ -16,6 +16,8 @@ class AddFilmOrderPage extends StatefulWidget {
         return _RossmannAddFilmOrderPageState();
       case DmDeStoreModel.PROVIDER_ID:
         return _DmDeAddFilmOrderPageState();
+      case CeweStoreModel.PROVIDER_ID:
+        return _CeweAddFilmOrderPageState();
     }
     return null;
   }
@@ -152,7 +154,76 @@ class _DmDeAddFilmOrderPageState extends _AddFilmOrderPageState {
           ),
           body: Column(
             children: <Widget>[
-              Image(image: DmDeStoreModel.instance.exampleImage ),
+              Image(image: DmDeStoreModel.instance.exampleImage),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 10.0),
+                child: TextField(
+                  autocorrect: false,
+                  controller: storeIdTextController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    hintText: "Store ID",
+                    hintStyle: TextStyle(fontSize: 18),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 10.0),
+                child: TextField(
+                  autocorrect: false,
+                  controller: orderIdTextController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    hintText: "Order ID",
+                    hintStyle: TextStyle(fontSize: 18),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          floatingActionButton: FloatingActionButton.extended(
+            onPressed: () => addFilmOrder(
+                orderIdTextController.text, storeIdTextController.text),
+            icon: Icon(Icons.check),
+            label: Text('Save Order',
+                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _CeweAddFilmOrderPageState extends _AddFilmOrderPageState {
+  //TODO use Form https://api.flutter.dev/flutter/widgets/Form-class.html
+  final String title = "Add Cewe film order";
+  final orderIdTextController = TextEditingController();
+  final storeIdTextController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    orderIdTextController.dispose();
+    storeIdTextController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<FilmDevelopmentAppDataModel>(
+      builder: (context, cart, child) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+          ),
+          body: Column(
+            children: <Widget>[
+              Image(image: DmDeStoreModel.instance.exampleImage),
               Padding(
                 padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 10.0),
                 child: TextField(
