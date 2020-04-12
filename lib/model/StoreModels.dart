@@ -9,7 +9,8 @@ class StoreModel {
       "Not implemented should be used as an interface";
 
   String formatSummaryStateTextForUI(String summaryStateText) {
-    return summaryStateText;
+    //Replace more than two Whitespaces with one
+    return summaryStateText.replaceAll(new RegExp(r"\s{2,}"), " ");
   }
 
   String formatStoreOrderIdForUI(String orderId, String storeId) {
