@@ -32,13 +32,14 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
             ),
             actions: <Widget>[
               PopupMenuButton<Widget>(
-                onSelected: (value) => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => value)),
+                onSelected: (value) => Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => value)),
                 itemBuilder: (context) => [
                   PopupMenuItem(
                     value: LicensePage(),
                     child: Text("Flutter Licenses"),
-                  ),PopupMenuItem(
+                  ),
+                  PopupMenuItem(
                     value: ThirdPartyLicensesPage(),
                     child: Text("Third Party Licenses"),
                   ),
@@ -132,17 +133,52 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                           child: Column(
                             children: <Widget>[
                               Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.only(right:5.0),
+                                    child: Text(
+                                      "Status:",
+                                      style: TextStyle(
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
                                   Flexible(
                                     child: Text(
                                       filmordermodel.filmOrders[position]
                                           .latestFilmDevelopmentStatusSummaryText,
                                       style: TextStyle(fontSize: 20.0),
                                       overflow: TextOverflow.ellipsis,
-                                      maxLines: 8,
+                                      maxLines: 5,
                                     ),
                                   ),
                                 ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8),
+                                child: Row(
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.only(right:5.0),
+                                      child: Text(
+                                        "Notiz:",
+                                        style: TextStyle(
+                                            fontSize: 20.0,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    Flexible(
+                                      child: Text(
+                                        filmordermodel
+                                            .filmOrders[position].note,
+                                        style: TextStyle(fontSize: 20.0),
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 8,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                               Padding(
                                 padding: EdgeInsets.fromLTRB(0, 15, 20, 0),
