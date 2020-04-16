@@ -1,0 +1,20 @@
+{
+  "FilmOrderOverviewPageTitle": "Übersicht",
+  "FilmOrderOverviewButton": "Bestellung hinzufügen",
+  "FilmOrderOverviewCardStateLabel": "Status",
+  "FilmOrderOverviewCardNoteLabel": "Notiz",
+  "FilmOrderOverviewFlutterLicensesLabel": "Flutter Lizenzen",
+  "FilmOrderOverviewThirdpartyLicensesLabel": "Drittanbieter Lizenzen",
+  "ChooseStoreTypePageTitle": "Anbieter wählen",
+  "AddFilmOrderNoteLabel": "Notiz",
+  "AddFilmOrderSaveOrderLabel": "Speichere Bestellung",
+  "AddFilmOrderDMPageTitle": "dm Bestellung hinzufügen",
+  "AddFilmOrderDMStoreId": "Filialnummer",
+  "AddFilmOrderDMOrderId": "Auftragsnummer",
+  "AddFilmOrderRossmannPageTitle": "Rossmann Bestellung hinzufügen",
+  "AddFilmOrderRossmannStoreId": "HT-Nummer",
+  "AddFilmOrderRossmannOrderId": "Auftragsnummer",
+  "AddFilmOrderCewePageTitle": "Cewe Bestellung hinzufügen",
+  "AddFilmOrderCeweStoreId": "Kundennummer",
+  "AddFilmOrderCeweOrderId": "Auftragsnummer"
+}

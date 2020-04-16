@@ -1,3 +1,4 @@
+import 'package:filmdevelopmentcompanion/Localizations.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentOrder.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentAppDataModel.dart';
 import 'package:filmdevelopmentcompanion/model/StoreModels.dart';
@@ -37,7 +38,7 @@ abstract class _AddFilmOrderPageState extends State<AddFilmOrderPage> {
 
 class _RossmannAddFilmOrderPageState extends _AddFilmOrderPageState {
   //TODO use Form https://api.flutter.dev/flutter/widgets/Form-class.html
-  String title = "Add Rossmann film order";
+
   final orderIdTextController = TextEditingController();
   final htNumberTextController = TextEditingController();
   final noteTextController = TextEditingController();
@@ -84,7 +85,10 @@ class _RossmannAddFilmOrderPageState extends _AddFilmOrderPageState {
       builder: (context, cart, child) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+            title: Text(
+                AppLocalizations.of(context)
+                    .translate('AddFilmOrderRossmannPageTitle'),
+                style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           body: SingleChildScrollView(
             child: Column(
@@ -97,7 +101,8 @@ class _RossmannAddFilmOrderPageState extends _AddFilmOrderPageState {
                     controller: orderIdTextController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      hintText: "Order ID",
+                      hintText: AppLocalizations.of(context)
+                          .translate('AddFilmOrderRossmannOrderId'),
                       hintStyle: TextStyle(fontSize: 18),
                     ),
                   ),
@@ -110,7 +115,8 @@ class _RossmannAddFilmOrderPageState extends _AddFilmOrderPageState {
                     controller: htNumberTextController,
                     onChanged: htNumberOnChange,
                     decoration: InputDecoration(
-                      hintText: "HT NUMBER",
+                      hintText: AppLocalizations.of(context)
+                          .translate('AddFilmOrderRossmannStoreId'),
                       hintStyle: TextStyle(fontSize: 18),
                     ),
                   ),
@@ -121,7 +127,8 @@ class _RossmannAddFilmOrderPageState extends _AddFilmOrderPageState {
                       maxLines: 5,
                       controller: noteTextController,
                       decoration: InputDecoration(
-                          hintText: "Notizen",
+                          hintText: AppLocalizations.of(context)
+                              .translate('AddFilmOrderNoteLabel'),
                           hintStyle: TextStyle(fontSize: 18))),
                 ),
               ],
@@ -131,7 +138,9 @@ class _RossmannAddFilmOrderPageState extends _AddFilmOrderPageState {
             onPressed: () => addFilmOrder(orderIdTextController.text,
                 htNumberTextController.text, noteTextController.text),
             icon: Icon(Icons.check),
-            label: Text('Save Order',
+            label: Text(
+                AppLocalizations.of(context)
+                    .translate('AddFilmOrderSaveOrderLabel'),
                 style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
           ),
         );
@@ -142,7 +151,6 @@ class _RossmannAddFilmOrderPageState extends _AddFilmOrderPageState {
 
 class _DmDeAddFilmOrderPageState extends _AddFilmOrderPageState {
   //TODO use Form https://api.flutter.dev/flutter/widgets/Form-class.html
-  final String title = "Add dm film order";
   final orderIdTextController = TextEditingController();
   final storeIdTextController = TextEditingController();
   final noteTextController = TextEditingController();
@@ -167,7 +175,10 @@ class _DmDeAddFilmOrderPageState extends _AddFilmOrderPageState {
       builder: (context, cart, child) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+            title: Text(
+                AppLocalizations.of(context)
+                    .translate('AddFilmOrderDMPageTitle'),
+                style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           body: SingleChildScrollView(
             child: Column(
@@ -180,7 +191,8 @@ class _DmDeAddFilmOrderPageState extends _AddFilmOrderPageState {
                     controller: storeIdTextController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      hintText: "Store ID",
+                      hintText: AppLocalizations.of(context)
+                          .translate('AddFilmOrderDMStoreId'),
                       hintStyle: TextStyle(fontSize: 18),
                     ),
                   ),
@@ -192,7 +204,8 @@ class _DmDeAddFilmOrderPageState extends _AddFilmOrderPageState {
                     controller: orderIdTextController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      hintText: "Order ID",
+                      hintText: AppLocalizations.of(context)
+                          .translate('AddFilmOrderDMOrderId'),
                       hintStyle: TextStyle(fontSize: 18),
                     ),
                   ),
@@ -203,7 +216,8 @@ class _DmDeAddFilmOrderPageState extends _AddFilmOrderPageState {
                       maxLines: 5,
                       controller: noteTextController,
                       decoration: InputDecoration(
-                          hintText: "Notizen",
+                          hintText: AppLocalizations.of(context)
+                              .translate('AddFilmOrderNoteLabel'),
                           hintStyle: TextStyle(fontSize: 18))),
                 ),
               ],
@@ -213,7 +227,9 @@ class _DmDeAddFilmOrderPageState extends _AddFilmOrderPageState {
             onPressed: () => addFilmOrder(orderIdTextController.text,
                 storeIdTextController.text, noteTextController.text),
             icon: Icon(Icons.check),
-            label: Text('Save Order',
+            label: Text(
+                AppLocalizations.of(context)
+                    .translate('AddFilmOrderSaveOrderLabel'),
                 style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
           ),
         );
@@ -224,7 +240,6 @@ class _DmDeAddFilmOrderPageState extends _AddFilmOrderPageState {
 
 class _CeweAddFilmOrderPageState extends _AddFilmOrderPageState {
   //TODO use Form https://api.flutter.dev/flutter/widgets/Form-class.html
-  final String title = "Add Cewe film order";
   final orderIdTextController = TextEditingController();
   final storeIdTextController = TextEditingController();
   final noteTextController = TextEditingController();
@@ -249,7 +264,10 @@ class _CeweAddFilmOrderPageState extends _AddFilmOrderPageState {
       builder: (context, cart, child) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+            title: Text(
+                AppLocalizations.of(context)
+                    .translate('AddFilmOrderCewePageTitle'),
+                style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           body: SingleChildScrollView(
             child: Column(
@@ -262,7 +280,8 @@ class _CeweAddFilmOrderPageState extends _AddFilmOrderPageState {
                     controller: storeIdTextController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      hintText: "Store ID",
+                      hintText: AppLocalizations.of(context)
+                          .translate('AddFilmOrderCeweStoreId'),
                       hintStyle: TextStyle(fontSize: 18),
                     ),
                   ),
@@ -274,7 +293,8 @@ class _CeweAddFilmOrderPageState extends _AddFilmOrderPageState {
                     controller: orderIdTextController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      hintText: "Order ID",
+                      hintText: AppLocalizations.of(context)
+                          .translate('AddFilmOrderCeweOrderId'),
                       hintStyle: TextStyle(fontSize: 18),
                     ),
                   ),
@@ -285,7 +305,8 @@ class _CeweAddFilmOrderPageState extends _AddFilmOrderPageState {
                       maxLines: 5,
                       controller: noteTextController,
                       decoration: InputDecoration(
-                          hintText: "Notizen",
+                          hintText: AppLocalizations.of(context)
+                              .translate('AddFilmOrderNoteLabel'),
                           hintStyle: TextStyle(fontSize: 18))),
                 ),
               ],
@@ -295,7 +316,9 @@ class _CeweAddFilmOrderPageState extends _AddFilmOrderPageState {
             onPressed: () => addFilmOrder(orderIdTextController.text,
                 storeIdTextController.text, noteTextController.text),
             icon: Icon(Icons.check),
-            label: Text('Save Order',
+            label: Text(
+                AppLocalizations.of(context)
+                    .translate('AddFilmOrderSaveOrderLabel'),
                 style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
           ),
         );

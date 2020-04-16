@@ -43,5 +43,7 @@ flutter:
   assets:
     - "assets/RossmannExample.png"
     - "assets/dmExample.png"
+    - "i18n/en.json"
+    - "i18n/de.json"
 
   uses-material-design: true

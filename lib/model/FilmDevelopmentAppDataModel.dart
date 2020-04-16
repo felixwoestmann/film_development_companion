@@ -10,7 +10,8 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
   DatabaseHelper dbHelper;
 
   FilmDevelopmentAppDataModel() {
-    initializeDateFormatting("de_DE", null);
+    //TODO dateformatting depends on country
+    //initializeDateFormatting("de_DE", null);
     dbHelper = DatabaseHelper.instance;
     //StoreModel dmDeStoreModel = new DmDeStoreModel();
     // addFilmOrder(FilmDevelopmentOrder(dmDeStoreModel, "854440", "1618"));

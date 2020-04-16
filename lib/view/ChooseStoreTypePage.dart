@@ -1,10 +1,9 @@
+import 'package:filmdevelopmentcompanion/Localizations.dart';
 import 'package:filmdevelopmentcompanion/model/StoreModels.dart';
 import 'package:filmdevelopmentcompanion/view/AddFilmOrderPage.dart';
 import 'package:flutter/material.dart';
 
 class ChooseStoreTypePage extends StatefulWidget {
-  final String title = "Choose store type";
-
   @override
   _ChooseStoreTypePageState createState() => _ChooseStoreTypePageState();
 }
@@ -25,8 +24,9 @@ class _ChooseStoreTypePageState extends State<ChooseStoreTypePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:
-            Text(widget.title, style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(
+            AppLocalizations.of(context).translate('ChooseStoreTypePageTitle'),
+            style: TextStyle(fontWeight: FontWeight.bold)),
       ),
       body: ListView.separated(
         itemBuilder: (context, position) {

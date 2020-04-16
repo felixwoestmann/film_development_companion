@@ -1,13 +1,13 @@
 import 'package:expandable/expandable.dart';
+import 'package:filmdevelopmentcompanion/Localizations.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentAppDataModel.dart';
 import 'package:filmdevelopmentcompanion/view/ChooseStoreTypePage.dart';
 import 'package:filmdevelopmentcompanion/view/ThirdPartyLicensePage.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class FilmOrderOverviewPage extends StatefulWidget {
-  final String title = "Overview";
   final Color secondary = Colors.grey[600];
 
   @override
@@ -27,7 +27,8 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
         return Scaffold(
           appBar: AppBar(
             title: Text(
-              widget.title,
+              AppLocalizations.of(context)
+                  .translate('FilmOrderOverviewPageTitle'),
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             actions: <Widget>[
@@ -37,11 +38,13 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                 itemBuilder: (context) => [
                   PopupMenuItem(
                     value: LicensePage(),
-                    child: Text("Flutter Licenses"),
+                    child: Text(AppLocalizations.of(context)
+                        .translate('FilmOrderOverviewFlutterLicensesLabel')),
                   ),
                   PopupMenuItem(
                     value: ThirdPartyLicensesPage(),
-                    child: Text("Third Party Licenses"),
+                    child: Text(AppLocalizations.of(context)
+                        .translate('FilmOrderOverviewThirdpartyLicensesLabel')),
                   ),
                 ],
               )
@@ -138,7 +141,8 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                                   Padding(
                                     padding: const EdgeInsets.only(right: 5.0),
                                     child: Text(
-                                      "Status:",
+                                      AppLocalizations.of(context).translate(
+                                          'FilmOrderOverviewCardStateLabel'),
                                       style: TextStyle(
                                           fontSize: 20.0,
                                           fontWeight: FontWeight.bold),
@@ -163,7 +167,8 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                                       padding:
                                           const EdgeInsets.only(right: 5.0),
                                       child: Text(
-                                        "Notiz:",
+                                        AppLocalizations.of(context).translate(
+                                            'FilmOrderOverviewCardNoteLabel'),
                                         style: TextStyle(
                                             fontSize: 20.0,
                                             fontWeight: FontWeight.bold),
@@ -222,7 +227,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
             },
             icon: Icon(Icons.add),
             label: Text(
-              'Add Order',
+              AppLocalizations.of(context).translate('FilmOrderOverviewButton'),
               style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
             ),
           ),
