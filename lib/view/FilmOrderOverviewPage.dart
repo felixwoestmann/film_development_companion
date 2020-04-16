@@ -136,7 +136,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Padding(
-                                    padding: const EdgeInsets.only(right:5.0),
+                                    padding: const EdgeInsets.only(right: 5.0),
                                     child: Text(
                                       "Status:",
                                       style: TextStyle(
@@ -160,7 +160,8 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                                 child: Row(
                                   children: <Widget>[
                                     Padding(
-                                      padding: const EdgeInsets.only(right:5.0),
+                                      padding:
+                                          const EdgeInsets.only(right: 5.0),
                                       child: Text(
                                         "Notiz:",
                                         style: TextStyle(
