@@ -185,7 +185,7 @@ class DmDeStatusProvider implements FilmDevelopmentStatusProvider {
 
 class CeweStatusProvider implements FilmDevelopmentStatusProvider {
   static const String API_ENDPOINT =
-      "https://spot.photoprintit.com/spotapi/orderInfo/forShop";
+      "https://spot.photoprintit.com/spotapi/orderInfo/order";
   static const String SUMMARY_KEY = "summaryStateText";
   static const String SUMMARY_DATE_KEY = "summaryDate";
   static const String CONFIG = "ceweAll";
