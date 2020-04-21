@@ -19,6 +19,7 @@ class FilmDevCompanionApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Film Development Companion App',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,
         primaryColor: Color.fromARGB(255, 40, 40, 40),
