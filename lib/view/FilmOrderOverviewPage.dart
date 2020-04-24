@@ -149,12 +149,15 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                                     ),
                                   ),
                                   Flexible(
-                                    child: Text(
-                                      filmordermodel.filmOrders[position]
-                                          .latestFilmDevelopmentStatusSummaryText,
-                                      style: TextStyle(fontSize: 20.0),
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 5,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(right: 5.0),
+                                      child: Text(
+                                        filmordermodel.filmOrders[position]
+                                            .latestFilmDevelopmentStatusSummaryText,
+                                        style: TextStyle(fontSize: 20.0),
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 5,
+                                      ),
                                     ),
                                   ),
                                 ],
