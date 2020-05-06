@@ -33,7 +33,11 @@ class FilmDevelopmentOrder {
 
   Future<void> update() async {
     FilmDevelopmentStatus statusUpdate = await storeModel.update(this);
-    latestFilmDevelopmentStatusUpdate = statusUpdate;
+    //Check if last statusupdate has changed significantly
+    if (statusUpdate.statusSummary.index >=
+        latestFilmDevelopmentStatusUpdate.statusSummary.index) {
+      latestFilmDevelopmentStatusUpdate = statusUpdate;
+    }
   }
 
   String get insertionDateGui =>
@@ -42,7 +46,7 @@ class FilmDevelopmentOrder {
   String get price {
     if (latestFilmDevelopmentStatusUpdate != null) {
       if (latestFilmDevelopmentStatusUpdate.price != 0.0) {
-        NumberFormat numFormat=new NumberFormat("####.00", "de_DE");
+        NumberFormat numFormat = new NumberFormat("####.00", "de_DE");
         return numFormat.format(latestFilmDevelopmentStatusUpdate.price);
       }
     }
