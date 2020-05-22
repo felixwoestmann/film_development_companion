@@ -22,12 +22,14 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
+# Run this command when changing icons
+#flutter pub run flutter_launcher_icons:main
 flutter_icons:
   ios: true
   android: true
   image_path_ios: "assets/appicon.png"
   image_path_android: "assets/appicon.png"
-  adaptive_icon_background: "#ff6e40"
+  adaptive_icon_background: "#f25757"
   adaptive_icon_foreground: "assets/foreground.png"
 
 dev_dependencies:

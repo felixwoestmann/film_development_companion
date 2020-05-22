@@ -272,7 +272,6 @@ class _CeweAddFilmOrderPageState extends _AddFilmOrderPageState {
           body: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                Image(image: DmDeStoreModel.instance.exampleImage),
                 Padding(
                   padding: fieldInsets,
                   child: TextField(
