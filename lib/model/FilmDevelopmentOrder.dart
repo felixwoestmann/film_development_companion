@@ -33,10 +33,15 @@ class FilmDevelopmentOrder {
 
   Future<void> update() async {
     FilmDevelopmentStatus statusUpdate = await storeModel.update(this);
-    //Check if last statusupdate has changed significantly
-    if (statusUpdate.statusSummary.index >=
-        latestFilmDevelopmentStatusUpdate.statusSummary.index) {
+    //If the order has no update than store the current one
+    if (latestFilmDevelopmentStatusUpdate == null) {
       latestFilmDevelopmentStatusUpdate = statusUpdate;
+    } else {
+      //IF the order already has a stauts, than only store the newly fetched one if they differ
+      if (statusUpdate.statusSummary.index >=
+          latestFilmDevelopmentStatusUpdate.statusSummary.index) {
+        latestFilmDevelopmentStatusUpdate = statusUpdate;
+      }
     }
   }
 
