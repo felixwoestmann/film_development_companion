@@ -37,7 +37,7 @@ class FilmDevelopmentOrder {
     if (latestFilmDevelopmentStatusUpdate == null) {
       latestFilmDevelopmentStatusUpdate = statusUpdate;
     } else {
-      //IF the order already has a stauts, than only store the newly fetched one if they differ
+      //If the order already has a status, than only store the newly fetched one if they differ
       if (statusUpdate.statusSummary.index >=
           latestFilmDevelopmentStatusUpdate.statusSummary.index) {
         latestFilmDevelopmentStatusUpdate = statusUpdate;
