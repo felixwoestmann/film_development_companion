@@ -17,6 +17,3 @@ class FilmDevelopmentStatusProvider {
     return null;
   }
 }
-
-
-

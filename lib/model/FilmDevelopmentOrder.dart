@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:filmdevelopmentcompanion/io/DatabaseHelpers.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentStatus.dart';
-import 'package:filmdevelopmentcompanion/model/storemodels/StoreModel.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/StoreModel.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'FilmDevelopmentStatusSummary.dart';

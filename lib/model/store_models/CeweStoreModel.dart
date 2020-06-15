@@ -1,7 +1,6 @@
-import 'package:filmdevelopmentcompanion/io/statusprovider/CeweStatusProvider.dart';
-import 'package:filmdevelopmentcompanion/model/storemodels/StoreModel.dart';
+import 'package:filmdevelopmentcompanion/io/status_provider/CeweStatusProvider.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/StoreModel.dart';
 import 'package:flutter/material.dart';
-
 
 class CeweStoreModel extends StoreModel {
   static const String PROVIDER_ID = "CEWE PROVIDER";

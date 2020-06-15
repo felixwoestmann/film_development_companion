@@ -1,9 +1,9 @@
-import 'file:///C:/Users/Felix/Documents/GitHub/film_development_companion/lib/io/statusprovider/FilmOrderStatusProvider.dart';
+import 'package:filmdevelopmentcompanion/io/status_provider/FilmOrderStatusProvider.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentOrder.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentStatus.dart';
-import 'package:filmdevelopmentcompanion/model/storemodels/CeweStoreModel.dart';
-import 'package:filmdevelopmentcompanion/model/storemodels/DmDeStoreModel.dart';
-import 'package:filmdevelopmentcompanion/model/storemodels/RossmannStoreModel.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/CeweStoreModel.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/DmDeStoreModel.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/RossmannStoreModel.dart';
 import 'package:flutter/material.dart';
 
 class StoreModel {

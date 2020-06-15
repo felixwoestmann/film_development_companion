@@ -1,10 +1,10 @@
 import 'package:filmdevelopmentcompanion/Localizations.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentOrder.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentAppDataModel.dart';
-import 'package:filmdevelopmentcompanion/model/storemodels/CeweStoreModel.dart';
-import 'package:filmdevelopmentcompanion/model/storemodels/DmDeStoreModel.dart';
-import 'package:filmdevelopmentcompanion/model/storemodels/RossmannStoreModel.dart';
-import 'package:filmdevelopmentcompanion/model/storemodels/StoreModel.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/CeweStoreModel.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/DmDeStoreModel.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/RossmannStoreModel.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/StoreModel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

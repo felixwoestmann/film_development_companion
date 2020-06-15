@@ -1,4 +1,4 @@
-import 'file:///C:/Users/Felix/Documents/GitHub/film_development_companion/lib/io/statusprovider/FilmOrderStatusProvider.dart';
+import 'package:filmdevelopmentcompanion/io/status_provider/FilmOrderStatusProvider.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentOrder.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentStatus.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentStatusSummary.dart';

@@ -1,5 +1,5 @@
-import 'package:filmdevelopmentcompanion/io/statusprovider/RossmannStatusProvider.dart';
-import 'package:filmdevelopmentcompanion/model/storemodels/StoreModel.dart';
+import 'package:filmdevelopmentcompanion/io/status_provider/RossmannStatusProvider.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/StoreModel.dart';
 import 'package:flutter/material.dart';
 
 class RossmannStoreModel extends StoreModel {

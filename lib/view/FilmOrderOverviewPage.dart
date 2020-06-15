@@ -2,7 +2,7 @@ import 'package:expandable/expandable.dart';
 import 'package:filmdevelopmentcompanion/Localizations.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentAppDataModel.dart';
 import 'package:filmdevelopmentcompanion/view/ChooseStoreTypePage.dart';
-import 'package:filmdevelopmentcompanion/view/ThirdPartyLicensePage.dart';
+import 'file:///C:/Users/Felix/Documents/GitHub/film_development_companion/lib/view/misc/ThirdPartyLicensePage.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

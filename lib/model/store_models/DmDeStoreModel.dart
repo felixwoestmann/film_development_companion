@@ -1,7 +1,6 @@
-import 'package:filmdevelopmentcompanion/io/statusprovider/DmDeStatusProvider.dart';
-import 'package:filmdevelopmentcompanion/model/storemodels/StoreModel.dart';
+import 'package:filmdevelopmentcompanion/io/status_provider/DmDeStatusProvider.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/StoreModel.dart';
 import 'package:flutter/material.dart';
-
 
 class DmDeStoreModel extends StoreModel {
   static const String PROVIDER_ID = "DM_DE_PROVIDER";
