@@ -4,7 +4,7 @@ import 'package:filmdevelopmentcompanion/model/FilmDevelopmentAppDataModel.dart'
 import 'package:filmdevelopmentcompanion/model/storemodels/CeweStoreModel.dart';
 import 'package:filmdevelopmentcompanion/model/storemodels/DmDeStoreModel.dart';
 import 'package:filmdevelopmentcompanion/model/storemodels/RossmannStoreModel.dart';
-import 'package:filmdevelopmentcompanion/model/storemodels/StoreModels.dart';
+import 'package:filmdevelopmentcompanion/model/storemodels/StoreModel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

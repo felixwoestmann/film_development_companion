@@ -1,4 +1,4 @@
-import 'package:filmdevelopmentcompanion/util/license.dart';
+import 'file:///C:/Users/Felix/Documents/GitHub/film_development_companion/lib/view/license.dart';
 import 'package:flutter/material.dart';
 
 class ThirdPartyLicensesPage extends StatelessWidget {

@@ -2,7 +2,7 @@ import 'package:filmdevelopmentcompanion/Localizations.dart';
 import 'package:filmdevelopmentcompanion/model/storemodels/CeweStoreModel.dart';
 import 'package:filmdevelopmentcompanion/model/storemodels/DmDeStoreModel.dart';
 import 'package:filmdevelopmentcompanion/model/storemodels/RossmannStoreModel.dart';
-import 'package:filmdevelopmentcompanion/model/storemodels/StoreModels.dart';
+import 'package:filmdevelopmentcompanion/model/storemodels/StoreModel.dart';
 import 'package:filmdevelopmentcompanion/view/AddFilmOrderPage.dart';
 import 'package:flutter/material.dart';
 

@@ -1,5 +1,5 @@
-import 'package:filmdevelopmentcompanion/io/FilmOrderStatusProviders.dart';
-import 'package:filmdevelopmentcompanion/model/storemodels/StoreModels.dart';
+import 'package:filmdevelopmentcompanion/io/statusprovider/CeweStatusProvider.dart';
+import 'package:filmdevelopmentcompanion/model/storemodels/StoreModel.dart';
 import 'package:flutter/material.dart';
 
 

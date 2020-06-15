@@ -1,4 +1,4 @@
-import 'package:filmdevelopmentcompanion/io/FilmOrderStatusProviders.dart';
+import 'file:///C:/Users/Felix/Documents/GitHub/film_development_companion/lib/io/statusprovider/FilmOrderStatusProvider.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentOrder.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentStatus.dart';
 import 'package:filmdevelopmentcompanion/model/storemodels/CeweStoreModel.dart';
