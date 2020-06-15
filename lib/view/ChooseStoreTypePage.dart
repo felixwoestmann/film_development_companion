@@ -4,7 +4,7 @@ import 'package:filmdevelopmentcompanion/model/store_models/DmDeStoreModel.dart'
 import 'package:filmdevelopmentcompanion/model/store_models/RossmannStoreModel.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/StoreModel.dart';
 
-import 'package:filmdevelopmentcompanion/view/AddFilmOrderPage.dart';
+import 'file:///C:/Users/Felix/Documents/GitHub/film_development_companion/lib/view/add_film_order/AddFilmOrderPage.dart';
 import 'package:flutter/material.dart';
 
 class ChooseStoreTypePage extends StatefulWidget {
