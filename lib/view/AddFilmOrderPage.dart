@@ -1,7 +1,10 @@
 import 'package:filmdevelopmentcompanion/Localizations.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentOrder.dart';
 import 'package:filmdevelopmentcompanion/model/FilmDevelopmentAppDataModel.dart';
-import 'package:filmdevelopmentcompanion/model/StoreModels.dart';
+import 'package:filmdevelopmentcompanion/model/storemodels/CeweStoreModel.dart';
+import 'package:filmdevelopmentcompanion/model/storemodels/DmDeStoreModel.dart';
+import 'package:filmdevelopmentcompanion/model/storemodels/RossmannStoreModel.dart';
+import 'package:filmdevelopmentcompanion/model/storemodels/StoreModels.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +17,7 @@ class AddFilmOrderPage extends StatefulWidget {
   State createState() {
     switch (storeModel.providerId) {
       case RossmannStoreModel.PROVIDER_ID:
-        return _RossmannAddFilmOrderPageState();
+        return _RossmannHtNumberAddFilmOrderPageState();
       case DmDeStoreModel.PROVIDER_ID:
         return _DmDeAddFilmOrderPageState();
       case CeweStoreModel.PROVIDER_ID:
@@ -36,7 +39,7 @@ abstract class _AddFilmOrderPageState extends State<AddFilmOrderPage> {
   }
 }
 
-class _RossmannAddFilmOrderPageState extends _AddFilmOrderPageState {
+class _RossmannHtNumberAddFilmOrderPageState extends _AddFilmOrderPageState {
   //TODO use Form https://api.flutter.dev/flutter/widgets/Form-class.html
 
   final orderIdTextController = TextEditingController();
@@ -137,6 +140,99 @@ class _RossmannAddFilmOrderPageState extends _AddFilmOrderPageState {
           floatingActionButton: FloatingActionButton.extended(
             onPressed: () => addFilmOrder(orderIdTextController.text,
                 htNumberTextController.text, noteTextController.text),
+            icon: Icon(Icons.check),
+            label: Text(
+                AppLocalizations.of(context)
+                    .translate('AddFilmOrderSaveOrderLabel'),
+                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _RossmannFillialNumberAddFilmOrderPageState
+    extends _AddFilmOrderPageState {
+  //TODO use Form https://api.flutter.dev/flutter/widgets/Form-class.html
+
+  final orderIdTextController = TextEditingController();
+  final fillialNumberTextController = TextEditingController();
+  final noteTextController = TextEditingController();
+  String newTextInhtNumber = '';
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    orderIdTextController.dispose();
+    fillialNumberTextController.dispose();
+    noteTextController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<FilmDevelopmentAppDataModel>(
+      builder: (context, cart, child) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(
+                AppLocalizations.of(context)
+                    .translate('AddFilmOrderRossmannPageTitle'),
+                style: TextStyle(fontWeight: FontWeight.bold)),
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Image(image: RossmannStoreModel.instance.exampleImage),
+                Padding(
+                  padding: fieldInsets,
+                  child: TextField(
+                    autocorrect: false,
+                    controller: orderIdTextController,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      hintText: AppLocalizations.of(context)
+                          .translate('AddFilmOrderRossmannOrderId'),
+                      hintStyle: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: fieldInsets,
+                  child: TextField(
+                    autocorrect: false,
+                    maxLength: 4,
+                    keyboardType: TextInputType.number,
+                    controller: fillialNumberTextController,
+                    decoration: InputDecoration(
+                      hintText: AppLocalizations.of(context)
+                          .translate('AddFilmOrderRossmannStoreId'),
+                      hintStyle: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: fieldInsets,
+                  child: TextField(
+                      maxLines: 5,
+                      controller: noteTextController,
+                      decoration: InputDecoration(
+                          hintText: AppLocalizations.of(context)
+                              .translate('AddFilmOrderNoteLabel'),
+                          hintStyle: TextStyle(fontSize: 18))),
+                ),
+              ],
+            ),
+          ),
+          floatingActionButton: FloatingActionButton.extended(
+            onPressed: () => addFilmOrder(orderIdTextController.text,
+                fillialNumberTextController.text, noteTextController.text),
             icon: Icon(Icons.check),
             label: Text(
                 AppLocalizations.of(context)
