@@ -85,7 +85,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                               child: Icon(
                                   filmordermodel
                                       .filmOrders[position].iconForStatus,
-                                  color: Colors.deepOrangeAccent,
+                                  color: Theme.of(context).accentColor,
                                   size: 55.0),
                             ),
                             Padding(
