@@ -1,10 +1,10 @@
 import 'dart:async';
-import 'package:filmdevelopmentcompanion/io/DatabaseHelpers.dart';
-import 'package:filmdevelopmentcompanion/model/FilmDevelopmentStatus.dart';
-import 'package:filmdevelopmentcompanion/model/store_models/StoreModel.dart';
+import 'package:filmdevelopmentcompanion/io/database_helpers.dart';
+import 'package:filmdevelopmentcompanion/model/film_development_status.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/store_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'FilmDevelopmentStatusSummary.dart';
+import 'film_development_status_summary.dart';
 
 /// A FilmDevelopmentOrder represents an order to develop a film at a lab.
 /// id: the unique id of this film order

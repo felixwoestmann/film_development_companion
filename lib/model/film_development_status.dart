@@ -1,6 +1,6 @@
-import 'package:filmdevelopmentcompanion/io/DatabaseHelpers.dart';
+import 'package:filmdevelopmentcompanion/io/database_helpers.dart';
 
-import 'FilmDevelopmentStatusSummary.dart';
+import 'film_development_status_summary.dart';
 
 /// A FilmDevelopmentStatus represents a status update of a FilmDevelopmentOrder
 class FilmDevelopmentStatus {

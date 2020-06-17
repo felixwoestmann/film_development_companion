@@ -1,5 +1,5 @@
-import 'package:filmdevelopmentcompanion/io/status_provider/DmDeStatusProvider.dart';
-import 'package:filmdevelopmentcompanion/model/store_models/StoreModel.dart';
+import 'package:filmdevelopmentcompanion/io/status_provider/dm_de_status_provider.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/store_model.dart';
 import 'package:flutter/material.dart';
 
 class DmDeStoreModel extends StoreModel {

@@ -1,10 +1,11 @@
-import 'package:filmdevelopmentcompanion/Localizations.dart';
-import 'package:filmdevelopmentcompanion/model/FilmDevelopmentAppDataModel.dart';
-import 'package:filmdevelopmentcompanion/view/add_film_order/AbstractAddFilmOrderPageState.dart';
+import 'package:filmdevelopmentcompanion/localizations.dart';
+import 'package:filmdevelopmentcompanion/model/film_development_appdata_model.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/dm_de_store_model.dart';
+import 'package:filmdevelopmentcompanion/view/add_film_order/abstract_add_film_order_page_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class CeweAddFilmOrderPageState extends AddFilmOrderPageState {
+class DmDeAddFilmOrderPageState extends AddFilmOrderPageState {
   //TODO use Form https://api.flutter.dev/flutter/widgets/Form-class.html
   final orderIdTextController = TextEditingController();
   final storeIdTextController = TextEditingController();
@@ -32,12 +33,13 @@ class CeweAddFilmOrderPageState extends AddFilmOrderPageState {
           appBar: AppBar(
             title: Text(
                 AppLocalizations.of(context)
-                    .translate('AddFilmOrderCewePageTitle'),
+                    .translate('AddFilmOrderDMPageTitle'),
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           body: SingleChildScrollView(
             child: Column(
               children: <Widget>[
+                Image(image: DmDeStoreModel.instance.exampleImage),
                 Padding(
                   padding: fieldInsets,
                   child: TextField(
@@ -46,7 +48,7 @@ class CeweAddFilmOrderPageState extends AddFilmOrderPageState {
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       hintText: AppLocalizations.of(context)
-                          .translate('AddFilmOrderCeweStoreId'),
+                          .translate('AddFilmOrderDMStoreId'),
                       hintStyle: TextStyle(fontSize: 18),
                     ),
                   ),
@@ -59,7 +61,7 @@ class CeweAddFilmOrderPageState extends AddFilmOrderPageState {
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       hintText: AppLocalizations.of(context)
-                          .translate('AddFilmOrderCeweOrderId'),
+                          .translate('AddFilmOrderDMOrderId'),
                       hintStyle: TextStyle(fontSize: 18),
                     ),
                   ),

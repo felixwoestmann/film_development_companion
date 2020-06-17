@@ -1,7 +1,7 @@
-import 'package:filmdevelopmentcompanion/io/status_provider/FilmOrderStatusProvider.dart';
-import 'package:filmdevelopmentcompanion/model/FilmDevelopmentOrder.dart';
-import 'package:filmdevelopmentcompanion/model/FilmDevelopmentStatus.dart';
-import 'package:filmdevelopmentcompanion/model/FilmDevelopmentStatusSummary.dart';
+import 'package:filmdevelopmentcompanion/io/status_provider/film_order_status_provider.dart';
+import 'package:filmdevelopmentcompanion/model/film_development_order.dart';
+import 'package:filmdevelopmentcompanion/model/film_development_status.dart';
+import 'package:filmdevelopmentcompanion/model/film_development_status_summary.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 

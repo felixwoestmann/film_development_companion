@@ -1,9 +1,8 @@
 import 'dart:async';
 import 'dart:collection';
-import 'package:filmdevelopmentcompanion/io/DatabaseHelpers.dart';
+import 'package:filmdevelopmentcompanion/io/database_helpers.dart';
 import 'package:flutter/foundation.dart';
-import 'package:intl/date_symbol_data_local.dart';
-import 'FilmDevelopmentOrder.dart';
+import 'film_development_order.dart';
 
 class FilmDevelopmentAppDataModel extends ChangeNotifier {
   List<FilmDevelopmentOrder> filmOrders = new List();

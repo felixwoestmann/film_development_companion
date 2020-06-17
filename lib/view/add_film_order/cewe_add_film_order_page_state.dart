@@ -1,23 +1,20 @@
-import 'package:filmdevelopmentcompanion/Localizations.dart';
-import 'package:filmdevelopmentcompanion/model/FilmDevelopmentAppDataModel.dart';
-import 'package:filmdevelopmentcompanion/model/store_models/RossmannStoreModel.dart';
-import 'package:filmdevelopmentcompanion/view/add_film_order/AbstractAddFilmOrderPageState.dart';
+import 'package:filmdevelopmentcompanion/localizations.dart';
+import 'package:filmdevelopmentcompanion/model/film_development_appdata_model.dart';
+import 'package:filmdevelopmentcompanion/view/add_film_order/abstract_add_film_order_page_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class RossmannAddFilmOrderPageState extends AddFilmOrderPageState {
+class CeweAddFilmOrderPageState extends AddFilmOrderPageState {
   //TODO use Form https://api.flutter.dev/flutter/widgets/Form-class.html
-
   final orderIdTextController = TextEditingController();
-  final htNumberTextController = TextEditingController();
+  final storeIdTextController = TextEditingController();
   final noteTextController = TextEditingController();
-  String newTextInhtNumber = '';
 
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
     orderIdTextController.dispose();
-    htNumberTextController.dispose();
+    storeIdTextController.dispose();
     noteTextController.dispose();
     super.dispose();
   }
@@ -25,27 +22,6 @@ class RossmannAddFilmOrderPageState extends AddFilmOrderPageState {
   @override
   void initState() {
     super.initState();
-  }
-
-  //Method is called when HTNUMBER field has changed.
-  //Inserts dash ('-') after the first two characters
-  void htNumberOnChange(String param) {
-    String text = htNumberTextController.text;
-    if (text.length < newTextInhtNumber.length) {
-      // handling backspace in keyboard
-      newTextInhtNumber = text;
-    } else if (text.isNotEmpty && text != newTextInhtNumber) {
-      // handling typing new characters.
-      String tempText = text.replaceAll("-", "");
-      if (tempText.length == 2) {
-        //do your text transforming
-        newTextInhtNumber = '$text-';
-        htNumberTextController.text = newTextInhtNumber;
-        htNumberTextController.selection = new TextSelection(
-            baseOffset: newTextInhtNumber.length,
-            extentOffset: newTextInhtNumber.length);
-      }
-    }
   }
 
   @override
@@ -56,22 +32,21 @@ class RossmannAddFilmOrderPageState extends AddFilmOrderPageState {
           appBar: AppBar(
             title: Text(
                 AppLocalizations.of(context)
-                    .translate('AddFilmOrderRossmannPageTitle'),
+                    .translate('AddFilmOrderCewePageTitle'),
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           body: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                Image(image: RossmannStoreModel.instance.exampleImage),
                 Padding(
                   padding: fieldInsets,
                   child: TextField(
                     autocorrect: false,
-                    controller: orderIdTextController,
+                    controller: storeIdTextController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       hintText: AppLocalizations.of(context)
-                          .translate('AddFilmOrderRossmannOrderId'),
+                          .translate('AddFilmOrderCeweStoreId'),
                       hintStyle: TextStyle(fontSize: 18),
                     ),
                   ),
@@ -80,12 +55,11 @@ class RossmannAddFilmOrderPageState extends AddFilmOrderPageState {
                   padding: fieldInsets,
                   child: TextField(
                     autocorrect: false,
+                    controller: orderIdTextController,
                     keyboardType: TextInputType.number,
-                    controller: htNumberTextController,
-                    onChanged: htNumberOnChange,
                     decoration: InputDecoration(
                       hintText: AppLocalizations.of(context)
-                          .translate('AddFilmOrderRossmannStoreId'),
+                          .translate('AddFilmOrderCeweOrderId'),
                       hintStyle: TextStyle(fontSize: 18),
                     ),
                   ),
@@ -105,7 +79,7 @@ class RossmannAddFilmOrderPageState extends AddFilmOrderPageState {
           ),
           floatingActionButton: FloatingActionButton.extended(
             onPressed: () => addFilmOrder(orderIdTextController.text,
-                htNumberTextController.text, noteTextController.text),
+                storeIdTextController.text, noteTextController.text),
             icon: Icon(Icons.check),
             label: Text(
                 AppLocalizations.of(context)

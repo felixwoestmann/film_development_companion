@@ -1,6 +1,6 @@
-import 'package:filmdevelopmentcompanion/model/FilmDevelopmentAppDataModel.dart';
-import 'package:filmdevelopmentcompanion/model/FilmDevelopmentOrder.dart';
-import 'package:filmdevelopmentcompanion/view/add_film_order/AddFilmOrderPage.dart';
+import 'package:filmdevelopmentcompanion/model/film_development_appdata_model.dart';
+import 'package:filmdevelopmentcompanion/model/film_development_order.dart';
+import 'package:filmdevelopmentcompanion/view/add_film_order/add_film_order_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

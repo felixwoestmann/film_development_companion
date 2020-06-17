@@ -1,5 +1,5 @@
-import 'package:filmdevelopmentcompanion/model/FilmDevelopmentOrder.dart';
-import 'package:filmdevelopmentcompanion/model/FilmDevelopmentStatus.dart';
+import 'package:filmdevelopmentcompanion/model/film_development_order.dart';
+import 'package:filmdevelopmentcompanion/model/film_development_status.dart';
 
 /// FilmDevelopmentStatusProvider for German Stores of the DM chain
 /// It is implemented as a singleton to facilitate less Memory usage

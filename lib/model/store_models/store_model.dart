@@ -1,9 +1,9 @@
-import 'package:filmdevelopmentcompanion/io/status_provider/FilmOrderStatusProvider.dart';
-import 'package:filmdevelopmentcompanion/model/FilmDevelopmentOrder.dart';
-import 'package:filmdevelopmentcompanion/model/FilmDevelopmentStatus.dart';
-import 'package:filmdevelopmentcompanion/model/store_models/CeweStoreModel.dart';
-import 'package:filmdevelopmentcompanion/model/store_models/DmDeStoreModel.dart';
-import 'package:filmdevelopmentcompanion/model/store_models/RossmannStoreModel.dart';
+import 'package:filmdevelopmentcompanion/io/status_provider/film_order_status_provider.dart';
+import 'package:filmdevelopmentcompanion/model/film_development_order.dart';
+import 'package:filmdevelopmentcompanion/model/film_development_status.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/cewe_store_model.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/dm_de_store_model.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/rossmann_store_model.dart';
 import 'package:flutter/material.dart';
 
 class StoreModel {

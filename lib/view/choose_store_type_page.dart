@@ -1,10 +1,10 @@
-import 'package:filmdevelopmentcompanion/Localizations.dart';
-import 'package:filmdevelopmentcompanion/model/store_models/CeweStoreModel.dart';
-import 'package:filmdevelopmentcompanion/model/store_models/DmDeStoreModel.dart';
-import 'package:filmdevelopmentcompanion/model/store_models/RossmannStoreModel.dart';
-import 'package:filmdevelopmentcompanion/model/store_models/StoreModel.dart';
+import 'package:filmdevelopmentcompanion/localizations.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/cewe_store_model.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/dm_de_store_model.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/rossmann_store_model.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/store_model.dart';
 
-import 'file:///C:/Users/Felix/Documents/GitHub/film_development_companion/lib/view/add_film_order/AddFilmOrderPage.dart';
+import 'file:///C:/Users/Felix/Documents/GitHub/film_development_companion/lib/view/add_film_order/add_film_order_page.dart';
 import 'package:flutter/material.dart';
 
 class ChooseStoreTypePage extends StatefulWidget {

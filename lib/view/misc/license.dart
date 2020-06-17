@@ -1,12 +1,9 @@
-//============================================================//
-//THIS FILE IS AUTO GENERATED. DO NOT EDIT//
-//============================================================//
-
 class License {
   final String name;
   final String version;
   final String url;
-  final String licenseUrl;  final String license;
+  final String licenseUrl;
+  final String license;
 
   License({
     this.name,
@@ -26,8 +23,10 @@ class LicenseUtil {
         name: 'http',
         version: '^0.12.0+4',
         url: 'https://github.com/dart-lang/http',
-        licenseUrl: 'https://raw.githubusercontent.com/dart-lang/http/master/LICENSE',
-        license: '''Copyright 2014, the Dart project authors. All rights reserved.
+        licenseUrl:
+            'https://raw.githubusercontent.com/dart-lang/http/master/LICENSE',
+        license:
+            '''Copyright 2014, the Dart project authors. All rights reserved.
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
@@ -59,8 +58,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         name: 'intl',
         version: '^0.16.1',
         url: 'https://github.com/dart-lang/intl',
-        licenseUrl: 'https://raw.githubusercontent.com/dart-lang/intl/master/LICENSE',
-        license: '''Copyright 2013, the Dart project authors. All rights reserved.
+        licenseUrl:
+            'https://raw.githubusercontent.com/dart-lang/intl/master/LICENSE',
+        license:
+            '''Copyright 2013, the Dart project authors. All rights reserved.
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
@@ -92,7 +93,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         name: 'sqflite',
         version: '^1.3.0',
         url: 'https://github.com/tekartik/sqflite/tree/master/sqflite',
-        licenseUrl: 'https://raw.githubusercontent.com/tekartik/sqflite/master/sqflite/LICENSE',
+        licenseUrl:
+            'https://raw.githubusercontent.com/tekartik/sqflite/master/sqflite/LICENSE',
         license: '''Copyright (c) 2017, Alexandre Roux Tekartik.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -118,8 +120,10 @@ SOFTWARE.
         name: 'path',
         version: '^1.6.4',
         url: 'https://github.com/dart-lang/path',
-        licenseUrl: 'https://raw.githubusercontent.com/dart-lang/path/master/LICENSE',
-        license: '''Copyright 2014, the Dart project authors. All rights reserved.
+        licenseUrl:
+            'https://raw.githubusercontent.com/dart-lang/path/master/LICENSE',
+        license:
+            '''Copyright 2014, the Dart project authors. All rights reserved.
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
@@ -151,7 +155,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         name: 'google_fonts',
         version: '^0.3.10',
         url: 'https://github.com/material-foundation/google-fonts-flutter/',
-        licenseUrl: 'https://raw.githubusercontent.com/material-foundation/google-fonts-flutter//master/LICENSE',
+        licenseUrl:
+            'https://raw.githubusercontent.com/material-foundation/google-fonts-flutter//master/LICENSE',
         license: '''                                 Apache License
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
@@ -359,7 +364,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         name: 'html',
         version: '^0.14.0+3',
         url: 'https://github.com/dart-lang/html',
-        licenseUrl: 'https://raw.githubusercontent.com/dart-lang/html/master/LICENSE',
+        licenseUrl:
+            'https://raw.githubusercontent.com/dart-lang/html/master/LICENSE',
         license: '''Copyright (c) 2006-2012 The Authors
 
 Contributors:
@@ -389,7 +395,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         name: 'jiffy',
         version: '^3.0.1',
         url: 'https://github.com/jama5262/jiffy',
-        licenseUrl: 'https://raw.githubusercontent.com/jama5262/jiffy/master/LICENSE',
+        licenseUrl:
+            'https://raw.githubusercontent.com/jama5262/jiffy/master/LICENSE',
         license: '''MIT License
 
 Copyright (c) 2019 Jama Mohamed
@@ -417,7 +424,8 @@ SOFTWARE.
         name: 'provider',
         version: '^4.0.4',
         url: 'https://github.com/rrousselGit/provider',
-        licenseUrl: 'https://raw.githubusercontent.com/rrousselGit/provider/master/LICENSE',
+        licenseUrl:
+            'https://raw.githubusercontent.com/rrousselGit/provider/master/LICENSE',
         license: '''MIT License
 
 Copyright (c) 2019 Remi Rousselet
@@ -444,7 +452,8 @@ SOFTWARE.''',
         name: 'flutter_launcher_icons',
         version: '^0.7.4',
         url: 'https://github.com/fluttercommunity/flutter_launcher_icons',
-        licenseUrl: 'https://raw.githubusercontent.com/fluttercommunity/flutter_launcher_icons/master/LICENSE',
+        licenseUrl:
+            'https://raw.githubusercontent.com/fluttercommunity/flutter_launcher_icons/master/LICENSE',
         license: '''MIT License
 
 Copyright (c) 2019 Mark O'Sullivan
@@ -472,7 +481,8 @@ SOFTWARE.
         name: 'cupertino_icons',
         version: '^0.1.2',
         url: 'https://github.com/flutter/cupertino_icons',
-        licenseUrl: 'https://raw.githubusercontent.com/flutter/cupertino_icons/master/LICENSE',
+        licenseUrl:
+            'https://raw.githubusercontent.com/flutter/cupertino_icons/master/LICENSE',
         license: '''
 The MIT License (MIT)
 
@@ -500,7 +510,8 @@ THE SOFTWARE.''',
         name: 'expandable',
         version: '^4.1.3',
         url: 'https://github.com/aryzhov/flutter-expandable',
-        licenseUrl: 'https://raw.githubusercontent.com/aryzhov/flutter-expandable/master/LICENSE',
+        licenseUrl:
+            'https://raw.githubusercontent.com/aryzhov/flutter-expandable/master/LICENSE',
         license: '''Copyright (c) 2019 Alexander Ryzhov <aryzhov07@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -526,7 +537,8 @@ SOFTWARE.
         name: 'icapps_license',
         version: '^0.0.6',
         url: 'https://github.com/icapps/flutter-icapps-license',
-        licenseUrl: 'https://raw.githubusercontent.com/icapps/flutter-icapps-license/master/LICENSE',
+        licenseUrl:
+            'https://raw.githubusercontent.com/icapps/flutter-icapps-license/master/LICENSE',
         license: '''MIT License
 
 Copyright (c) 2019 icapps
@@ -549,6 +561,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ''',
-      ))
-;  }
+      ));
+  }
 }
