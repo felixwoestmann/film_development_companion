@@ -19,7 +19,6 @@ class DmDeStatusProvider implements FilmDevelopmentStatusProvider {
     var storeId = film.storeId;
     String queryURL =
         '$API_ENDPOINT?config=$CONFIG&shop=$storeId&order=$orderNumber';
-    print(queryURL);
     http.Response httResponse = await http.get(queryURL);
     if (httResponse.statusCode == 200) {
       var jsonResponse = json.decode(httResponse.body);

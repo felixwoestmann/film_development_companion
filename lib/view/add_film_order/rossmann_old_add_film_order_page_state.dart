@@ -5,7 +5,7 @@ import 'package:filmdevelopmentcompanion/view/add_film_order/abstract_add_film_o
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class RossmannAddFilmOrderPageState extends AddFilmOrderPageState {
+class RossmannOldAddFilmOrderPageState extends AddFilmOrderPageState {
   //TODO use Form https://api.flutter.dev/flutter/widgets/Form-class.html
 
   final orderIdTextController = TextEditingController();

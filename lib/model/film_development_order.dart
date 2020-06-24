@@ -32,6 +32,7 @@ class FilmDevelopmentOrder {
   }
 
   Future<void> update() async {
+    print("Update "+storeModel.providerNameUi+" Order "+ orderId);
     FilmDevelopmentStatus statusUpdate = await storeModel.update(this);
     //If the order has no update than store the current one
     if (latestFilmDevelopmentStatusUpdate == null) {
