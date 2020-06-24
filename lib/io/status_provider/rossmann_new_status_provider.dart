@@ -7,40 +7,33 @@ import 'package:html/dom.dart';
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
 
-class RossmannStatusProvider implements FilmDevelopmentStatusProvider {
+///
+/// MIT OHNE HT NUMMER
+class RossmannNewStatusProvider implements FilmDevelopmentStatusProvider {
   static const String API_ENDPOINT =
-      "https://service.fujifilm-imaging.eu/a/rossmannb2";
+      "https://shop.rossmann-fotowelt.de/tracking/orderdetails.jsp";
 
   //RegEx for Dates in format 01.04.2020 bzw. dd.MM.yyyy
   final RegExp dateRegExp =
-      new RegExp(r"\d{2}\.\d{2}\.\d{4}", caseSensitive: false);
-  final RegExp priceRegExp = new RegExp(r"\d+\,\d{1,2}", caseSensitive: false);
+      new RegExp(r"\d{2}\.\d{2}\.\d{2}", caseSensitive: false);
 
   //Defines mapping of contained Text to DevelopmentStatusSummary
   final Map<String, FilmDevelopmentStatusSummary> markerTextToStatusSummary = {
+    "in unserem Labor eingegangen und wird derzeit bearbeitet.":
+        FilmDevelopmentStatusSummary.PROCESSING,
     "Ihr Auftrag ist fertiggestellt(noch nicht geliefert)":
         FilmDevelopmentStatusSummary.SHIPPING,
     "Ihr Auftrag ist fertiggestellt und hat unser Labor am":
         FilmDevelopmentStatusSummary.SHIPPING,
-    "in unserem Labor eingegangen und wird derzeit bearbeitet.":
-        FilmDevelopmentStatusSummary.PROCESSING
   };
 
   @override
   Future<FilmDevelopmentStatus> obtainDevelopmentStatusForFilmOrder(
       FilmDevelopmentOrder film) async {
-    //Format Data for a request to the Rossmann API
-    String orderNumber = film.orderId;
-    List<String> splittedStoreId = film.storeId.split("-");
-    String firma = splittedStoreId[0];
-    String htNumber = splittedStoreId[1];
     //perform request
     http.Response httResponse = await http.post(API_ENDPOINT, body: {
-      "AUFNR_A": orderNumber,
-      "FIRMA": firma,
-      "HDNR": htNumber,
-      "x": "0",
-      "y": "0"
+      "bagId": film.orderId,
+      "outletId": film.storeId,
     });
     //Evaluate state of Order
     String stateEvaluation =
@@ -68,19 +61,12 @@ class RossmannStatusProvider implements FilmDevelopmentStatusProvider {
 
       case FilmDevelopmentStatusSummary.SHIPPING:
         //init
-        double price = 0.0;
+
         DateTime statusSummaryDate = DateTime.now();
         //obtain ShippingStatusLine and lint it
         String shippingCaseStatusLine =
             parse(httResponse.body).querySelector("tr td div").text.trim();
         shippingCaseStatusLine = shippingCaseStatusLine.replaceAll("\n", "");
-        //obtainPrice
-        if (priceRegExp.hasMatch(shippingCaseStatusLine)) {
-          String priceAsString =
-              priceRegExp.firstMatch(shippingCaseStatusLine).group(0);
-          //parse Method expects 1.44 not 1,44
-          price = double.parse(priceAsString.replaceAll(",", "."));
-        }
         //obtain Data in Table to get statusSummaryDate
         List<Element> shippingTable =
             parse(httResponse.body).querySelectorAll("tr td");
@@ -95,10 +81,10 @@ class RossmannStatusProvider implements FilmDevelopmentStatusProvider {
           }
         }
         return new FilmDevelopmentStatus(
-            statusSummaryDate, statusSummary, price, shippingCaseStatusLine);
+            statusSummaryDate, statusSummary, 0.0, shippingCaseStatusLine);
 
       case FilmDevelopmentStatusSummary.DELIVERED:
-        // TODO: Handle this case.
+        /// The Rossmann API using only the StoreId and not the HT-Number is not capable of telling us wether an order has arrived at the local store.
         break;
     }
     return null;

@@ -1,6 +1,6 @@
 import 'package:filmdevelopmentcompanion/localizations.dart';
 import 'package:filmdevelopmentcompanion/model/film_development_appdata_model.dart';
-import 'package:filmdevelopmentcompanion/model/store_models/rossmann_store_model.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/rossmann_old_store_model.dart';
 import 'package:filmdevelopmentcompanion/view/add_film_order/abstract_add_film_order_page_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -62,7 +62,7 @@ class RossmannAddFilmOrderPageState extends AddFilmOrderPageState {
           body: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                Image(image: RossmannStoreModel.instance.exampleImage),
+                Image(image: RossmannOldStoreModel.instance.exampleImage),
                 Padding(
                   padding: fieldInsets,
                   child: TextField(

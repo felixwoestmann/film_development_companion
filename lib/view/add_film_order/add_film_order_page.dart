@@ -1,6 +1,6 @@
 import 'package:filmdevelopmentcompanion/model/store_models/cewe_store_model.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/dm_de_store_model.dart';
-import 'package:filmdevelopmentcompanion/model/store_models/rossmann_store_model.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/rossmann_old_store_model.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/store_model.dart';
 import 'package:filmdevelopmentcompanion/view/add_film_order/cewe_add_film_order_page_state.dart';
 import 'package:filmdevelopmentcompanion/view/add_film_order/dm_de_add_film_order_page_state.dart';
@@ -15,7 +15,7 @@ class AddFilmOrderPage extends StatefulWidget {
   @override
   State createState() {
     switch (storeModel.providerId) {
-      case RossmannStoreModel.PROVIDER_ID:
+      case RossmannOldStoreModel.PROVIDER_ID:
         return RossmannAddFilmOrderPageState();
       case DmDeStoreModel.PROVIDER_ID:
         return DmDeAddFilmOrderPageState();

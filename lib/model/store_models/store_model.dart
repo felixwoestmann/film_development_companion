@@ -3,7 +3,7 @@ import 'package:filmdevelopmentcompanion/model/film_development_order.dart';
 import 'package:filmdevelopmentcompanion/model/film_development_status.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/cewe_store_model.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/dm_de_store_model.dart';
-import 'package:filmdevelopmentcompanion/model/store_models/rossmann_store_model.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/rossmann_old_store_model.dart';
 import 'package:flutter/material.dart';
 
 class StoreModel {
@@ -48,8 +48,8 @@ class StoreModel {
     switch (id) {
       case DmDeStoreModel.PROVIDER_ID:
         return DmDeStoreModel.instance;
-      case RossmannStoreModel.PROVIDER_ID:
-        return RossmannStoreModel.instance;
+      case RossmannOldStoreModel.PROVIDER_ID:
+        return RossmannOldStoreModel.instance;
       case CeweStoreModel.PROVIDER_ID:
         return CeweStoreModel.instance;
     }
