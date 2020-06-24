@@ -12,10 +12,6 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
     //TODO dateformatting depends on country
     //initializeDateFormatting("de_DE", null);
     dbHelper = DatabaseHelper.instance;
-    //StoreModel dmDeStoreModel = new DmDeStoreModel();
-    // addFilmOrder(FilmDevelopmentOrder(dmDeStoreModel, "854440", "1618"));
-    // addFilmOrder(FilmDevelopmentOrder(dmDeStoreModel, "854447", "1618"));
-    //addFilmOrder(FilmDevelopmentOrder(dmDeStoreModel, "567539", "1618"));
     initFilmDevelopmentAppDataModel();
   }
 
@@ -44,8 +40,7 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
   Future<void> updateAllOrders() async {
     List<Future> futures = <Future>[];
     for (var order in filmOrders) {
-      futures.add(order.update());
-      order.update().then((_) => dbHelper.update(order));
+      futures.add(order.update().then((value) => dbHelper.update(order)));
     }
     await Future.wait(futures);
     notifyListeners();
