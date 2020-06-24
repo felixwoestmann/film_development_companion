@@ -3,6 +3,7 @@ import 'package:filmdevelopmentcompanion/model/film_development_order.dart';
 import 'package:filmdevelopmentcompanion/model/film_development_status.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/cewe_store_model.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/dm_de_store_model.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/rossmann_new_store_model.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/rossmann_old_store_model.dart';
 import 'package:flutter/material.dart';
 
@@ -50,6 +51,8 @@ class StoreModel {
         return DmDeStoreModel.instance;
       case RossmannOldStoreModel.PROVIDER_ID:
         return RossmannOldStoreModel.instance;
+      case RossmannNewStoreModel.PROVIDER_ID:
+        return RossmannNewStoreModel.instance;
       case CeweStoreModel.PROVIDER_ID:
         return CeweStoreModel.instance;
     }
