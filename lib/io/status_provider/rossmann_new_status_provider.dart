@@ -7,17 +7,15 @@ import 'package:html/dom.dart';
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
 
-///
-/// MIT OHNE HT NUMMER
+/// The Rossmann NEW Status Provider handles Orders from Rossmann where no HT-Number is present and the StoreId is used to identify the order.
 class RossmannNewStatusProvider implements FilmDevelopmentStatusProvider {
   static const String API_ENDPOINT =
       "https://shop.rossmann-fotowelt.de/tracking/orderdetails.jsp";
-
   //RegEx for Dates in format 01.04.2020 bzw. dd.MM.yyyy
   final RegExp dateRegExp =
       new RegExp(r"\d{2}\.\d{2}\.\d{2}", caseSensitive: false);
 
-  //Defines mapping of contained Text to DevelopmentStatusSummary
+  //Defines mapping of Text from the API to a DevelopmentStatusSummary
   final Map<String, FilmDevelopmentStatusSummary> markerTextToStatusSummary = {
     "in unserem Labor eingegangen und wird derzeit bearbeitet.":
         FilmDevelopmentStatusSummary.PROCESSING,
@@ -30,22 +28,22 @@ class RossmannNewStatusProvider implements FilmDevelopmentStatusProvider {
   @override
   Future<FilmDevelopmentStatus> obtainDevelopmentStatusForFilmOrder(
       FilmDevelopmentOrder film) async {
-    //perform request
+    //Perform the API Request
     http.Response httResponse = await http.post(API_ENDPOINT, body: {
       "bagId": film.orderId,
       "outletId": film.storeId,
     });
-    //Evaluate state of Order
+    //Evaluate the StatusSummary of the order
+    //Obtain the Status Line and lint it with removing TABS and LINEBREAKS
     List<Element> stateEvaluationList =
         parse(httResponse.body).querySelectorAll("table tr td");
-    String stateEvaluation = stateEvaluationList.last.text
+    String statusLineFromApi = stateEvaluationList.last.text
         .trim()
         .replaceAll("\n", " ")
         .replaceAll("\t", "");
-    print("stateEval: " + stateEvaluation);
-    //Obtain StatusSummary to decide which path to follow
+    //Use the linted StatusLine to decide the StatusSummary and base the further processing on that state
     FilmDevelopmentStatusSummary statusSummary =
-        getFilmDevelopmentStatusSummaryFromText(stateEvaluation);
+        getFilmDevelopmentStatusSummaryFromText(statusLineFromApi);
 
     switch (statusSummary) {
       case FilmDevelopmentStatusSummary.UNKNOWN_ERROR:
@@ -65,16 +63,16 @@ class RossmannNewStatusProvider implements FilmDevelopmentStatusProvider {
             statusSummaryDate, statusSummary, 0.0, processingCaseData);
 
       case FilmDevelopmentStatusSummary.SHIPPING:
-        //Initialise
+        //Obtain the StatusSummaryDate from the Status Line
         DateTime statusSummaryDate = DateTime.now();
-        if (dateRegExp.hasMatch(stateEvaluation)) {
+        if (dateRegExp.hasMatch(statusLineFromApi)) {
           statusSummaryDate = Jiffy(
-                  dateRegExp.firstMatch(stateEvaluation).group(0), "dd.MM.yyyy")
+                  dateRegExp.firstMatch(statusLineFromApi).group(0), "dd.MM.yyyy")
               .dateTime;
         }
 
         return new FilmDevelopmentStatus(
-            statusSummaryDate, statusSummary, 0.0, stateEvaluation);
+            statusSummaryDate, statusSummary, 0.0, statusLineFromApi);
 
       case FilmDevelopmentStatusSummary.DELIVERED:
 
