@@ -36,8 +36,13 @@ class RossmannNewStatusProvider implements FilmDevelopmentStatusProvider {
       "outletId": film.storeId,
     });
     //Evaluate state of Order
-    String stateEvaluation =
-        parse(httResponse.body).querySelector("tr td div").text.trim();
+    List<Element> stateEvaluationList =
+        parse(httResponse.body).querySelectorAll("table tr td");
+    String stateEvaluation = stateEvaluationList.last.text
+        .trim()
+        .replaceAll("\n", " ")
+        .replaceAll("\t", "");
+    print("stateEval: " + stateEvaluation);
     //Obtain StatusSummary to decide which path to follow
     FilmDevelopmentStatusSummary statusSummary =
         getFilmDevelopmentStatusSummaryFromText(stateEvaluation);
@@ -60,30 +65,19 @@ class RossmannNewStatusProvider implements FilmDevelopmentStatusProvider {
             statusSummaryDate, statusSummary, 0.0, processingCaseData);
 
       case FilmDevelopmentStatusSummary.SHIPPING:
-        //init
-
+        //Initialise
         DateTime statusSummaryDate = DateTime.now();
-        //obtain ShippingStatusLine and lint it
-        String shippingCaseStatusLine =
-            parse(httResponse.body).querySelector("tr td div").text.trim();
-        shippingCaseStatusLine = shippingCaseStatusLine.replaceAll("\n", "");
-        //obtain Data in Table to get statusSummaryDate
-        List<Element> shippingTable =
-            parse(httResponse.body).querySelectorAll("tr td");
-        //Traverse Table until our RegEx matches
-        for (Element el in shippingTable) {
-          String contentOfTableRow = el.text.trim();
-          if (dateRegExp.hasMatch(contentOfTableRow)) {
-            statusSummaryDate = Jiffy(
-                    dateRegExp.firstMatch(contentOfTableRow).group(0),
-                    "dd.MM.yyyy")
-                .dateTime;
-          }
+        if (dateRegExp.hasMatch(stateEvaluation)) {
+          statusSummaryDate = Jiffy(
+                  dateRegExp.firstMatch(stateEvaluation).group(0), "dd.MM.yyyy")
+              .dateTime;
         }
+
         return new FilmDevelopmentStatus(
-            statusSummaryDate, statusSummary, 0.0, shippingCaseStatusLine);
+            statusSummaryDate, statusSummary, 0.0, stateEvaluation);
 
       case FilmDevelopmentStatusSummary.DELIVERED:
+
         /// The Rossmann API using only the StoreId and not the HT-Number is not capable of telling us wether an order has arrived at the local store.
         break;
     }
