@@ -116,7 +116,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
         header: Row(
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.fromLTRB(8, 10, 0, 10),
+              padding: EdgeInsets.fromLTRB(8, 5, 0, 5),
               child: Icon(filmordermodel.filmOrders[position].iconForStatus,
                   color: Theme.of(context).accentColor, size: 55.0),
             ),
@@ -127,17 +127,10 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                 children: <Widget>[
                   Text(
                     filmordermodel.filmOrders[position].insertionDateGui +
-                        " @ " +
-                        filmordermodel
-                            .filmOrders[position].storeModel.providerNameUi,
-                    style:
-                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    filmordermodel.filmOrders[position].storeOrderId,
+                        " // " +
+                        filmordermodel.filmOrders[position].storeOrderId,
                     style: TextStyle(
                       fontSize: 20.0,
-                      color: widget.secondary,
                     ),
                   ),
                 ],
@@ -145,7 +138,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
             )
           ],
         ),
-        collapsed: Row(), //TODO delete
+        //TODO delete
         expanded: Padding(
           padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
           child: Column(
