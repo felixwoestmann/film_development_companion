@@ -2,6 +2,7 @@ import 'package:filmdevelopmentcompanion/localizations.dart';
 import 'package:filmdevelopmentcompanion/model/film_development_appdata_model.dart';
 import 'package:filmdevelopmentcompanion/view/choose_store_type_page.dart';
 import 'package:filmdevelopmentcompanion/view/film_order_overview_page.dart';
+import 'package:filmdevelopmentcompanion/view/film_order_overview_page_compact.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +30,7 @@ class FilmDevCompanionApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => FilmOrderOverviewPage(),
+        '/': (context) => FilmOrderOverviewPageCompact(),
         '/chooseStore': (context) => ChooseStoreTypePage(),
       },
       localizationsDelegates: [
