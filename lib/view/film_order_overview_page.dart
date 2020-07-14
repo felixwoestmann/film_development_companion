@@ -19,94 +19,12 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
     super.initState();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Consumer<FilmDevelopmentAppDataModel>(
-      builder: (context, filmordermodel, child) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(
-              AppLocalizations.of(context)
-                  .translate('FilmOrderOverviewPageTitle'),
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            actions: <Widget>[
-              IconButton(
-                icon: const Icon(Icons.view_compact),
-                tooltip: 'Toggle View', //TO i18
-                onPressed: () {
-                  filmordermodel.toggleCompacView();
-                },
-              ),
-              PopupMenuButton<Widget>(
-                onSelected: (value) => Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => value)),
-                itemBuilder: (context) => [
-                  PopupMenuItem(
-                    value: LicensePage(),
-                    child: Text(AppLocalizations.of(context)
-                        .translate('FilmOrderOverviewFlutterLicensesLabel')),
-                  ),
-                  PopupMenuItem(
-                    value: ThirdPartyLicensesPage(),
-                    child: Text(AppLocalizations.of(context)
-                        .translate('FilmOrderOverviewThirdpartyLicensesLabel')),
-                  ),
-                ],
-              )
-            ],
-          ),
-          body: RefreshIndicator(
-              child: ListView.builder(
-                itemBuilder: (context, position) {
-                  return Dismissible(
-                    key: Key(filmordermodel.filmOrders[position].id.toString()),
-                    background: Container(
-                      alignment: AlignmentDirectional.centerStart,
-                      color: Colors.red,
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(12, 10, 8, 10),
-                        child: Icon(
-                          Icons.delete,
-                          color: Colors.white,
-                          size: 30,
-                        ),
-                      ),
-                    ),
-                    onDismissed: (direction) {
-                      filmordermodel.deleteFilmOrder(position);
-                    },
-                    direction: DismissDirection.startToEnd,
-                    child: Card(
-                      elevation: 8,
-                      margin: EdgeInsets.fromLTRB(8, 10, 8, 10),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                      ),
-                      child: getExpandableCardForViewType(
-                          filmordermodel, position),
-                    ),
-                  );
-                },
-                itemCount: filmordermodel.filmOrders.length,
-              ),
-              onRefresh: filmordermodel.updateAllOrders),
-          floatingActionButton: FloatingActionButton.extended(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ChooseStoreTypePage()));
-            },
-            icon: Icon(Icons.add),
-            label: Text(
-              AppLocalizations.of(context).translate('FilmOrderOverviewButton'),
-              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-            ),
-          ),
-        );
-      },
-    );
+  Icon getIconForViewType(FilmDevelopmentAppDataModel filmordermodel) {
+    if (filmordermodel.showCompactView) {
+      return Icon(Icons.view_agenda);
+    } else {
+      return Icon(Icons.view_compact);
+    }
   }
 
   Widget getExpandableCardForViewType(
@@ -138,7 +56,6 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
             )
           ],
         ),
-        //TODO delete
         expanded: Padding(
           padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
           child: Column(
@@ -222,7 +139,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
         header: Row(
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.fromLTRB(8, 10, 0, 10),
+              padding: EdgeInsets.fromLTRB(8, 10, 0, 5),
               child: Icon(filmordermodel.filmOrders[position].iconForStatus,
                   color: Theme.of(context).accentColor, size: 55.0),
             ),
@@ -345,5 +262,95 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
         ),
       );
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<FilmDevelopmentAppDataModel>(
+      builder: (context, filmordermodel, child) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(
+              AppLocalizations.of(context)
+                  .translate('FilmOrderOverviewPageTitle'),
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: getIconForViewType(filmordermodel),
+                tooltip: 'Toggle View', //TO i18
+                onPressed: () {
+                  filmordermodel.toggleCompactView();
+                },
+              ),
+              PopupMenuButton<Widget>(
+                onSelected: (value) => Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => value)),
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    value: LicensePage(),
+                    child: Text(AppLocalizations.of(context)
+                        .translate('FilmOrderOverviewFlutterLicensesLabel')),
+                  ),
+                  PopupMenuItem(
+                    value: ThirdPartyLicensesPage(),
+                    child: Text(AppLocalizations.of(context)
+                        .translate('FilmOrderOverviewThirdpartyLicensesLabel')),
+                  ),
+                ],
+              )
+            ],
+          ),
+          body: RefreshIndicator(
+              child: ListView.builder(
+                itemBuilder: (context, position) {
+                  return Dismissible(
+                    key: Key(filmordermodel.filmOrders[position].id.toString()),
+                    background: Container(
+                      alignment: AlignmentDirectional.centerStart,
+                      color: Colors.red,
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(12, 10, 8, 10),
+                        child: Icon(
+                          Icons.delete,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                      ),
+                    ),
+                    onDismissed: (direction) {
+                      filmordermodel.deleteFilmOrder(position);
+                    },
+                    direction: DismissDirection.startToEnd,
+                    child: Card(
+                      elevation: 8,
+                      margin: EdgeInsets.fromLTRB(8, 10, 8, 10),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
+                      ),
+                      child: getExpandableCardForViewType(
+                          filmordermodel, position),
+                    ),
+                  );
+                },
+                itemCount: filmordermodel.filmOrders.length,
+              ),
+              onRefresh: filmordermodel.updateAllOrders),
+          floatingActionButton: FloatingActionButton.extended(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ChooseStoreTypePage()));
+            },
+            icon: Icon(Icons.add),
+            label: Text(
+              AppLocalizations.of(context).translate('FilmOrderOverviewButton'),
+              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+            ),
+          ),
+        );
+      },
+    );
   }
 }

@@ -47,13 +47,13 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void toggleCompacView() {
+  void toggleCompactView() {
     if (showCompactView) {
       showCompactView = false;
     } else {
       showCompactView = true;
     }
-    print("Val state is $showCompactView"); //TODO
+
     notifyListeners();
   }
 }

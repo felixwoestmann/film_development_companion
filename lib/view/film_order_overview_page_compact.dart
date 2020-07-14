@@ -37,7 +37,7 @@ class _FilmOrderOverviewPageStateCompact
                 icon: const Icon(Icons.view_compact),
                 tooltip: 'Show Compact Layout ', //TODO move to i18
                 onPressed: () {
-                  filmordermodel.toggleCompacView();
+                  filmordermodel.toggleCompactView();
                 },
               ),
               PopupMenuButton<Widget>(
