@@ -31,6 +31,13 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             actions: <Widget>[
+              IconButton(
+                icon: const Icon(Icons.view_compact),
+                tooltip: 'Toggle View', //TO i18
+                onPressed: () {
+                  filmordermodel.toggleCompacView();
+                },
+              ),
               PopupMenuButton<Widget>(
                 onSelected: (value) => Navigator.push(
                     context, MaterialPageRoute(builder: (context) => value)),
@@ -76,144 +83,8 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18.0),
                       ),
-                      child: ExpandablePanel(
-                        header: Row(
-                          children: <Widget>[
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(8, 10, 0, 10),
-                              child: Icon(
-                                  filmordermodel
-                                      .filmOrders[position].iconForStatus,
-                                  color: Theme.of(context).accentColor,
-                                  size: 55.0),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    filmordermodel.filmOrders[position]
-                                            .insertionDateGui +
-                                        " @ " +
-                                        filmordermodel.filmOrders[position]
-                                            .storeModel.providerNameUi,
-                                    style: TextStyle(
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    filmordermodel
-                                        .filmOrders[position].storeOrderId,
-                                    style: TextStyle(
-                                      fontSize: 20.0,
-                                      color: widget.secondary,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                        collapsed: Row(
-                          children: <Widget>[
-                            Flexible(
-                              child: Padding(
-                                padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
-                                child: Text(
-                                  filmordermodel.filmOrders[position]
-                                      .latestFilmDevelopmentStatusSummaryText,
-                                  style: TextStyle(fontSize: 20.0),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        expanded: Padding(
-                          padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
-                          child: Column(
-                            children: <Widget>[
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 5.0),
-                                    child: Text(
-                                      AppLocalizations.of(context).translate(
-                                          'FilmOrderOverviewCardStateLabel'),
-                                      style: TextStyle(
-                                          fontSize: 20.0,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                  Flexible(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(right: 5.0),
-                                      child: Text(
-                                        filmordermodel.filmOrders[position]
-                                            .latestFilmDevelopmentStatusSummaryText,
-                                        style: TextStyle(fontSize: 20.0),
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 5,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8),
-                                child: Row(
-                                  children: <Widget>[
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 5.0),
-                                      child: Text(
-                                        AppLocalizations.of(context).translate(
-                                            'FilmOrderOverviewCardNoteLabel'),
-                                        style: TextStyle(
-                                            fontSize: 20.0,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    Flexible(
-                                      child: Text(
-                                        filmordermodel
-                                            .filmOrders[position].note,
-                                        style: TextStyle(fontSize: 20.0),
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 8,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(0, 15, 20, 0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: <Widget>[
-                                    Text(
-                                        filmordermodel
-                                            .filmOrders[position].price,
-                                        style: TextStyle(
-                                          fontSize: 20.0,
-                                          color: widget.secondary,
-                                        )),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 3),
-                                      child: Icon(
-                                        Icons.euro_symbol,
-                                        color: widget.secondary,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                      child: getExpandableCardForViewType(
+                          filmordermodel, position),
                     ),
                   );
                 },
@@ -236,5 +107,250 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
         );
       },
     );
+  }
+
+  Widget getExpandableCardForViewType(
+      FilmDevelopmentAppDataModel filmordermodel, int position) {
+    if (filmordermodel.showCompactView) {
+      return ExpandablePanel(
+        header: Row(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.fromLTRB(8, 10, 0, 10),
+              child: Icon(filmordermodel.filmOrders[position].iconForStatus,
+                  color: Theme.of(context).accentColor, size: 55.0),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    filmordermodel.filmOrders[position].insertionDateGui +
+                        " @ " +
+                        filmordermodel
+                            .filmOrders[position].storeModel.providerNameUi,
+                    style:
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    filmordermodel.filmOrders[position].storeOrderId,
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      color: widget.secondary,
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+        collapsed: Row(), //TODO delete
+        expanded: Padding(
+          padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
+          child: Column(
+            children: <Widget>[
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(right: 5.0),
+                    child: Text(
+                      AppLocalizations.of(context)
+                          .translate('FilmOrderOverviewCardStateLabel'),
+                      style: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 5.0),
+                      child: Text(
+                        filmordermodel.filmOrders[position]
+                            .latestFilmDevelopmentStatusSummaryText,
+                        style: TextStyle(fontSize: 20.0),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 5,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(right: 5.0),
+                      child: Text(
+                        AppLocalizations.of(context)
+                            .translate('FilmOrderOverviewCardNoteLabel'),
+                        style: TextStyle(
+                            fontSize: 20.0, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Flexible(
+                      child: Text(
+                        filmordermodel.filmOrders[position].note,
+                        style: TextStyle(fontSize: 20.0),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 8,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 15, 20, 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Text(filmordermodel.filmOrders[position].price,
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          color: widget.secondary,
+                        )),
+                    Padding(
+                      padding: EdgeInsets.only(left: 3),
+                      child: Icon(
+                        Icons.euro_symbol,
+                        color: widget.secondary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    } else {
+      return ExpandablePanel(
+        header: Row(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.fromLTRB(8, 10, 0, 10),
+              child: Icon(filmordermodel.filmOrders[position].iconForStatus,
+                  color: Theme.of(context).accentColor, size: 55.0),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    filmordermodel.filmOrders[position].insertionDateGui +
+                        " @ " +
+                        filmordermodel
+                            .filmOrders[position].storeModel.providerNameUi,
+                    style:
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    filmordermodel.filmOrders[position].storeOrderId,
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      color: widget.secondary,
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+        collapsed: Row(
+          children: <Widget>[
+            Flexible(
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
+                child: Text(
+                  filmordermodel.filmOrders[position]
+                      .latestFilmDevelopmentStatusSummaryText,
+                  style: TextStyle(fontSize: 20.0),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
+          ],
+        ),
+        expanded: Padding(
+          padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
+          child: Column(
+            children: <Widget>[
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(right: 5.0),
+                    child: Text(
+                      AppLocalizations.of(context)
+                          .translate('FilmOrderOverviewCardStateLabel'),
+                      style: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 5.0),
+                      child: Text(
+                        filmordermodel.filmOrders[position]
+                            .latestFilmDevelopmentStatusSummaryText,
+                        style: TextStyle(fontSize: 20.0),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 5,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(right: 5.0),
+                      child: Text(
+                        AppLocalizations.of(context)
+                            .translate('FilmOrderOverviewCardNoteLabel'),
+                        style: TextStyle(
+                            fontSize: 20.0, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Flexible(
+                      child: Text(
+                        filmordermodel.filmOrders[position].note,
+                        style: TextStyle(fontSize: 20.0),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 8,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 15, 20, 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Text(filmordermodel.filmOrders[position].price,
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          color: widget.secondary,
+                        )),
+                    Padding(
+                      padding: EdgeInsets.only(left: 3),
+                      child: Icon(
+                        Icons.euro_symbol,
+                        color: widget.secondary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
   }
 }

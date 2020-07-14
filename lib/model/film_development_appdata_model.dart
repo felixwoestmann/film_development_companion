@@ -7,7 +7,7 @@ import 'film_development_order.dart';
 class FilmDevelopmentAppDataModel extends ChangeNotifier {
   List<FilmDevelopmentOrder> filmOrders = new List();
   DatabaseHelper dbHelper;
-  bool showCompactView;
+  bool showCompactView=false;
 
   FilmDevelopmentAppDataModel() {
     //TODO dateformatting depends on country
@@ -53,6 +53,7 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
     } else {
       showCompactView = true;
     }
+    print("Val state is $showCompactView"); //TODO
     notifyListeners();
   }
 }
