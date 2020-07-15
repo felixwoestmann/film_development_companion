@@ -44,12 +44,9 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    filmordermodel.filmOrders[position].insertionDateGui +
-                        " // " +
-                        filmordermodel.filmOrders[position].storeOrderId,
-                    style: TextStyle(
-                      fontSize: 20.0,
-                    ),
+                    "${filmordermodel.filmOrders[position].insertionDateGui} // ${filmordermodel.filmOrders[position].storeId} - ${filmordermodel.filmOrders[position].orderId}",
+                    style:
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -149,15 +146,12 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    filmordermodel.filmOrders[position].insertionDateGui +
-                        " @ " +
-                        filmordermodel
-                            .filmOrders[position].storeModel.providerNameUi,
+                    "${filmordermodel.filmOrders[position].insertionDateGui} @ ${filmordermodel.filmOrders[position].storeModel.providerNameUi}",
                     style:
                         TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    filmordermodel.filmOrders[position].storeOrderId,
+                    "${filmordermodel.filmOrders[position].storeId} // ${filmordermodel.filmOrders[position].orderId}",
                     style: TextStyle(
                       fontSize: 20.0,
                       color: widget.secondary,

@@ -17,9 +17,6 @@ class StoreModel {
     return summaryStateText.replaceAll(new RegExp(r"\s{2,}"), " ");
   }
 
-  String formatStoreOrderIdForUI(String orderId, String storeId) {
-    return "$orderId // $storeId";
-  }
 
   Future<FilmDevelopmentStatus> update(FilmDevelopmentOrder order) async {
     return await statusProvider.obtainDevelopmentStatusForFilmOrder(order);

@@ -59,8 +59,6 @@ class FilmDevelopmentOrder {
     return "-";
   }
 
-  String get storeOrderId =>
-      storeModel.formatStoreOrderIdForUI(orderId, storeId);
 
   String get latestFilmDevelopmentStatusSummaryText {
     if (latestFilmDevelopmentStatusUpdate != null) {
