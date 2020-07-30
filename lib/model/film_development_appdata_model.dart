@@ -13,7 +13,7 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
   FilmDevelopmentAppDataModel() {
     //TODO dateformatting depends on country
     //initializeDateFormatting("de_DE", null);
-    SharedPreferencesHelper.getCompactViewPreference()
+    SharedPreferencesHelper.loadCompactViewPreference()
         .then((v) => showCompactView = v)
         .whenComplete(() => notifyListeners());
     dbHelper = DatabaseHelper.instance;
@@ -57,7 +57,7 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
     } else {
       showCompactView = true;
     }
-    SharedPreferencesHelper.setCompactViewPreference(showCompactView);
+    SharedPreferencesHelper.saveCompactViewPreference(showCompactView);
     notifyListeners();
   }
 }
