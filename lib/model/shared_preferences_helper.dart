@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:filmdevelopmentcompanion/model/store_models/cewe_store_model.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/dm_de_store_model.dart';
-import 'package:filmdevelopmentcompanion/model/store_models/rossmann_old_store_model.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/rossmann_store_model.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/store_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,6 +13,7 @@ class SharedPreferencesHelper {
       SharedPreferencesHelper._internal();
 
   factory SharedPreferencesHelper() {
+    print("Singleton aufruf");
     return _singletoninstance;
   }
 
@@ -22,7 +23,7 @@ class SharedPreferencesHelper {
 
     List<StoreModel> listOfStoreModels = new List();
     listOfStoreModels.add(DmDeStoreModel.instance);
-    listOfStoreModels.add(RossmannOldStoreModel.instance);
+    listOfStoreModels.add(RossmannStoreModel.instance);
     listOfStoreModels.add(CeweStoreModel.instance);
     //Load the recently used Stores for every StoreModel
     for (StoreModel storeModel in listOfStoreModels) {
@@ -46,16 +47,16 @@ class SharedPreferencesHelper {
   }
 
   // ComapctView saves the boolean value to indicate if the user wants a compact representation of all his film orders
-  static final String _compactView = "preferenceCompactView";
+   final String _compactView = "preferenceCompactView";
 
-  static Future<bool> loadCompactViewPreference() async {
+   Future<bool> loadCompactViewPreference() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     print(prefs.getBool(_compactView));
     return prefs.getBool(_compactView) ?? false;
   }
 
-//TODO REMOCE STATIC
-  static Future<bool> saveCompactViewPreference(bool value) async {
+  //TODO REMOCE STATIC
+   Future<bool> saveCompactViewPreference(bool value) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.setBool(_compactView, value);
   }

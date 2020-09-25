@@ -2,7 +2,7 @@ import 'package:filmdevelopmentcompanion/io/status_provider/rossmann_old_status_
 import 'package:filmdevelopmentcompanion/model/store_models/store_model.dart';
 import 'package:flutter/material.dart';
 
-class RossmannOldStoreModel extends StoreModel {
+class RossmannStoreModel extends StoreModel {
   static const String PROVIDER_ID = "ROSSMANN_PROVIDER_OLD";
   static const String PROVIDER_NAME = "Rossmann Alt";
   static const String PROVIDER_NAME_UI = "Rossmann Alt";
@@ -10,13 +10,13 @@ class RossmannOldStoreModel extends StoreModel {
       AssetImage('assets/RossmannExample.png');
 
   //
-  static final RossmannOldStoreModel _instance = RossmannOldStoreModel._internal();
+  static final RossmannStoreModel _instance = RossmannStoreModel._internal();
 
-  RossmannOldStoreModel._internal() {
-    statusProvider = new RossmannOldStatusProvider();
+  RossmannStoreModel._internal() {
+    statusProvider = new RossmannStatusProvider();
   }
 
-  static RossmannOldStoreModel get instance => _instance;
+  static RossmannStoreModel get instance => _instance;
 
   //
   @override

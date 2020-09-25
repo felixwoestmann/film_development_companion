@@ -1,23 +1,23 @@
 import 'package:filmdevelopmentcompanion/localizations.dart';
 import 'package:filmdevelopmentcompanion/model/film_development_appdata_model.dart';
-import 'package:filmdevelopmentcompanion/model/store_models/rossmann_old_store_model.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/rossmann_store_model.dart';
 import 'package:filmdevelopmentcompanion/view/add_film_order/abstract_add_film_order_page_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class RossmannNewAddFilmOrderPageState extends AddFilmOrderPageState {
+class RossmannOldAddFilmOrderPageState extends AddFilmOrderPageState {
   //TODO use Form https://api.flutter.dev/flutter/widgets/Form-class.html
 
   final orderIdTextController = TextEditingController();
-  final storeIdTextController = TextEditingController();
+  final htNumberTextController = TextEditingController();
   final noteTextController = TextEditingController();
-
+  String newTextInhtNumber = '';
 
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
     orderIdTextController.dispose();
-    storeIdTextController.dispose();
+    htNumberTextController.dispose();
     noteTextController.dispose();
     super.dispose();
   }
@@ -27,6 +27,26 @@ class RossmannNewAddFilmOrderPageState extends AddFilmOrderPageState {
     super.initState();
   }
 
+  //Method is called when HTNUMBER field has changed.
+  //Inserts dash ('-') after the first two characters
+  void htNumberOnChange(String param) {
+    String text = htNumberTextController.text;
+    if (text.length < newTextInhtNumber.length) {
+      // handling backspace in keyboard
+      newTextInhtNumber = text;
+    } else if (text.isNotEmpty && text != newTextInhtNumber) {
+      // handling typing new characters.
+      String tempText = text.replaceAll("-", "");
+      if (tempText.length == 2) {
+        //do your text transforming
+        newTextInhtNumber = '$text-';
+        htNumberTextController.text = newTextInhtNumber;
+        htNumberTextController.selection = new TextSelection(
+            baseOffset: newTextInhtNumber.length,
+            extentOffset: newTextInhtNumber.length);
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +62,7 @@ class RossmannNewAddFilmOrderPageState extends AddFilmOrderPageState {
           body: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                Image(image: RossmannOldStoreModel.instance.exampleImage),
+                Image(image: RossmannStoreModel.instance.exampleImage),
                 Padding(
                   padding: fieldInsets,
                   child: TextField(
@@ -61,7 +81,8 @@ class RossmannNewAddFilmOrderPageState extends AddFilmOrderPageState {
                   child: TextField(
                     autocorrect: false,
                     keyboardType: TextInputType.number,
-                    controller: storeIdTextController,
+                    controller: htNumberTextController,
+                    onChanged: htNumberOnChange,
                     decoration: InputDecoration(
                       hintText: AppLocalizations.of(context)
                           .translate('AddFilmOrderRossmannStoreId'),
@@ -84,7 +105,7 @@ class RossmannNewAddFilmOrderPageState extends AddFilmOrderPageState {
           ),
           floatingActionButton: FloatingActionButton.extended(
             onPressed: () => addFilmOrder(orderIdTextController.text,
-                storeIdTextController.text, noteTextController.text),
+                htNumberTextController.text, noteTextController.text),
             icon: Icon(Icons.check),
             label: Text(
                 AppLocalizations.of(context)

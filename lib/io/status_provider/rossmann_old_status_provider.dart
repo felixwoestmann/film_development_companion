@@ -7,7 +7,7 @@ import 'package:html/dom.dart';
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
 
-class RossmannOldStatusProvider implements FilmDevelopmentStatusProvider {
+class RossmannStatusProvider implements FilmDevelopmentStatusProvider {
   static const String API_ENDPOINT =
       "https://service.fujifilm-imaging.eu/a/rossmannb2";
 
