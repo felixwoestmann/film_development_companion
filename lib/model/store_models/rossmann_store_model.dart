@@ -1,4 +1,4 @@
-import 'package:filmdevelopmentcompanion/io/status_provider/rossmann_old_status_provider.dart';
+import 'package:filmdevelopmentcompanion/io/status_provider/rossmann_status_provider.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/store_model.dart';
 import 'package:flutter/material.dart';
 
