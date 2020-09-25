@@ -7,10 +7,7 @@ class CeweStoreModel extends StoreModel {
   static const String PROVIDER_NAME = "Cewe";
   static const String PROVIDER_NAME_UI = "Cewe";
   static const AssetImage EXAMPLE_IMAGE =
-      AssetImage('assets/RossmannExample.png');
-
-  //TODO change asset
-  //
+      AssetImage('assets/RossmannExample.png'); //TODO decide what todo wtih the asset
   static final CeweStoreModel _instance = CeweStoreModel._internal();
 
   CeweStoreModel._internal() {

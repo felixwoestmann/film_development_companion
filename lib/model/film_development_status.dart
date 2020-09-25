@@ -10,7 +10,6 @@ class FilmDevelopmentStatus {
   double price;
   String statusSummaryText;
 
-  // TODO: More fields required?
   FilmDevelopmentStatus(
       DateTime statusDate,
       FilmDevelopmentStatusSummary statusSummary,

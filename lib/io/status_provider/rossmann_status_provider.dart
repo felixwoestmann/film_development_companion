@@ -98,7 +98,7 @@ class RossmannStatusProvider implements FilmDevelopmentStatusProvider {
             statusSummaryDate, statusSummary, price, shippingCaseStatusLine);
 
       case FilmDevelopmentStatusSummary.DELIVERED:
-        // TODO: Handle this case.
+        // This case just doesnt exist in the Rossmann API
         break;
     }
     return null;
