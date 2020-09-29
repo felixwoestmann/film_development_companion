@@ -1,6 +1,7 @@
 import 'package:filmdevelopmentcompanion/localizations.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/cewe_store_model.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/dm_de_store_model.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/mueller_store_model.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/rossmann_store_model.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/store_model.dart';
 import 'package:filmdevelopmentcompanion/view/add_film_order/add_film_order_page.dart';
@@ -15,7 +16,8 @@ class _ChooseStoreTypePageState extends State<ChooseStoreTypePage> {
   List<StoreModel> storeModelstorePageMap = [
     DmDeStoreModel.instance,
     RossmannStoreModel.instance,
-    CeweStoreModel.instance
+    CeweStoreModel.instance,
+    MuellerStoreModel.instance
   ];
 
   @override

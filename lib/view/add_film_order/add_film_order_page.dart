@@ -1,9 +1,11 @@
 import 'package:filmdevelopmentcompanion/model/store_models/cewe_store_model.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/dm_de_store_model.dart';
+import 'package:filmdevelopmentcompanion/model/store_models/mueller_store_model.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/rossmann_store_model.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/store_model.dart';
 import 'package:filmdevelopmentcompanion/view/add_film_order/cewe_add_film_order_page_state.dart';
 import 'package:filmdevelopmentcompanion/view/add_film_order/dm_de_add_film_order_page_state.dart';
+import 'package:filmdevelopmentcompanion/view/add_film_order/mueller_add_film_order_page_state.dart';
 import 'package:filmdevelopmentcompanion/view/add_film_order/rossmann_add_film_order_page_state.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +23,8 @@ class AddFilmOrderPage extends StatefulWidget {
         return DmDeAddFilmOrderPageState();
       case CeweStoreModel.PROVIDER_ID:
         return CeweAddFilmOrderPageState();
+      case MuellerStoreModel.PROVIDER_ID:
+        return MuellerAddFilmOrderPageState();
     }
     return null;
   }

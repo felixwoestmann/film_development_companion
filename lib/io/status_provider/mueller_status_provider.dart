@@ -10,7 +10,7 @@ class MuellerStatusProvider implements FilmDevelopmentStatusProvider {
       "https://spot.photoprintit.com/spotapi/orderInfo/order";
   static const String SUMMARY_KEY = "summaryStateText";
   static const String SUMMARY_DATE_KEY = "summaryDate";
-  static const String CONFIG = "ceweAll";
+  static const String CONFIG = "3018";
 
   @override
   Future<FilmDevelopmentStatus> obtainDevelopmentStatusForFilmOrder(

@@ -1,4 +1,4 @@
-import 'package:filmdevelopmentcompanion/io/status_provider/cewe_status_provider.dart';
+import 'package:filmdevelopmentcompanion/io/status_provider/mueller_status_provider.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/store_model.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +12,7 @@ class MuellerStoreModel extends StoreModel {
   static final MuellerStoreModel _instance = MuellerStoreModel._internal();
 
   MuellerStoreModel._internal() {
-    statusProvider = new CeweStatusProvider(); //TODO muss das wirjlich geändert werden?
+    statusProvider = new MuellerStatusProvider(); //TODO muss das wirjlich geändert werden?
   }
 
   static MuellerStoreModel get instance => _instance;
