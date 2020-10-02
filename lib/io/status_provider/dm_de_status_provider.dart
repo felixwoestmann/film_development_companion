@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 
 class DmDeStatusProvider implements FilmDevelopmentStatusProvider {
   static const String API_ENDPOINT =
-      "https://spot.photoprintit.com/spotapi/orderInfo/forShop";
+      "https://spot.photoprintit.com/spotapi/orderInfo/forShop"; //TODO nutzt auch PhotoPrintIt
   static const String SUMMARY_KEY = "summaryStateText";
   static const String SUMMARY_DATE_KEY = "summaryDate";
   static const String CONFIG = "1320";

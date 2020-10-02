@@ -12,7 +12,7 @@ class MuellerStoreModel extends StoreModel {
   static final MuellerStoreModel _instance = MuellerStoreModel._internal();
 
   MuellerStoreModel._internal() {
-    statusProvider = new MuellerStatusProvider(); //TODO muss das wirjlich geändert werden?
+    statusProvider = new MuellerStatusProvider();
   }
 
   static MuellerStoreModel get instance => _instance;

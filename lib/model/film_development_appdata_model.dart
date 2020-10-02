@@ -11,9 +11,8 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
   bool showCompactView = false;
 
   FilmDevelopmentAppDataModel() {
-    //TODO dateformatting depends on country
-    //initializeDateFormatting("de_DE", null);
-    SharedPreferencesHelper().loadCompactViewPreference()
+    SharedPreferencesHelper()
+        .loadCompactViewPreference()
         .then((v) => showCompactView = v)
         .whenComplete(() => notifyListeners());
     dbHelper = DatabaseHelper.instance;
@@ -26,11 +25,15 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
     updateAllOrders();
   }
 
+  /*Adds a film order and saves the storeId for the SotreModel to the SharedPreferences*/
   void addFilmOrder(FilmDevelopmentOrder order) async {
     await order.update();
     order.id = await dbHelper.insert(order);
     filmOrders.insert(0, order);
     notifyListeners();
+    //Save the used StoreModel
+    SharedPreferencesHelper()
+        .updateRecentStoresForStoreModel(order.storeModel, order.storeId);
   }
 
   void deleteFilmOrder(int index) async {
