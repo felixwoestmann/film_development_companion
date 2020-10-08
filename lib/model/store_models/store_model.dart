@@ -17,7 +17,6 @@ class StoreModel {
     return summaryStateText.replaceAll(new RegExp(r"\s{2,}"), " ");
   }
 
-
   Future<FilmDevelopmentStatus> update(FilmDevelopmentOrder order) async {
     return await statusProvider.obtainDevelopmentStatusForFilmOrder(order);
   }
@@ -54,5 +53,15 @@ class StoreModel {
         return MuellerStoreModel.instance;
     }
     return null;
+  }
+
+  static List<StoreModel> getStoreModels() {
+    List<StoreModel> storeModelstorePageMap = [
+      DmDeStoreModel.instance,
+      RossmannStoreModel.instance,
+      CeweStoreModel.instance,
+      MuellerStoreModel.instance
+    ];
+    return storeModelstorePageMap;
   }
 }

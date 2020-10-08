@@ -13,13 +13,6 @@ class ChooseStoreTypePage extends StatefulWidget {
 }
 
 class _ChooseStoreTypePageState extends State<ChooseStoreTypePage> {
-  List<StoreModel> storeModelstorePageMap = [
-    DmDeStoreModel.instance,
-    RossmannStoreModel.instance,
-    CeweStoreModel.instance,
-    MuellerStoreModel.instance
-  ];
-
   @override
   void initState() {
     super.initState();
@@ -36,20 +29,20 @@ class _ChooseStoreTypePageState extends State<ChooseStoreTypePage> {
       body: ListView.separated(
         itemBuilder: (context, position) {
           return ListTile(
-            title: Text(storeModelstorePageMap[position].providerName,
+            title: Text(StoreModel.getStoreModels()[position].providerName,
                 style: TextStyle(fontSize: 22.0)),
             onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => new AddFilmOrderPage(
-                        storeModelstorePageMap[position]))),
+                        StoreModel.getStoreModels()[position]))),
           );
         },
         separatorBuilder: (context, index) => Divider(
           color: Colors.grey[700],
           height: 2.5,
         ),
-        itemCount: storeModelstorePageMap.length,
+        itemCount: StoreModel.getStoreModels().length,
       ),
     );
   }

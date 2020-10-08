@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class DmDeStoreModel extends StoreModel {
   static const String PROVIDER_ID = "DM_DE_PROVIDER";
-  static const String PROVIDER_NAME = "dm Deutschland";
+  static const String PROVIDER_NAME = "dm";
   static const String PROVIDER_NAME_UI = "dm";
   static const AssetImage EXAMPLE_IMAGE = AssetImage('assets/dmExample.png');
 
