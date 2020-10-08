@@ -3,6 +3,7 @@ import 'package:filmdevelopmentcompanion/localizations.dart';
 import 'package:filmdevelopmentcompanion/model/film_development_appdata_model.dart';
 import 'package:filmdevelopmentcompanion/view/choose_store_type_page.dart';
 import 'package:filmdevelopmentcompanion/view/misc/third_party_license_page.dart';
+import 'package:filmdevelopmentcompanion/view/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -272,9 +273,17 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
             actions: <Widget>[
               IconButton(
                 icon: getIconForViewType(filmordermodel),
-                tooltip: 'Toggle View', //TO i18
+                tooltip: 'Toggle View', //TODO i18
                 onPressed: () {
                   filmordermodel.toggleCompactView();
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.settings),
+                tooltip: 'Open Settings', //TODO i18
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SettingsPage()));
                 },
               ),
               PopupMenuButton<Widget>(
