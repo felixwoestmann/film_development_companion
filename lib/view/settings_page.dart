@@ -1,5 +1,6 @@
 import 'package:filmdevelopmentcompanion/model/film_development_appdata_model.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/store_model.dart';
+import 'package:filmdevelopmentcompanion/view/set_home_store_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -42,6 +43,11 @@ class _SettingsPageState extends State<SettingsPage> {
                           StoreModel.getStoreModels()[position].providerName),
                       subtitle: Text(filmordermodel.getHomeStoreForStoreModel(
                           StoreModel.getStoreModels()[position])),
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => new SetHomeStorePage(
+                                  StoreModel.getStoreModels()[position]))),
                       trailing: Icon(Icons.keyboard_arrow_right),
                     ),
                   );

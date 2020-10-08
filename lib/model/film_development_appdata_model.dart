@@ -79,4 +79,12 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
     }
     return "No home store is present"; //TODO i18 überflüssig, da zur not "" in der map steht?
   }
+
+  String saveHomeStoreForStoreModel(
+      StoreModel storeModel, String newHomeStore) {
+    homeStoresForStoreModel[storeModel.providerId] = newHomeStore;
+    SharedPreferencesHelper()
+        .saveHomeStoreForStoreModel(storeModel, newHomeStore);
+    notifyListeners();
+  }
 }
