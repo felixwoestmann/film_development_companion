@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 
 class DmDeStatusProvider implements FilmDevelopmentStatusProvider {
   static const String API_ENDPOINT =
-      "https://spot.photoprintit.com/spotapi/orderInfo/forShop"; //TODO nutzt auch PhotoPrintIt
+      "https://spot.photoprintit.com/spotapi/orderInfo/forShop";
   static const String SUMMARY_KEY = "summaryStateText";
   static const String SUMMARY_DATE_KEY = "summaryDate";
   static const String CONFIG = "1320";
@@ -33,7 +33,6 @@ class DmDeStatusProvider implements FilmDevelopmentStatusProvider {
           price.toDouble() / 100,
           jsonResponse['summaryStateText']);
     } else {
-      //TODO something bad happened
       print("The request failed.");
       return null;
     }

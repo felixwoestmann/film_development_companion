@@ -1,3 +1,4 @@
+import 'package:filmdevelopmentcompanion/localizations.dart';
 import 'package:filmdevelopmentcompanion/model/film_development_appdata_model.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/store_model.dart';
 import 'package:filmdevelopmentcompanion/view/set_home_store_page.dart';
@@ -21,7 +22,7 @@ class _SettingsPageState extends State<SettingsPage> {
       builder: (context, filmordermodel, child) {
         return Scaffold(
           appBar: AppBar(
-            title: Text("Settings", //TODO i18
+            title: Text(AppLocalizations.of(context).translate('Settings'),
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           body: Column(
@@ -31,18 +32,21 @@ class _SettingsPageState extends State<SettingsPage> {
                   Icons.home,
                   color: Theme.of(context).accentColor,
                 ),
-                title: Text("Set Home Stores"),
+                title: Text(
+                    AppLocalizations.of(context).translate('SetHomeStores')),
               ),
               Expanded(
                   child: ListView.separated(
-                itemBuilder: (context, position) {
+                  itemBuilder: (context, position) {
                   return Padding(
                     padding: const EdgeInsets.fromLTRB(70, 0, 0, 0),
                     child: ListTile(
                       title: Text(
                           StoreModel.getStoreModels()[position].providerName),
-                      subtitle: Text(filmordermodel.getHomeStoreForStoreModel(
-                          StoreModel.getStoreModels()[position])),
+                      subtitle: Text(AppLocalizations.of(context)
+                              .translate('AddFilmOrderDMStoreId') +
+                          filmordermodel.getHomeStoreForStoreModel(
+                              StoreModel.getStoreModels()[position])),
                       onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(

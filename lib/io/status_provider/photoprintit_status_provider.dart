@@ -35,7 +35,6 @@ class PhotoPrintitStatusProvider implements FilmDevelopmentStatusProvider {
           price.toDouble() / 100,
           jsonResponse['summaryStateText']);
     } else {
-      //TODO something bad happened
       print("The request failed.");
       return null;
     }

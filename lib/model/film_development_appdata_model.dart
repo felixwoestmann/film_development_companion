@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:collection';
 import 'package:filmdevelopmentcompanion/io/database_helpers.dart';
+import 'package:filmdevelopmentcompanion/localizations.dart';
 import 'package:filmdevelopmentcompanion/model/shared_preferences_helper.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/store_model.dart';
 import 'package:flutter/foundation.dart';
@@ -77,7 +78,7 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
             homeStoresForStoreModel.containsKey(storeModel.providerId), "")) {
       return homeStoresForStoreModel[storeModel.providerId];
     }
-    return "No home store is present"; //TODO i18 überflüssig, da zur not "" in der map steht?
+    return "No home store is present"; //TODO i18
   }
 
   String saveHomeStoreForStoreModel(

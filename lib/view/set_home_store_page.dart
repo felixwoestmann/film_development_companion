@@ -43,9 +43,10 @@ class _SetHomeStorePageState extends State<SetHomeStorePage> {
       builder: (context, cart, child) {
         return Scaffold(
           appBar: AppBar(
-            title:
-                Text("Set HomeStore for " + storeModel.providerName, //TODO i18
-                    style: TextStyle(fontWeight: FontWeight.bold)),
+            title: Text(
+                AppLocalizations.of(context).translate('SetHomeStoreFor') +
+                    storeModel.providerName,
+                style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           body: SingleChildScrollView(
             child: Column(
@@ -59,7 +60,7 @@ class _SetHomeStorePageState extends State<SetHomeStorePage> {
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       hintText: AppLocalizations.of(context)
-                          .translate('AddFilmOrderDMStoreId'), //TODO i18
+                          .translate('AddFilmOrderDMStoreId'),
                       hintStyle: TextStyle(fontSize: 18),
                     ),
                   ),
@@ -70,7 +71,7 @@ class _SetHomeStorePageState extends State<SetHomeStorePage> {
           floatingActionButton: FloatingActionButton.extended(
             onPressed: () => saveHomeStore(storeIdTextController.text),
             icon: Icon(Icons.check),
-            label: Text("Save HomeStore", //TODO i18
+            label: Text(AppLocalizations.of(context).translate('Save'),
                 style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
           ),
         );

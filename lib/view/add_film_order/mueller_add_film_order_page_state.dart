@@ -31,7 +31,7 @@ class MuellerAddFilmOrderPageState extends AddFilmOrderPageState {
           appBar: AppBar(
             title: Text(
                 AppLocalizations.of(context)
-                    .translate('AddFilmOrderCewePageTitle'), //TODO
+                    .translate('AddFilmOrderMullerPageTitle'),
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           body: SingleChildScrollView(
@@ -45,7 +45,7 @@ class MuellerAddFilmOrderPageState extends AddFilmOrderPageState {
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       hintText: AppLocalizations.of(context)
-                          .translate('AddFilmOrderCeweStoreId'), //TODO
+                          .translate('AddFilmOrderCeweStoreId'),
                       hintStyle: TextStyle(fontSize: 18),
                     ),
                   ),
@@ -58,7 +58,7 @@ class MuellerAddFilmOrderPageState extends AddFilmOrderPageState {
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       hintText: AppLocalizations.of(context)
-                          .translate('AddFilmOrderCeweOrderId'), //TODO
+                          .translate('AddFilmOrderCeweOrderId'),
                       hintStyle: TextStyle(fontSize: 18),
                     ),
                   ),

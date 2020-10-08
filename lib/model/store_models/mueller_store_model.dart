@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class MuellerStoreModel extends StoreModel {
   static const String PROVIDER_ID = "MUELLER PROVIDER";
-  static const String PROVIDER_NAME = "Mueller";
+  static const String PROVIDER_NAME = "Müller";
   static const String PROVIDER_NAME_UI = "Mueller";
   static const AssetImage EXAMPLE_IMAGE =
       AssetImage('assets/RossmannExample.png'); //TODO change asset

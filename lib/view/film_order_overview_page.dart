@@ -273,14 +273,12 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
             actions: <Widget>[
               IconButton(
                 icon: getIconForViewType(filmordermodel),
-                tooltip: 'Toggle View', //TODO i18
                 onPressed: () {
                   filmordermodel.toggleCompactView();
                 },
               ),
               IconButton(
                 icon: Icon(Icons.settings),
-                tooltip: 'Open Settings', //TODO i18
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => SettingsPage()));

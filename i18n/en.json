@@ -17,5 +17,10 @@
   "AddFilmOrderRossmannOrderId": "Order ID (Auftragsnummer)",
   "AddFilmOrderCewePageTitle": "Add Cewe order",
   "AddFilmOrderCeweStoreId": "Store ID (Kundennummer)",
-  "AddFilmOrderCeweOrderId": "Order ID (Auftragsnummer)"
+  "AddFilmOrderCeweOrderId": "Order ID (Auftragsnummer)",
+  "Settings": "Settings",
+  "SetHomeStores": "Set Home Store",
+  "SetHomeStoreFor": "Set Home Store for",
+  "Save": "Save",
+  "AddFilmOrderMuellerPageTitle": "Add Müller order"
 }
