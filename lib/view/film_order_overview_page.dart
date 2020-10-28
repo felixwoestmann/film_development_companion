@@ -277,13 +277,13 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                   filmordermodel.toggleCompactView();
                 },
               ),
-              IconButton(
+              /*IconButton(
                 icon: Icon(Icons.settings),
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => SettingsPage()));
                 },
-              ),
+              ),*/
               PopupMenuButton<Widget>(
                 onSelected: (value) => Navigator.push(
                     context, MaterialPageRoute(builder: (context) => value)),
