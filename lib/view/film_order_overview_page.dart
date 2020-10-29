@@ -264,6 +264,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
     return Consumer<FilmDevelopmentAppDataModel>(
       builder: (context, filmordermodel, child) {
         return Scaffold(
+          backgroundColor: Colors.white,
           appBar: AppBar(
             title: Text(
               AppLocalizations.of(context)
