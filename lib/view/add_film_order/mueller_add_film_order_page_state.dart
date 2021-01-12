@@ -31,7 +31,7 @@ class MuellerAddFilmOrderPageState extends AddFilmOrderPageState {
           appBar: AppBar(
             title: Text(
                 AppLocalizations.of(context)
-                    .translate('AddFilmOrderMullerPageTitle'),
+                    .translate('AddFilmOrderMuellerPageTitle'),
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           body: SingleChildScrollView(
