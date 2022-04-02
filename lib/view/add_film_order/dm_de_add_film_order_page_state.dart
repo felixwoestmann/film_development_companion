@@ -2,6 +2,7 @@ import 'package:filmdevelopmentcompanion/localizations.dart';
 import 'package:filmdevelopmentcompanion/model/film_development_appdata_model.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/dm_de_store_model.dart';
 import 'package:filmdevelopmentcompanion/view/add_film_order/abstract_add_film_order_page_state.dart';
+import 'package:filmdevelopmentcompanion/view/add_film_order/add_film_order_floating_action_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,10 +20,11 @@ class DmDeAddFilmOrderPageState extends AddFilmOrderPageState {
     super.dispose();
   }
 
-  @override
-  void initState() {
-    super.initState();
-  }
+  onAddFilmOrderButtonPressed() => addFilmOrder(
+        orderIdTextController.text,
+        storeIdTextController.text,
+        noteTextController.text,
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -74,13 +76,7 @@ class DmDeAddFilmOrderPageState extends AddFilmOrderPageState {
               ],
             ),
           ),
-          floatingActionButton: FloatingActionButton.extended(
-            onPressed: () =>
-                addFilmOrder(orderIdTextController.text, storeIdTextController.text, noteTextController.text),
-            icon: Icon(Icons.check),
-            label: Text(AppLocalizations.of(context).translate('AddFilmOrderSaveOrderLabel'),
-                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
-          ),
+          floatingActionButton: AddFilmOrderFloatingActionButton(onAddFilmOrderButtonPressed),
         );
       },
     );

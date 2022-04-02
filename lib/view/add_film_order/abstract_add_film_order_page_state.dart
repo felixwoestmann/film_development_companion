@@ -8,10 +8,13 @@ abstract class AddFilmOrderPageState extends State<AddFilmOrderPage> {
   final EdgeInsets fieldInsets = EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 10.0);
 
   void addFilmOrder(String orderId, String storeId, String note) {
-    var order =
-        new FilmDevelopmentOrder(widget.storeModel, orderId, storeId, note);
-    Provider.of<FilmDevelopmentAppDataModel>(context, listen: false)
-        .addFilmOrder(order);
+    var order = new FilmDevelopmentOrder(
+      widget.storeModel,
+      orderId,
+      storeId,
+      note,
+    );
+    Provider.of<FilmDevelopmentAppDataModel>(context, listen: false).addFilmOrder(order);
     Navigator.popUntil(context, ModalRoute.withName('/'));
   }
 }

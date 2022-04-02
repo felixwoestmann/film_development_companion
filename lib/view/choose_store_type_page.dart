@@ -25,9 +25,16 @@ class _ChooseStoreTypePageState extends State<ChooseStoreTypePage> {
       body: ListView.separated(
         itemBuilder: (context, position) {
           return ListTile(
-            title: Text(StoreModel.getStoreModels()[position].providerName, style: TextStyle(fontSize: 22.0)),
-            onTap: () => Navigator.push(context,
-                MaterialPageRoute(builder: (context) => new AddFilmOrderPage(StoreModel.getStoreModels()[position]))),
+            title: Text(
+              StoreModel.getStoreModels()[position].providerName,
+              style: TextStyle(fontSize: 22.0),
+            ),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => new AddFilmOrderPage(StoreModel.getStoreModels()[position]),
+              ),
+            ),
           );
         },
         separatorBuilder: (context, index) => Divider(

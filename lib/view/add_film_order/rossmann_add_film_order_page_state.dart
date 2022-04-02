@@ -5,6 +5,8 @@ import 'package:filmdevelopmentcompanion/view/add_film_order/abstract_add_film_o
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'add_film_order_floating_action_button.dart';
+
 class RossmannOldAddFilmOrderPageState extends AddFilmOrderPageState {
   final orderIdTextController = TextEditingController();
   final htNumberTextController = TextEditingController();
@@ -20,10 +22,11 @@ class RossmannOldAddFilmOrderPageState extends AddFilmOrderPageState {
     super.dispose();
   }
 
-  @override
-  void initState() {
-    super.initState();
-  }
+  onAddFilmOrderButtonPressed() => addFilmOrder(
+        orderIdTextController.text,
+        htNumberTextController.text,
+        noteTextController.text,
+      );
 
   //Method is called when HTNUMBER field has changed.
   //Inserts dash ('-') after the first two characters
@@ -96,13 +99,7 @@ class RossmannOldAddFilmOrderPageState extends AddFilmOrderPageState {
               ],
             ),
           ),
-          floatingActionButton: FloatingActionButton.extended(
-            onPressed: () =>
-                addFilmOrder(orderIdTextController.text, htNumberTextController.text, noteTextController.text),
-            icon: Icon(Icons.check),
-            label: Text(AppLocalizations.of(context).translate('AddFilmOrderSaveOrderLabel'),
-                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
-          ),
+          floatingActionButton: AddFilmOrderFloatingActionButton(onAddFilmOrderButtonPressed),
         );
       },
     );
