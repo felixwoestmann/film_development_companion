@@ -1,7 +1,5 @@
 import 'package:filmdevelopmentcompanion/io/database_helpers.dart';
 
-import 'film_development_status_summary.dart';
-
 /// A FilmDevelopmentStatus represents a status update of a FilmDevelopmentOrder
 class FilmDevelopmentStatus {
   DateTime statusDate;
@@ -11,10 +9,7 @@ class FilmDevelopmentStatus {
   String statusSummaryText;
 
   FilmDevelopmentStatus(
-      DateTime statusDate,
-      FilmDevelopmentStatusSummary statusSummary,
-      double price,
-      String statusSummaryText) {
+      DateTime statusDate, FilmDevelopmentStatusSummary statusSummary, double price, String statusSummaryText) {
     this.statusDate = statusDate;
     this.statusSummary = statusSummary;
     this.price = price;
@@ -23,14 +18,11 @@ class FilmDevelopmentStatus {
   }
 
   FilmDevelopmentStatus.fromMap(Map<String, dynamic> map) {
-    statusDate = DateTime.fromMillisecondsSinceEpoch(
-        map[DatabaseHelper.columnStatusStatusDate]);
+    statusDate = DateTime.fromMillisecondsSinceEpoch(map[DatabaseHelper.columnStatusStatusDate]);
     price = map[DatabaseHelper.columnStatusPrice];
     statusSummaryText = map[DatabaseHelper.columnStatusStatusSummaryText];
-    fetchTime = DateTime.fromMillisecondsSinceEpoch(
-        map[DatabaseHelper.columnStatusFetchTime]);
-    statusSummary = FilmDevelopmentStatusSummary
-        .values[map[DatabaseHelper.columnStatusStatusSummary]];
+    fetchTime = DateTime.fromMillisecondsSinceEpoch(map[DatabaseHelper.columnStatusFetchTime]);
+    statusSummary = FilmDevelopmentStatusSummary.values[map[DatabaseHelper.columnStatusStatusSummary]];
   }
 
   Map<String, dynamic> toMap() {
@@ -49,3 +41,9 @@ class FilmDevelopmentStatus {
     return "statusDate: $statusDate\nstatusSummary: $statusSummary\nprice: $price\nstatusSummaryText: $statusSummaryText";
   }
 }
+
+/// Enumeration to describe the actual STATE of the order
+/// UNKNOWN: Status is UNKNOWN
+/// PROCESSING: Order shows up in the FilmLab Backend
+/// Done: Order is processed and will be shipped
+enum FilmDevelopmentStatusSummary { UNKNOWN_ERROR, PROCESSING, SHIPPING, DELIVERED }

@@ -1,10 +1,10 @@
 import 'dart:async';
+
 import 'package:filmdevelopmentcompanion/io/database_helpers.dart';
 import 'package:filmdevelopmentcompanion/model/film_development_status.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/store_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'film_development_status_summary.dart';
 
 /// A FilmDevelopmentOrder represents an order to develop a film at a lab.
 /// id: the unique id of this film order
@@ -22,8 +22,7 @@ class FilmDevelopmentOrder {
   FilmDevelopmentStatus latestFilmDevelopmentStatusUpdate;
   StoreModel storeModel;
 
-  FilmDevelopmentOrder(
-      StoreModel storeModel, String orderId, String storeId, String note) {
+  FilmDevelopmentOrder(StoreModel storeModel, String orderId, String storeId, String note) {
     this.orderId = orderId;
     this.storeModel = storeModel;
     this.storeId = storeId;
@@ -32,22 +31,20 @@ class FilmDevelopmentOrder {
   }
 
   Future<void> update() async {
-    print("Update "+storeModel.providerNameUi+" Order "+ orderId);
+    print("Update " + storeModel.providerNameUi + " Order " + orderId);
     FilmDevelopmentStatus statusUpdate = await storeModel.update(this);
     //If the order has no update than store the current one
     if (latestFilmDevelopmentStatusUpdate == null) {
       latestFilmDevelopmentStatusUpdate = statusUpdate;
     } else {
       //If the order already has a status, than only store the newly fetched one if they differ
-      if (statusUpdate.statusSummary.index >=
-          latestFilmDevelopmentStatusUpdate.statusSummary.index) {
+      if (statusUpdate.statusSummary.index >= latestFilmDevelopmentStatusUpdate.statusSummary.index) {
         latestFilmDevelopmentStatusUpdate = statusUpdate;
       }
     }
   }
 
-  String get insertionDateGui =>
-      new DateFormat.MMMd("de_DE").format(insertionDate);
+  String get insertionDateGui => new DateFormat.MMMd("de_DE").format(insertionDate);
 
   String get price {
     if (latestFilmDevelopmentStatusUpdate != null) {
@@ -59,11 +56,9 @@ class FilmDevelopmentOrder {
     return "-";
   }
 
-
   String get latestFilmDevelopmentStatusSummaryText {
     if (latestFilmDevelopmentStatusUpdate != null) {
-      return storeModel.formatSummaryStateTextForUI(
-          latestFilmDevelopmentStatusUpdate.statusSummaryText);
+      return storeModel.formatSummaryStateTextForUI(latestFilmDevelopmentStatusUpdate.statusSummaryText);
     } else {
       return "";
     }
@@ -93,12 +88,10 @@ class FilmDevelopmentOrder {
     id = map[DatabaseHelper.columnId];
     orderId = map[DatabaseHelper.columnOrderNumber];
     storeId = map[DatabaseHelper.columnStoreId];
-    insertionDate = DateTime.fromMillisecondsSinceEpoch(
-        map[DatabaseHelper.columnInsertionDate]);
-    storeModel =
-        StoreModel.storeModelFromId(map[DatabaseHelper.columnStoreModel]);
+    insertionDate = DateTime.fromMillisecondsSinceEpoch(map[DatabaseHelper.columnInsertionDate]);
+    storeModel = StoreModel.storeModelFromId(map[DatabaseHelper.columnStoreModel]);
     note = map[DatabaseHelper.columnNote];
-    //Check if there was a persistet FilmDev Order
+    //Check if there was a persisted FilmDev Order
     if (map[DatabaseHelper.columnStatusFetchTime] != null) {
       latestFilmDevelopmentStatusUpdate = FilmDevelopmentStatus.fromMap(map);
     }
