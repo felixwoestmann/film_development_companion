@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:collection';
 
 import 'package:filmdevelopmentcompanion/io/database_helpers.dart';
-import 'package:filmdevelopmentcompanion/model/shared_preferences_helper.dart';
 import 'package:flutter/foundation.dart';
 
 import 'film_development_order.dart';
@@ -13,11 +12,6 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
   bool showCompactView = false;
 
   FilmDevelopmentAppDataModel() {
-    SharedPreferencesHelper()
-        .loadCompactViewPreference()
-        .then((v) => showCompactView = v)
-        .whenComplete(() => notifyListeners());
-
     dbHelper = DatabaseHelper.instance;
     initFilmDevelopmentAppDataModel();
   }
@@ -50,16 +44,6 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
       futures.add(order.update().then((value) => dbHelper.update(order)));
     }
     await Future.wait(futures);
-    notifyListeners();
-  }
-
-  void toggleCompactView() {
-    if (showCompactView) {
-      showCompactView = false;
-    } else {
-      showCompactView = true;
-    }
-    SharedPreferencesHelper().saveCompactViewPreference(showCompactView);
     notifyListeners();
   }
 }
