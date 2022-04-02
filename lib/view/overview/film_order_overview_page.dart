@@ -1,12 +1,12 @@
 import 'package:filmdevelopmentcompanion/localizations.dart';
 import 'package:filmdevelopmentcompanion/model/film_development_appdata_model.dart';
-import 'package:filmdevelopmentcompanion/view/compact_film_order_card.dart';
 import 'package:filmdevelopmentcompanion/view/misc/third_party_license_page.dart';
+import 'package:filmdevelopmentcompanion/view/overview/compact_film_order_card.dart';
 import 'package:filmdevelopmentcompanion/view/standard_film_oder_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../model/shared_preferences_helper.dart';
+import '../../model/shared_preferences_helper.dart';
 
 class FilmOrderOverviewPage extends StatefulWidget {
   @override
