@@ -1,20 +1,17 @@
 import 'dart:async';
-import 'package:filmdevelopmentcompanion/model/store_models/cewe_store_model.dart';
-import 'package:filmdevelopmentcompanion/model/store_models/dm_de_store_model.dart';
-import 'package:filmdevelopmentcompanion/model/store_models/rossmann_store_model.dart';
+
 import 'package:filmdevelopmentcompanion/model/store_models/store_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 //The class SharedPreferencesHelper saves and loads values from the SharedPreferences of the used device
 class SharedPreferencesHelper {
-  static final SharedPreferencesHelper _singletoninstance =
-  SharedPreferencesHelper._internal();
+  static final SharedPreferencesHelper _singletoninstance = SharedPreferencesHelper._internal();
 
   factory SharedPreferencesHelper() {
     return _singletoninstance;
   }
 
-  SharedPreferencesHelper._internal() {}
+  SharedPreferencesHelper._internal();
 
   // ComapctView saves the boolean value to indicate if the user wants a compact representation of all his film orders
   final String _compactView = "preferenceCompactView";
@@ -34,19 +31,15 @@ class SharedPreferencesHelper {
   //HomeStore is saved for a specificStoreModel
   final String _homeStorePrefix = "homeStore-";
 
-  String buildKeyForStoreModel(StoreModel storeModel) =>
-      _homeStorePrefix + storeModel.providerId;
+  String buildKeyForStoreModel(StoreModel storeModel) => _homeStorePrefix + storeModel.providerId;
 
   Future<String> loadHomeStoreForStoreModel(StoreModel storeModel) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String value = await prefs.getString(buildKeyForStoreModel(storeModel)) ??
-        "";
+    String value = prefs.getString(buildKeyForStoreModel(storeModel)) ?? "";
     return value;
   }
 
-
-  Future<bool> saveHomeStoreForStoreModel(StoreModel storeModel,
-      String newHomeStore) async {
+  Future<bool> saveHomeStoreForStoreModel(StoreModel storeModel, String newHomeStore) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.setString(buildKeyForStoreModel(storeModel), newHomeStore);
   }

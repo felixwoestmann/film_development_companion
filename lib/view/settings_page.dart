@@ -22,36 +22,31 @@ class _SettingsPageState extends State<SettingsPage> {
       builder: (context, filmordermodel, child) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(AppLocalizations.of(context).translate('Settings'),
-                style: TextStyle(fontWeight: FontWeight.bold)),
+            title:
+                Text(AppLocalizations.of(context).translate('Settings'), style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           body: Column(
             children: <Widget>[
               ListTile(
                 leading: Icon(
                   Icons.home,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
-                title: Text(
-                    AppLocalizations.of(context).translate('SetHomeStores')),
+                title: Text(AppLocalizations.of(context).translate('SetHomeStores')),
               ),
               Expanded(
                   child: ListView.separated(
-                  itemBuilder: (context, position) {
+                itemBuilder: (context, position) {
                   return Padding(
                     padding: const EdgeInsets.fromLTRB(70, 0, 0, 0),
                     child: ListTile(
-                      title: Text(
-                          StoreModel.getStoreModels()[position].providerName),
-                      subtitle: Text(AppLocalizations.of(context)
-                              .translate('AddFilmOrderDMStoreId') +
-                          filmordermodel.getHomeStoreForStoreModel(
-                              StoreModel.getStoreModels()[position])),
+                      title: Text(StoreModel.getStoreModels()[position].providerName),
+                      subtitle: Text(AppLocalizations.of(context).translate('AddFilmOrderDMStoreId') +
+                          filmordermodel.getHomeStoreForStoreModel(StoreModel.getStoreModels()[position])),
                       onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => new SetHomeStorePage(
-                                  StoreModel.getStoreModels()[position]))),
+                              builder: (context) => new SetHomeStorePage(StoreModel.getStoreModels()[position]))),
                       trailing: Icon(Icons.keyboard_arrow_right),
                     ),
                   );

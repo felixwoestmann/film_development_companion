@@ -24,9 +24,11 @@ class FilmDevCompanionApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.light,
         primaryColor: Color.fromARGB(255, 40, 40, 40),
-        accentColor: Color.fromARGB(255, 242, 87, 87),
         //accentColor: Colors.deepOrangeAccent,
         fontFamily: 'Futura',
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          secondary: Color.fromARGB(255, 242, 87, 87),
+        ),
       ),
       initialRoute: '/',
       routes: {

@@ -1,14 +1,15 @@
 import 'dart:async';
 import 'dart:collection';
+
 import 'package:filmdevelopmentcompanion/io/database_helpers.dart';
-import 'package:filmdevelopmentcompanion/localizations.dart';
 import 'package:filmdevelopmentcompanion/model/shared_preferences_helper.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/store_model.dart';
 import 'package:flutter/foundation.dart';
+
 import 'film_development_order.dart';
 
 class FilmDevelopmentAppDataModel extends ChangeNotifier {
-  List<FilmDevelopmentOrder> filmOrders = new List();
+  List<FilmDevelopmentOrder> filmOrders = [];
   Map<String, String> homeStoresForStoreModel = {};
   DatabaseHelper dbHelper;
   bool showCompactView = false;
@@ -22,8 +23,7 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
     for (StoreModel storeModel in StoreModel.getStoreModels()) {
       SharedPreferencesHelper()
           .loadHomeStoreForStoreModel(storeModel)
-          .then((value) => homeStoresForStoreModel.putIfAbsent(
-              storeModel.providerId, () => value))
+          .then((value) => homeStoresForStoreModel.putIfAbsent(storeModel.providerId, () => value))
           .whenComplete(() => notifyListeners());
     }
     dbHelper = DatabaseHelper.instance;
@@ -50,8 +50,7 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  UnmodifiableListView<FilmDevelopmentOrder> get filmDevelopmentOrders =>
-      UnmodifiableListView(filmOrders);
+  UnmodifiableListView<FilmDevelopmentOrder> get filmDevelopmentOrders => UnmodifiableListView(filmOrders);
 
   Future<void> updateAllOrders() async {
     List<Future> futures = <Future>[];
@@ -74,18 +73,15 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
 
   String getHomeStoreForStoreModel(StoreModel storeModel) {
     if (homeStoresForStoreModel.containsKey(storeModel.providerId) &&
-        !identical(
-            homeStoresForStoreModel.containsKey(storeModel.providerId), "")) {
+        !identical(homeStoresForStoreModel.containsKey(storeModel.providerId), "")) {
       return homeStoresForStoreModel[storeModel.providerId];
     }
     return "No home store is present"; //TODO i18
   }
 
-  String saveHomeStoreForStoreModel(
-      StoreModel storeModel, String newHomeStore) {
+  void saveHomeStoreForStoreModel(StoreModel storeModel, String newHomeStore) {
     homeStoresForStoreModel[storeModel.providerId] = newHomeStore;
-    SharedPreferencesHelper()
-        .saveHomeStoreForStoreModel(storeModel, newHomeStore);
+    SharedPreferencesHelper().saveHomeStoreForStoreModel(storeModel, newHomeStore);
     notifyListeners();
   }
 }

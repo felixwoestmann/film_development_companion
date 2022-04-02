@@ -1,6 +1,5 @@
 import 'package:filmdevelopmentcompanion/localizations.dart';
 import 'package:filmdevelopmentcompanion/model/film_development_appdata_model.dart';
-import 'package:filmdevelopmentcompanion/model/store_models/dm_de_store_model.dart';
 import 'package:filmdevelopmentcompanion/model/store_models/store_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -33,8 +32,7 @@ class _SetHomeStorePageState extends State<SetHomeStorePage> {
   }
 
   void saveHomeStore(String homeStore) {
-    Provider.of<FilmDevelopmentAppDataModel>(context, listen: false)
-        .saveHomeStoreForStoreModel(storeModel, homeStore);
+    Provider.of<FilmDevelopmentAppDataModel>(context, listen: false).saveHomeStoreForStoreModel(storeModel, homeStore);
   }
 
   @override
@@ -43,9 +41,7 @@ class _SetHomeStorePageState extends State<SetHomeStorePage> {
       builder: (context, cart, child) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(
-                AppLocalizations.of(context).translate('SetHomeStoreFor') +
-                    storeModel.providerName,
+            title: Text(AppLocalizations.of(context).translate('SetHomeStoreFor') + storeModel.providerName,
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           body: SingleChildScrollView(
@@ -59,8 +55,7 @@ class _SetHomeStorePageState extends State<SetHomeStorePage> {
                     controller: storeIdTextController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      hintText: AppLocalizations.of(context)
-                          .translate('AddFilmOrderDMStoreId'),
+                      hintText: AppLocalizations.of(context).translate('AddFilmOrderDMStoreId'),
                       hintStyle: TextStyle(fontSize: 18),
                     ),
                   ),

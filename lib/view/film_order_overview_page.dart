@@ -28,8 +28,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
     }
   }
 
-  Widget getExpandableCardForViewType(
-      FilmDevelopmentAppDataModel filmordermodel, int position) {
+  Widget getExpandableCardForViewType(FilmDevelopmentAppDataModel filmordermodel, int position) {
     if (filmordermodel.showCompactView) {
       return ExpandablePanel(
         header: Row(
@@ -37,7 +36,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
             Padding(
               padding: EdgeInsets.fromLTRB(8, 5, 0, 5),
               child: Icon(filmordermodel.filmOrders[position].iconForStatus,
-                  color: Theme.of(context).accentColor, size: 55.0),
+                  color: Theme.of(context).colorScheme.secondary, size: 55.0),
             ),
             Padding(
               padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
@@ -46,8 +45,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                 children: <Widget>[
                   Text(
                     "${filmordermodel.filmOrders[position].insertionDateGui} // ${filmordermodel.filmOrders[position].storeId} - ${filmordermodel.filmOrders[position].orderId}",
-                    style:
-                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -64,18 +62,15 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                   Padding(
                     padding: const EdgeInsets.only(right: 5.0),
                     child: Text(
-                      AppLocalizations.of(context)
-                          .translate('FilmOrderOverviewCardStateLabel'),
-                      style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold),
+                      AppLocalizations.of(context).translate('FilmOrderOverviewCardStateLabel'),
+                      style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Flexible(
                     child: Padding(
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Text(
-                        filmordermodel.filmOrders[position]
-                            .latestFilmDevelopmentStatusSummaryText,
+                        filmordermodel.filmOrders[position].latestFilmDevelopmentStatusSummaryText,
                         style: TextStyle(fontSize: 20.0),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 5,
@@ -91,10 +86,8 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                     Padding(
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Text(
-                        AppLocalizations.of(context)
-                            .translate('FilmOrderOverviewCardNoteLabel'),
-                        style: TextStyle(
-                            fontSize: 20.0, fontWeight: FontWeight.bold),
+                        AppLocalizations.of(context).translate('FilmOrderOverviewCardNoteLabel'),
+                        style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                       ),
                     ),
                     Flexible(
@@ -139,7 +132,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
             Padding(
               padding: EdgeInsets.fromLTRB(8, 10, 0, 5),
               child: Icon(filmordermodel.filmOrders[position].iconForStatus,
-                  color: Theme.of(context).accentColor, size: 55.0),
+                  color: Theme.of(context).colorScheme.secondary, size: 55.0),
             ),
             Padding(
               padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
@@ -148,8 +141,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                 children: <Widget>[
                   Text(
                     "${filmordermodel.filmOrders[position].insertionDateGui} @ ${filmordermodel.filmOrders[position].storeModel.providerNameUi}",
-                    style:
-                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     "${filmordermodel.filmOrders[position].storeId} // ${filmordermodel.filmOrders[position].orderId}",
@@ -169,8 +161,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
               child: Padding(
                 padding: EdgeInsets.fromLTRB(15, 0, 0, 10),
                 child: Text(
-                  filmordermodel.filmOrders[position]
-                      .latestFilmDevelopmentStatusSummaryText,
+                  filmordermodel.filmOrders[position].latestFilmDevelopmentStatusSummaryText,
                   style: TextStyle(fontSize: 20.0),
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -188,18 +179,15 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                   Padding(
                     padding: const EdgeInsets.only(right: 5.0),
                     child: Text(
-                      AppLocalizations.of(context)
-                          .translate('FilmOrderOverviewCardStateLabel'),
-                      style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold),
+                      AppLocalizations.of(context).translate('FilmOrderOverviewCardStateLabel'),
+                      style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Flexible(
                     child: Padding(
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Text(
-                        filmordermodel.filmOrders[position]
-                            .latestFilmDevelopmentStatusSummaryText,
+                        filmordermodel.filmOrders[position].latestFilmDevelopmentStatusSummaryText,
                         style: TextStyle(fontSize: 20.0),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 5,
@@ -215,10 +203,8 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                     Padding(
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Text(
-                        AppLocalizations.of(context)
-                            .translate('FilmOrderOverviewCardNoteLabel'),
-                        style: TextStyle(
-                            fontSize: 20.0, fontWeight: FontWeight.bold),
+                        AppLocalizations.of(context).translate('FilmOrderOverviewCardNoteLabel'),
+                        style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                       ),
                     ),
                     Flexible(
@@ -267,8 +253,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
           backgroundColor: Colors.white,
           appBar: AppBar(
             title: Text(
-              AppLocalizations.of(context)
-                  .translate('FilmOrderOverviewPageTitle'),
+              AppLocalizations.of(context).translate('FilmOrderOverviewPageTitle'),
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             actions: <Widget>[
@@ -281,23 +266,19 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
               IconButton(
                 icon: Icon(Icons.settings),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SettingsPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage()));
                 },
               ),
               PopupMenuButton<Widget>(
-                onSelected: (value) => Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => value)),
+                onSelected: (value) => Navigator.push(context, MaterialPageRoute(builder: (context) => value)),
                 itemBuilder: (context) => [
                   PopupMenuItem(
                     value: LicensePage(),
-                    child: Text(AppLocalizations.of(context)
-                        .translate('FilmOrderOverviewFlutterLicensesLabel')),
+                    child: Text(AppLocalizations.of(context).translate('FilmOrderOverviewFlutterLicensesLabel')),
                   ),
                   PopupMenuItem(
                     value: ThirdPartyLicensesPage(),
-                    child: Text(AppLocalizations.of(context)
-                        .translate('FilmOrderOverviewThirdpartyLicensesLabel')),
+                    child: Text(AppLocalizations.of(context).translate('FilmOrderOverviewThirdpartyLicensesLabel')),
                   ),
                 ],
               )
@@ -330,8 +311,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18.0),
                       ),
-                      child: getExpandableCardForViewType(
-                          filmordermodel, position),
+                      child: getExpandableCardForViewType(filmordermodel, position),
                     ),
                   );
                 },
@@ -340,10 +320,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
               onRefresh: filmordermodel.updateAllOrders),
           floatingActionButton: FloatingActionButton.extended(
             onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ChooseStoreTypePage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ChooseStoreTypePage()));
             },
             icon: Icon(Icons.add),
             label: Text(

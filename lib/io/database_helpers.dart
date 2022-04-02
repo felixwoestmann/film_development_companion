@@ -1,8 +1,9 @@
 import 'dart:io';
+
 import 'package:filmdevelopmentcompanion/model/film_development_order.dart';
 import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
   // Database table and column names for the Film Development Order
@@ -45,8 +46,7 @@ class DatabaseHelper {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, _databaseName);
     // Open the database. Can also add an onUpdate callback parameter.
-    return await openDatabase(path,
-        version: _databaseVersion, onCreate: _onCreate);
+    return await openDatabase(path, version: _databaseVersion, onCreate: _onCreate);
   }
 
   Future _onCreate(Database db, int version) async {
@@ -76,8 +76,7 @@ class DatabaseHelper {
 
   Future<FilmDevelopmentOrder> queryFilmDevelopmentOrder(int id) async {
     Database db = await database;
-    List<Map> maps =
-        await db.query(tableOrders, where: '$columnId = ?', whereArgs: [id]);
+    List<Map> maps = await db.query(tableOrders, where: '$columnId = ?', whereArgs: [id]);
     if (maps.length > 0) {
       return FilmDevelopmentOrder.fromMap(maps.first);
     }
@@ -86,27 +85,24 @@ class DatabaseHelper {
 
   Future<List<FilmDevelopmentOrder>> loadAllFilmDevelopmentOrders() async {
     Database db = await database;
-    List<Map> maps =
-        await db.query(tableOrders, orderBy: "$columnInsertionDate DESC");
+    List<Map> maps = await db.query(tableOrders, orderBy: "$columnInsertionDate DESC");
 
-    List<FilmDevelopmentOrder> loadedOrders = new List();
-    maps.forEach(
-        (order) => loadedOrders.add(FilmDevelopmentOrder.fromMap(order)));
+    List<FilmDevelopmentOrder> loadedOrders = [];
+    maps.forEach((order) => loadedOrders.add(FilmDevelopmentOrder.fromMap(order)));
     return loadedOrders;
   }
 
   Future<int> delete(FilmDevelopmentOrder orderToBeDeleted) async {
     Database db = await database;
-    int val = await db.delete(tableOrders,
-        where: '$columnId = ?', whereArgs: [orderToBeDeleted.id]);
+    int val = await db.delete(tableOrders, where: '$columnId = ?', whereArgs: [orderToBeDeleted.id]);
     print("$val rows deleted");
     return val;
   }
 
   Future<int> update(FilmDevelopmentOrder orderToBeUpdated) async {
     Database db = await database;
-    int val = await db.update(tableOrders, orderToBeUpdated.toMap(),
-        where: '$columnId = ?', whereArgs: [orderToBeUpdated.id]);
+    int val = await db
+        .update(tableOrders, orderToBeUpdated.toMap(), where: '$columnId = ?', whereArgs: [orderToBeUpdated.id]);
     print("$val rows updated");
     return val;
   }
