@@ -3,7 +3,6 @@ import 'package:filmdevelopmentcompanion/localizations.dart';
 import 'package:filmdevelopmentcompanion/model/film_development_appdata_model.dart';
 import 'package:filmdevelopmentcompanion/view/choose_store_type_page.dart';
 import 'package:filmdevelopmentcompanion/view/misc/third_party_license_page.dart';
-import 'package:filmdevelopmentcompanion/view/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -252,6 +251,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
         return Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
+            backgroundColor: Theme.of(context).primaryColor,
             title: Text(
               AppLocalizations.of(context).translate('FilmOrderOverviewPageTitle'),
               style: TextStyle(fontWeight: FontWeight.bold),
@@ -259,15 +259,7 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
             actions: <Widget>[
               IconButton(
                 icon: getIconForViewType(filmordermodel),
-                onPressed: () {
-                  filmordermodel.toggleCompactView();
-                },
-              ),
-              IconButton(
-                icon: Icon(Icons.settings),
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage()));
-                },
+                onPressed: filmordermodel.toggleCompactView,
               ),
               PopupMenuButton<Widget>(
                 onSelected: (value) => Navigator.push(context, MaterialPageRoute(builder: (context) => value)),

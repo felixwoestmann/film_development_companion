@@ -18,6 +18,7 @@ class _ChooseStoreTypePageState extends State<ChooseStoreTypePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).primaryColor,
         title: Text(AppLocalizations.of(context).translate('ChooseStoreTypePageTitle'),
             style: TextStyle(fontWeight: FontWeight.bold)),
       ),

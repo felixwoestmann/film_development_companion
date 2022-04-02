@@ -3,14 +3,12 @@ import 'dart:collection';
 
 import 'package:filmdevelopmentcompanion/io/database_helpers.dart';
 import 'package:filmdevelopmentcompanion/model/shared_preferences_helper.dart';
-import 'package:filmdevelopmentcompanion/model/store_models/store_model.dart';
 import 'package:flutter/foundation.dart';
 
 import 'film_development_order.dart';
 
 class FilmDevelopmentAppDataModel extends ChangeNotifier {
   List<FilmDevelopmentOrder> filmOrders = [];
-  Map<String, String> homeStoresForStoreModel = {};
   DatabaseHelper dbHelper;
   bool showCompactView = false;
 
@@ -19,13 +17,7 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
         .loadCompactViewPreference()
         .then((v) => showCompactView = v)
         .whenComplete(() => notifyListeners());
-    //Load HomeStores for all StoreModels
-    for (StoreModel storeModel in StoreModel.getStoreModels()) {
-      SharedPreferencesHelper()
-          .loadHomeStoreForStoreModel(storeModel)
-          .then((value) => homeStoresForStoreModel.putIfAbsent(storeModel.providerId, () => value))
-          .whenComplete(() => notifyListeners());
-    }
+
     dbHelper = DatabaseHelper.instance;
     initFilmDevelopmentAppDataModel();
   }
@@ -68,20 +60,6 @@ class FilmDevelopmentAppDataModel extends ChangeNotifier {
       showCompactView = true;
     }
     SharedPreferencesHelper().saveCompactViewPreference(showCompactView);
-    notifyListeners();
-  }
-
-  String getHomeStoreForStoreModel(StoreModel storeModel) {
-    if (homeStoresForStoreModel.containsKey(storeModel.providerId) &&
-        !identical(homeStoresForStoreModel.containsKey(storeModel.providerId), "")) {
-      return homeStoresForStoreModel[storeModel.providerId];
-    }
-    return "No home store is present"; //TODO i18
-  }
-
-  void saveHomeStoreForStoreModel(StoreModel storeModel, String newHomeStore) {
-    homeStoresForStoreModel[storeModel.providerId] = newHomeStore;
-    SharedPreferencesHelper().saveHomeStoreForStoreModel(storeModel, newHomeStore);
     notifyListeners();
   }
 }

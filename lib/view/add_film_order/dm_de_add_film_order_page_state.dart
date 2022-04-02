@@ -30,9 +30,8 @@ class DmDeAddFilmOrderPageState extends AddFilmOrderPageState {
       builder: (context, cart, child) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(
-                AppLocalizations.of(context)
-                    .translate('AddFilmOrderDMPageTitle'),
+            backgroundColor: Theme.of(context).primaryColor,
+            title: Text(AppLocalizations.of(context).translate('AddFilmOrderDMPageTitle'),
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           body: SingleChildScrollView(
@@ -46,8 +45,7 @@ class DmDeAddFilmOrderPageState extends AddFilmOrderPageState {
                     controller: storeIdTextController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      hintText: AppLocalizations.of(context)
-                          .translate('AddFilmOrderDMStoreId'),
+                      hintText: AppLocalizations.of(context).translate('AddFilmOrderDMStoreId'),
                       hintStyle: TextStyle(fontSize: 18),
                     ),
                   ),
@@ -59,8 +57,7 @@ class DmDeAddFilmOrderPageState extends AddFilmOrderPageState {
                     controller: orderIdTextController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      hintText: AppLocalizations.of(context)
-                          .translate('AddFilmOrderDMOrderId'),
+                      hintText: AppLocalizations.of(context).translate('AddFilmOrderDMOrderId'),
                       hintStyle: TextStyle(fontSize: 18),
                     ),
                   ),
@@ -71,20 +68,17 @@ class DmDeAddFilmOrderPageState extends AddFilmOrderPageState {
                       maxLines: 5,
                       controller: noteTextController,
                       decoration: InputDecoration(
-                          hintText: AppLocalizations.of(context)
-                              .translate('AddFilmOrderNoteLabel'),
+                          hintText: AppLocalizations.of(context).translate('AddFilmOrderNoteLabel'),
                           hintStyle: TextStyle(fontSize: 18))),
                 ),
               ],
             ),
           ),
           floatingActionButton: FloatingActionButton.extended(
-            onPressed: () => addFilmOrder(orderIdTextController.text,
-                storeIdTextController.text, noteTextController.text),
+            onPressed: () =>
+                addFilmOrder(orderIdTextController.text, storeIdTextController.text, noteTextController.text),
             icon: Icon(Icons.check),
-            label: Text(
-                AppLocalizations.of(context)
-                    .translate('AddFilmOrderSaveOrderLabel'),
+            label: Text(AppLocalizations.of(context).translate('AddFilmOrderSaveOrderLabel'),
                 style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
           ),
         );

@@ -39,9 +39,8 @@ class RossmannOldAddFilmOrderPageState extends AddFilmOrderPageState {
         //do your text transforming
         newTextInhtNumber = '$text-';
         htNumberTextController.text = newTextInhtNumber;
-        htNumberTextController.selection = new TextSelection(
-            baseOffset: newTextInhtNumber.length,
-            extentOffset: newTextInhtNumber.length);
+        htNumberTextController.selection =
+            new TextSelection(baseOffset: newTextInhtNumber.length, extentOffset: newTextInhtNumber.length);
       }
     }
   }
@@ -52,9 +51,8 @@ class RossmannOldAddFilmOrderPageState extends AddFilmOrderPageState {
       builder: (context, cart, child) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(
-                AppLocalizations.of(context)
-                    .translate('AddFilmOrderRossmannPageTitle'),
+            backgroundColor: Theme.of(context).primaryColor,
+            title: Text(AppLocalizations.of(context).translate('AddFilmOrderRossmannPageTitle'),
                 style: TextStyle(fontWeight: FontWeight.bold)),
           ),
           body: SingleChildScrollView(
@@ -68,8 +66,7 @@ class RossmannOldAddFilmOrderPageState extends AddFilmOrderPageState {
                     controller: orderIdTextController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      hintText: AppLocalizations.of(context)
-                          .translate('AddFilmOrderRossmannOrderId'),
+                      hintText: AppLocalizations.of(context).translate('AddFilmOrderRossmannOrderId'),
                       hintStyle: TextStyle(fontSize: 18),
                     ),
                   ),
@@ -82,8 +79,7 @@ class RossmannOldAddFilmOrderPageState extends AddFilmOrderPageState {
                     controller: htNumberTextController,
                     onChanged: htNumberOnChange,
                     decoration: InputDecoration(
-                      hintText: AppLocalizations.of(context)
-                          .translate('AddFilmOrderRossmannStoreId'),
+                      hintText: AppLocalizations.of(context).translate('AddFilmOrderRossmannStoreId'),
                       hintStyle: TextStyle(fontSize: 18),
                     ),
                   ),
@@ -94,20 +90,17 @@ class RossmannOldAddFilmOrderPageState extends AddFilmOrderPageState {
                       maxLines: 5,
                       controller: noteTextController,
                       decoration: InputDecoration(
-                          hintText: AppLocalizations.of(context)
-                              .translate('AddFilmOrderNoteLabel'),
+                          hintText: AppLocalizations.of(context).translate('AddFilmOrderNoteLabel'),
                           hintStyle: TextStyle(fontSize: 18))),
                 ),
               ],
             ),
           ),
           floatingActionButton: FloatingActionButton.extended(
-            onPressed: () => addFilmOrder(orderIdTextController.text,
-                htNumberTextController.text, noteTextController.text),
+            onPressed: () =>
+                addFilmOrder(orderIdTextController.text, htNumberTextController.text, noteTextController.text),
             icon: Icon(Icons.check),
-            label: Text(
-                AppLocalizations.of(context)
-                    .translate('AddFilmOrderSaveOrderLabel'),
+            label: Text(AppLocalizations.of(context).translate('AddFilmOrderSaveOrderLabel'),
                 style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
           ),
         );

@@ -2,7 +2,6 @@ import 'package:filmdevelopmentcompanion/localizations.dart';
 import 'package:filmdevelopmentcompanion/model/film_development_appdata_model.dart';
 import 'package:filmdevelopmentcompanion/view/choose_store_type_page.dart';
 import 'package:filmdevelopmentcompanion/view/film_order_overview_page.dart';
-import 'package:filmdevelopmentcompanion/view/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +33,6 @@ class FilmDevCompanionApp extends StatelessWidget {
       routes: {
         '/': (context) => FilmOrderOverviewPage(),
         '/chooseStore': (context) => ChooseStoreTypePage(),
-        '/settings': (context) => SettingsPage(),
       },
       localizationsDelegates: [
         AppLocalizations.delegate,
