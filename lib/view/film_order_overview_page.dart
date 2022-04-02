@@ -21,8 +21,13 @@ class _FilmOrderOverviewPageState extends State<FilmOrderOverviewPage> {
   void initState() {
     super.initState();
     // Initialize Future to then wait for it in FutureBuild
-    loadCompactViewPreference = SharedPreferencesHelper().loadCompactViewPreference();
-    // set State
+    loadCompactViewPreference = loadCompactViewPref();
+  }
+
+  Future<bool> loadCompactViewPref() async {
+    bool compactViewPref = await SharedPreferencesHelper().loadCompactViewPreference();
+    compactView = compactViewPref;
+    return compactViewPref;
   }
 
   void toggleCompactView() {
